@@ -11,10 +11,9 @@ namespace DataAccessLogic.Interfaces
     {
         List<T> GetProducts();
         void AddObj(T tempObj);
-        void DeleteObject(T tempObj);
+        void DeleteObject(int id);
         void ReadFromDataBase();
-        int GetIdObj(T tempObj);
-        T GetObj(int index);
+        T GetObj(int id);
         //ProductDTO update
         //ProductDTO create
     }

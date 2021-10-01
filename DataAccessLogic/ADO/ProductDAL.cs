@@ -70,7 +70,7 @@ namespace DataAccessLogic.ADO
                     connectionSql.Open();
                     comm.CommandText = "insert into Product(ProductName, PriceIn, PriceOut," +
                       " CategoryId) values(@fname,@priceInn, @priceOutt, @categor)";
-                    comm.Parameters.Clear();
+                   // comm.Parameters.Clear();
                     comm.Parameters.AddWithValue("@fname", tempObj.NameObj);
                     comm.Parameters.AddWithValue("@priceInn", tempObj.PriceIn);
                     comm.Parameters.AddWithValue("@priceOutt", tempObj.PriceOut);
@@ -79,43 +79,25 @@ namespace DataAccessLogic.ADO
             }
         }
 
-        public void DeleteObject(ProductDTO tempObj)
+        public void DeleteObject(int id)
         {
+            var tempObj = products.Where(x => x.Id == id).SingleOrDefault();
             products.Remove(tempObj);
-            int currProductId = GetIdObj(tempObj);
+           
             using (SqlConnection connectionSql = new SqlConnection(connectionStr))
             {
                 using (SqlCommand comm = connectionSql.CreateCommand())
                 {
-                    //delete from Product where ProductId=1
+                   
+                        //delete from Product where ProductId=1
                     connectionSql.Open();
                     comm.CommandText = "delete from Product where ProductId=@productId";
                     comm.Parameters.Clear();
-                    comm.Parameters.AddWithValue("@productId", currProductId);
+                    comm.Parameters.AddWithValue("@productId", tempObj.Id);
                 }
             }
 
 
-        }
-
-        public int GetIdObj(ProductDTO tempObj)
-        {
-            int IdObjet=0;
-            using (SqlConnection connectionSql = new SqlConnection(connectionStr))
-            {
-                using (SqlCommand comm = connectionSql.CreateCommand())
-                {
-                    connectionSql.Open();
-                    comm.CommandText = "SELECT ProductId from Product where ProductName=@productN and PriceIn=@priceIn and PriceOut=@priceOut and CategoryId=@category";
-                    comm.Parameters.Clear();
-                    comm.Parameters.AddWithValue("@productN", tempObj.NameObj);
-                    comm.Parameters.AddWithValue("@priceIn", tempObj.PriceIn);
-                    comm.Parameters.AddWithValue("@priceOut", tempObj.PriceOut);
-                    comm.Parameters.AddWithValue("@category", tempObj.Category);
-                    IdObjet = comm.ExecuteNonQuery();
-                }
-            }
-            return IdObjet;
         }
 
         public ProductDTO GetObj(int index)

@@ -69,10 +69,10 @@ namespace DataAccessLogic.ADO
             }
         }
 
-        public void DeleteObject(SupplierDTO tempObj)
+        public void DeleteObject(int id)
         {
+            var tempObj = suppliers.Where(x => x.Id == id).SingleOrDefault();
             suppliers.Remove(tempObj);
-            int currSupplierId = GetIdObj(tempObj);
             using (SqlConnection connectionSql = new SqlConnection(connectionStr))
             {
                 using (SqlCommand comm = connectionSql.CreateCommand())
@@ -80,7 +80,7 @@ namespace DataAccessLogic.ADO
                     connectionSql.Open();
                     comm.CommandText = "delete from Supplier where SupplierId=@supplierId";
                     comm.Parameters.Clear();
-                    comm.Parameters.AddWithValue("@supplierId",currSupplierId );
+                    comm.Parameters.AddWithValue("@supplierId",tempObj.Id );
                 }
             }
         }

@@ -62,10 +62,11 @@ namespace DataAccessLogic.ADO
             }
         }
 
-        public void DeleteObject(CategoryDTO tempObj)
+        public void DeleteObject(int id)
         {
+            var tempObj = categories.Where(x => x.IDCat == id).SingleOrDefault();
             categories.Remove(tempObj);
-            int currProductId = GetIdObj(tempObj);
+           
             using (SqlConnection connectionSql = new SqlConnection(connectionStr))
             {
                 using (SqlCommand comm = connectionSql.CreateCommand())
@@ -74,27 +75,12 @@ namespace DataAccessLogic.ADO
                     connectionSql.Open();
                     comm.CommandText = "delete from Category where CategoryId=@categId";
                     comm.Parameters.Clear();
-                    comm.Parameters.AddWithValue("@categId", currProductId);
+                    comm.Parameters.AddWithValue("@categId", tempObj.IDCat);
                 }
             }
         }
 
-        public int GetIdObj(CategoryDTO tempObj)
-        {
-            int IdObjet = 0;
-            using (SqlConnection connectionSql = new SqlConnection(connectionStr))
-            {
-                using (SqlCommand comm = connectionSql.CreateCommand())
-                {
-                    connectionSql.Open();
-                    comm.CommandText = "SELECT CategoryId from Category where CategoryType=@category";
-                    comm.Parameters.Clear();
-                    comm.Parameters.AddWithValue("@category", tempObj.TypeProduct);
-                    IdObjet = comm.ExecuteNonQuery();
-                }
-            }
-            return IdObjet;
-        }
+      
 
         public List<CategoryDTO> GetProducts()
         {

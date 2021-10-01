@@ -117,7 +117,41 @@ namespace ManagerProductConsole
                             break;
                         case 3:
                             {
+                                bool operationShowSupp = true;
+                                do
+                                {
+                                    MenuConsole.ShowCategoryMenu();
+                                    int ans = Convert.ToInt32(Console.ReadLine());
+                                    switch (ans)
+                                    {
+                                        case 1:
+                                            {
+                                                command.Write("Supplier");
+                                            }
+                                            break;
+                                        case 2:
+                                            {
+                                                // command.EditNameCategory();
+                                            }
+                                            break;
+                                        case 3:
+                                            {
 
+                                              command.AddSupplier();
+                                            }
+                                            break;
+                                        case 4:
+                                            {
+                                                command.RemoveSupplier();
+                                            }
+                                            break;
+                                        case 5:
+                                            {
+                                                operationShowSupp = false;
+                                            }
+                                            break;
+                                    }
+                                } while (operationShowSupp);
                             }
                             break;
                         case 4:

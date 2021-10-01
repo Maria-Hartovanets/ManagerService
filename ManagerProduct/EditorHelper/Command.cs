@@ -11,14 +11,14 @@ namespace ManagerProductConsole.EditorHelper
 {
     class Command
     {
-        
-        
+
+
         IModelDAL<CategoryDTO> categories = null;
         IModelDAL<SupplierDTO> suppliers = null;
         IModelDAL<ProductDTO> products = null;
         public Command()
         {
-           
+
             categories = new CategoryDAL();
             suppliers = new SupplierDAL();
             products = new ProductDAL();
@@ -53,8 +53,8 @@ namespace ManagerProductConsole.EditorHelper
                         tempCategory.TypeProduct = categoryStr;
                         categories.AddObj(tempCategory);
                     }
-                   
-                   
+
+
                     products.AddObj(temp);
                     Console.WriteLine("sucessfully added a product!\n");
                     Console.ReadKey();
@@ -77,13 +77,13 @@ namespace ManagerProductConsole.EditorHelper
                 else { optionCyc = false; }
             } while (optionCyc);
             Console.ReadKey();
-           
+
         }
 
         public void AddCategory()
         {
             Console.Write("\nInput new name for categories:");
-            string categoryStr =Console.ReadLine();
+            string categoryStr = Console.ReadLine();
             CategoryDTO categoryTemp = new CategoryDTO();
             categoryTemp.TypeProduct = categoryStr;
             categories.AddObj(categoryTemp);
@@ -96,7 +96,27 @@ namespace ManagerProductConsole.EditorHelper
                 AddProductToCategory(categoryStr);
             }
             Console.ReadKey();
-           
+
+        }
+
+        public void AddSupplier()
+        {
+            Console.Write("\nInput new name of supplier:");
+            string supplierName = Console.ReadLine();
+            Console.Write("\nInput the id of product he/she give:");
+            int idProd = Convert.ToInt32(Console.ReadLine());
+
+            SupplierDTO supplier = new SupplierDTO();
+            supplier.NameSupplier = supplierName;
+            supplier.ProductId = idProd;
+            DateTime dateTime = DateTime.Now;
+            supplier.ArrivingTime = dateTime;
+
+            suppliers.AddObj(supplier);
+
+            Console.WriteLine("sucessfully add the supplier!\n");
+            Console.ReadKey();
+
         }
 
         public void RemoveProduct()
@@ -104,10 +124,10 @@ namespace ManagerProductConsole.EditorHelper
             try
             {
 
-                Console.Write("\nInput the index to remove element:");
+                Console.Write("\nInput the id to remove element:");
                 int index = Convert.ToInt32(Console.ReadLine());
                 ProductDTO productTemp = products.GetObj(index);
-               products.DeleteObject(productTemp);
+                products.DeleteObject(productTemp.Id);
 
                 Console.WriteLine("sucessfully remove the product!\n");
                 Console.ReadKey();
@@ -122,11 +142,11 @@ namespace ManagerProductConsole.EditorHelper
 
         public void RemoveCategory()
         {
-            Console.Write("\nInput the index to remove category of some product:");
+            Console.Write("\nInput the id to remove category of some product:");
             int index = Convert.ToInt32(Console.ReadLine());
 
             CategoryDTO categoryCurrent = categories.GetObj(index);
-            categories.DeleteObject(categoryCurrent);
+            categories.DeleteObject(categoryCurrent.IDCat);
             foreach (ProductDTO elem in products.GetProducts())
             {
                 if (categoryCurrent.IDCat == elem.Category)
@@ -137,6 +157,25 @@ namespace ManagerProductConsole.EditorHelper
             Console.ReadKey();
         }
 
+        public void RemoveSupplier()
+        {
+            try
+            {
+                Console.Write("\nInput the id to remove supplier:");
+                int index = Convert.ToInt32(Console.ReadLine());
+                SupplierDTO categoryCurrent = suppliers.GetObj(index);
+                suppliers.DeleteObject(categoryCurrent.Id);
+
+                Console.WriteLine("sucessfully remove the product!\n");
+                Console.ReadKey();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error during remove from array: {ex.Message}");
+
+            }
+        }
+    
         //public void EditNameCategory()
         //{
         //    Console.Write("\nInput the index to edit category of some product:");
