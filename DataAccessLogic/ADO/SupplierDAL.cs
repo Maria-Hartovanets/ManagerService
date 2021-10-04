@@ -64,7 +64,8 @@ namespace DataAccessLogic.ADO
                     comm.Parameters.Clear();
                     comm.Parameters.AddWithValue("@sname", tempObj.ProductId);
                     comm.Parameters.AddWithValue("@priceInn", tempObj.NameSupplier);
-                  
+                    int rowAffected = comm.ExecuteNonQuery();
+
                 }
             }
         }
@@ -81,6 +82,7 @@ namespace DataAccessLogic.ADO
                     comm.CommandText = "delete from Supplier where SupplierId=@supplierId";
                     comm.Parameters.Clear();
                     comm.Parameters.AddWithValue("@supplierId",tempObj.Id );
+                    int rowAffected = comm.ExecuteNonQuery();
                 }
             }
         }
@@ -108,9 +110,35 @@ namespace DataAccessLogic.ADO
             return IdObject;
         }
 
-        public SupplierDTO GetObj(int index)
+        public SupplierDTO GetObj(int idT)
         {
+            int index = -1;
+            for (int i = 0; i < suppliers.Count; i++)
+            {
+                if (suppliers[i].Id == idT)
+                {
+                    index = i;
+                }
+            }
             return suppliers[index];
+        }
+
+        public int GetMostExpensiveObj()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ChangeValueObj(int id, string newName)
+        {
+            foreach (var cat in suppliers)
+            {
+                if (id == cat.Id)
+                {
+                    cat.ChangeObjName(newName);
+                }
+            }
+            var tempObj = suppliers.Where(x => x.Id == id).SingleOrDefault();
+            /////////////////////////////////////////////////////////////////////////////////
         }
     }
 }

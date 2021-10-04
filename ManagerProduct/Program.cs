@@ -39,21 +39,24 @@ namespace ManagerProductConsole
                                             break;
                                         case 2:
                                             {
-                                                //command.Write("");
+                                                command.Write("Category");
+                                                Console.Write("\nChoose the id of category to show all product of it:");
+                                                int idCat = Convert.ToInt32(Console.ReadLine());
+                                                command.WriteOneCategoryTypeProduct(idCat);
                                             }
                                             break;
                                         case 3:
                                             {
-                                                //command.
+                                                command.EditNameProduct();
                                             }
                                             break;
                                         case 4:
                                             {
                                                
                                                 command.Write("Category");
-                                                Console.Write("\nChoose category to add product or press enter to create new category with its products:");
-                                                string category = Console.ReadLine();
-                                                command.AddProductToCategory(category);
+                                                Console.Write("\nChoose the id of category to add new  product after pressing enter:");
+                                                int categoryId = Convert.ToInt32(Console.ReadLine());
+                                                command.AddProductToCategory(categoryId);
                                             }
                                             break;
                                         case 5:
@@ -63,7 +66,7 @@ namespace ManagerProductConsole
                                             break;
                                         case 6:
                                             {
-                                                //command.
+                                                command.ShowTheMostExpensiveProduct();
                                             }
                                             break;
                                         case 7:
@@ -92,7 +95,7 @@ namespace ManagerProductConsole
                                             break;
                                         case 2:
                                             {
-                                               // command.EditNameCategory();
+                                               command.EditNameCategory();
                                             }
                                             break;
                                         case 3:
@@ -120,7 +123,7 @@ namespace ManagerProductConsole
                                 bool operationShowSupp = true;
                                 do
                                 {
-                                    MenuConsole.ShowCategoryMenu();
+                                    MenuConsole.ShowSupplierMenu();
                                     int ans = Convert.ToInt32(Console.ReadLine());
                                     switch (ans)
                                     {
@@ -131,7 +134,7 @@ namespace ManagerProductConsole
                                             break;
                                         case 2:
                                             {
-                                                // command.EditNameCategory();
+                                                 command.EditNameSupplier();
                                             }
                                             break;
                                         case 3:
@@ -174,38 +177,3 @@ namespace ManagerProductConsole
         }
     }
 }
-
-//string connStr = "Data Source=DESKTOP-LRMIV19;Initial Catalog=ManagerService;Integrated Security=True";
-//using (SqlConnection sql = new SqlConnection(connStr))
-//{
-//    using (SqlCommand comm = sql.CreateCommand())
-//    {
-//        sql.Open();
-//        string name = "apple";
-//        float priceIn = 12;
-//        float priceout = 16;
-//        int catId = 2;
-//        comm.CommandText = "insert into Product(ProductName, PriceIn, PriceOut," +
-//           " CategoryId) values(@fname,@priceInn, @priceOutt, @categor)";
-//        comm.Parameters.Clear();
-//        comm.Parameters.AddWithValue("@fname", name);
-//        comm.Parameters.AddWithValue("@priceInn", priceIn);
-//        comm.Parameters.AddWithValue("@priceOutt", priceout);
-//        comm.Parameters.AddWithValue("@categor", catId);
-
-//        int rowAff=comm.ExecuteNonQuery();
-//        Console.WriteLine($"row added:  {rowAff}");
-
-
-//        comm.CommandText = "select ProductId, ProductName, PriceIn, PriceOut," +
-//            " CategoryId from Product";
-
-
-//        SqlDataReader reader= comm.ExecuteReader();
-//        while (reader.Read())
-//        {
-//            Console.WriteLine($"{reader["ProductId"]}\t{reader["ProductName"]}\t" +
-//                $"{reader["PriceIn"]}\t{reader["PriceOut"]}\t{reader["CategoryId"]}");
-//        }
-//    }
-//}

@@ -57,7 +57,7 @@ namespace DataAccessLogic.ADO
                     comm.CommandText = "insert into Category (CategoryName) values(@categoryName)";
                     comm.Parameters.Clear();
                     comm.Parameters.AddWithValue("@categoryName", tempObj.TypeProduct);
-                  
+                    int rowAffected = comm.ExecuteNonQuery();
                 }
             }
         }
@@ -76,6 +76,7 @@ namespace DataAccessLogic.ADO
                     comm.CommandText = "delete from Category where CategoryId=@categId";
                     comm.Parameters.Clear();
                     comm.Parameters.AddWithValue("@categId", tempObj.IDCat);
+                    //int rowAffected = comm.ExecuteNonQuery();
                 }
             }
         }
@@ -87,9 +88,35 @@ namespace DataAccessLogic.ADO
             return categories;
         }
 
-        public CategoryDTO GetObj(int index)
+        public CategoryDTO GetObj(int idT)
         {
+            int index = -1;
+            for (int i = 0; i < categories.Count; i++)
+            {
+                if (categories[i].IDCat == idT)
+                {
+                    index = i;
+                }
+            }
             return categories[index];
+        }
+
+        public int GetMostExpensiveObj()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ChangeValueObj(int id, string newName)
+        {
+            foreach(var cat in categories)
+            {
+                if (id == cat.IDCat)
+                {
+                    cat.ChangeObjName(newName);
+                }
+            }
+            var tempObj = categories.Where(x => x.IDCat == id).SingleOrDefault();
+            /////////////////////////////////////////////////////////////////////////////////
         }
     }
 }

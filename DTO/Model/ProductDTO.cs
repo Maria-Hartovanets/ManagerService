@@ -13,6 +13,11 @@ namespace DTO.Model
         public int PriceIn { get; set; }
         public int PriceOut { get; set; }
         public int Category { get; set; }
+
+        public void ChangeObjName(string nameNew)
+        {
+            NameObj = nameNew;
+        }
         public string InfoString()
         {
             return $"Id: {Id}\tName: {NameObj}\tPrice in/out: {PriceIn}/{PriceOut}\tCategoryId: {Category}";

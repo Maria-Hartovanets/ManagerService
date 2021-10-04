@@ -12,6 +12,11 @@ namespace DTO.Model
         public int ProductId { get; set; }
         public string NameSupplier { get; set; }
         public DateTime ArrivingTime { get; set; }
+
+        public void ChangeObjName(string nameNew)
+        {
+            NameSupplier = nameNew;
+        }
         public string InfoString()
         {
             return $"Id: {Id}\tProductId: {ProductId}\tSupplier: {NameSupplier}\tTime arriving: {ArrivingTime}";

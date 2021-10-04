@@ -24,7 +24,7 @@ namespace ManagerProductConsole.EditorHelper
             products = new ProductDAL();
         }
 
-        public void AddProductToCategory(string categoryStr)
+        public void AddProductToCategory(int category)
         {
 
             bool optionCyc = true;
@@ -44,20 +44,21 @@ namespace ManagerProductConsole.EditorHelper
                     Console.Write("Input priceout: ");
                     string priceStrOut = Console.ReadLine();
                     temp.PriceOut = (Convert.ToInt32(priceStrOut));
-                    if (categoryStr == "")
+                    foreach (CategoryDTO categoryTemp in  categories.GetProducts())
                     {
-
-                        Console.Write("Input category of product: ");
-                        categoryStr = Console.ReadLine();
-                        CategoryDTO tempCategory = new CategoryDTO();
-                        tempCategory.TypeProduct = categoryStr;
-                        categories.AddObj(tempCategory);
+                        if (categoryTemp.IDCat == category)
+                        {
+                            temp.Category = category;
+                            products.AddObj(temp);
+                            Console.WriteLine("sucessfully added a product!\n");
+                            Console.ReadKey();
+                        }
+                        //else
+                        //{
+                        //    Console.WriteLine("Sorry there isnt this id of category!");
+                        //}
+                        
                     }
-
-
-                    products.AddObj(temp);
-                    Console.WriteLine("sucessfully added a product!\n");
-                    Console.ReadKey();
 
                 }
                 catch
@@ -89,12 +90,6 @@ namespace ManagerProductConsole.EditorHelper
             categories.AddObj(categoryTemp);
 
             Console.WriteLine("sucessfully add the category!\n");
-            Console.WriteLine("Do u want to add products to new category?\n1. Yes\n2.No");
-            int ans = Convert.ToInt32(Console.ReadLine());
-            if (ans == 1)
-            {
-                AddProductToCategory(categoryStr);
-            }
             Console.ReadKey();
 
         }
@@ -123,11 +118,10 @@ namespace ManagerProductConsole.EditorHelper
         {
             try
             {
-
-                Console.Write("\nInput the id to remove element:");
-                int index = Convert.ToInt32(Console.ReadLine());
-                ProductDTO productTemp = products.GetObj(index);
-                products.DeleteObject(productTemp.Id);
+                Write("Product");
+               Console.Write("\nInput the id to remove element:");
+                int id = Convert.ToInt32(Console.ReadLine());
+                products.DeleteObject(id);
 
                 Console.WriteLine("sucessfully remove the product!\n");
                 Console.ReadKey();
@@ -143,13 +137,11 @@ namespace ManagerProductConsole.EditorHelper
         public void RemoveCategory()
         {
             Console.Write("\nInput the id to remove category of some product:");
-            int index = Convert.ToInt32(Console.ReadLine());
-
-            CategoryDTO categoryCurrent = categories.GetObj(index);
-            categories.DeleteObject(categoryCurrent.IDCat);
+            int id = Convert.ToInt32(Console.ReadLine());
+            categories.DeleteObject(id);
             foreach (ProductDTO elem in products.GetProducts())
             {
-                if (categoryCurrent.IDCat == elem.Category)
+                if (id == elem.Category)
                 {
                     elem.Category = 0;
                 }
@@ -163,8 +155,7 @@ namespace ManagerProductConsole.EditorHelper
             {
                 Console.Write("\nInput the id to remove supplier:");
                 int index = Convert.ToInt32(Console.ReadLine());
-                SupplierDTO categoryCurrent = suppliers.GetObj(index);
-                suppliers.DeleteObject(categoryCurrent.Id);
+                suppliers.DeleteObject(index);
 
                 Console.WriteLine("sucessfully remove the product!\n");
                 Console.ReadKey();
@@ -175,21 +166,73 @@ namespace ManagerProductConsole.EditorHelper
 
             }
         }
-    
-        //public void EditNameCategory()
-        //{
-        //    Console.Write("\nInput the index to edit category of some product:");
-        //    int index = Convert.ToInt32(Console.ReadLine());
+        public void ShowTheMostExpensiveProduct()
+        {
+            Console.WriteLine("---------------------------------------------"
+                     + "----------------------------------------------"
+                     + "--------------------------");
 
-        //    Console.Write("\nInput new name of category of some product:");
-        //    string name =Console.ReadLine();
-        //    categories.ChangeOb(index, name);
+            Console.WriteLine(products.GetObj(products.GetMostExpensiveObj()).InfoString());
+            Console.WriteLine("---------------------------------------------"
+                     + "----------------------------------------------"
+                     + "--------------------------");
+            Console.ReadKey();
+        }
 
-        //    Console.WriteLine("sucessfully remove the product!\n");
-        //    Console.ReadKey();
-        //}
+        public void EditNameCategory()
+        {
+            Console.Write("\nInput the id to edit category of some product:");
+            int index = Convert.ToInt32(Console.ReadLine());
 
+            Console.Write("\nInput new name of category of some product:");
+            string name = Console.ReadLine();
+            categories.ChangeValueObj(index, name);
 
+            Console.WriteLine("sucessfully change name of the category!\n");
+            Console.ReadKey();
+        }
+        public void EditNameProduct()
+        {
+            Console.Write("\nInput the id to edit category of some product:");
+            int index = Convert.ToInt32(Console.ReadLine());
+
+            Console.Write("\nInput new name of category of some product:");
+            string name = Console.ReadLine();
+            products.ChangeValueObj(index, name);
+
+            Console.WriteLine("sucessfully change name of the product!\n");
+            Console.ReadKey();
+        }
+        public void EditNameSupplier()
+        {
+            Console.Write("\nInput the id to edit category of some product:");
+            int index = Convert.ToInt32(Console.ReadLine());
+
+            Console.Write("\nInput new name of category of some product:");
+            string name = Console.ReadLine();
+            suppliers.ChangeValueObj(index, name);
+
+            Console.WriteLine("sucessfully change name of the suppplier!\n");
+            Console.ReadKey();
+        }
+
+        public void WriteOneCategoryTypeProduct(int idCat)
+        {
+            Console.WriteLine("---------------------------------------------"
+                      + "----------------------------------------------"
+                      + "--------------------------");
+            foreach (ProductDTO elem in products.GetProducts())
+            {
+                if (elem.Category == idCat)
+                {
+                    Console.WriteLine(elem.InfoString());
+                }
+            }
+
+            Console.WriteLine("---------------------------------------------"
+                      + "----------------------------------------------"
+                      + "--------------------------");
+        }
         public void Write(string temp)
         {
            
@@ -202,7 +245,7 @@ namespace ManagerProductConsole.EditorHelper
                 {
                     if (elem.Category ==0)
                     {
-                        //Console.WriteLine(elem.InfoObject());
+                        Console.WriteLine(elem.InfoString());
                     }
                 }
 

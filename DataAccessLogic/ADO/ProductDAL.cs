@@ -70,11 +70,12 @@ namespace DataAccessLogic.ADO
                     connectionSql.Open();
                     comm.CommandText = "insert into Product(ProductName, PriceIn, PriceOut," +
                       " CategoryId) values(@fname,@priceInn, @priceOutt, @categor)";
-                   // comm.Parameters.Clear();
+                    comm.Parameters.Clear();
                     comm.Parameters.AddWithValue("@fname", tempObj.NameObj);
                     comm.Parameters.AddWithValue("@priceInn", tempObj.PriceIn);
                     comm.Parameters.AddWithValue("@priceOutt", tempObj.PriceOut);
                     comm.Parameters.AddWithValue("@categor", tempObj.Category);
+                    int rowAffected = comm.ExecuteNonQuery();
                 }
             }
         }
@@ -94,15 +95,50 @@ namespace DataAccessLogic.ADO
                     comm.CommandText = "delete from Product where ProductId=@productId";
                     comm.Parameters.Clear();
                     comm.Parameters.AddWithValue("@productId", tempObj.Id);
+                    int rowAffected = comm.ExecuteNonQuery();
                 }
             }
 
 
         }
-
-        public ProductDTO GetObj(int index)
+        public int GetMostExpensiveObj()
         {
+            int max = 0;
+            int idExpPod = -1;
+            foreach(var product in products)
+            {
+                if (max < product.PriceIn)
+                {
+                    max = product.PriceIn;
+                    idExpPod = product.Id;
+                }
+            }
+            return idExpPod;
+        }
+        public ProductDTO GetObj(int idT)
+        {
+            int index = -1;
+            for (int i=0; i<products.Count;i++)
+            {
+                if (products[i].Id == idT) 
+                {
+                    index = i;
+                }             
+            }
             return products[index];
+        }
+
+        public void ChangeValueObj(int id, string newName)
+        {
+            foreach (var cat in products)
+            {
+                if (id == cat.Id)
+                {
+                    cat.ChangeObjName(newName);
+                }
+            }
+            var tempObj = products.Where(x => x.Id == id).SingleOrDefault();
+            /////////////////////////////////////////////////////////////////////////////////
         }
     }
 }
