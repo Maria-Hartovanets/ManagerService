@@ -76,16 +76,19 @@ namespace DataAccessLogic.ADO
         {
             /////////////////////////////////////////////////////////////////////////////////////////////////////////////
             var tempObj = suppliers.Where(x => x.Id == id).SingleOrDefault();
-            suppliers.Remove(tempObj);
-            using (SqlConnection connectionSql = new SqlConnection(connectionStr))
+            if (tempObj != null)
             {
-                using (SqlCommand comm = connectionSql.CreateCommand())
+                suppliers.Remove(tempObj);
+                using (SqlConnection connectionSql = new SqlConnection(connectionStr))
                 {
-                    connectionSql.Open();
-                    comm.CommandText = "delete from Supplier where SupplierId=@supplierId";
-                    comm.Parameters.Clear();
-                    comm.Parameters.AddWithValue("@supplierId",tempObj.Id );
-                    comm.ExecuteNonQuery();
+                    using (SqlCommand comm = connectionSql.CreateCommand())
+                    {
+                        connectionSql.Open();
+                        comm.CommandText = "delete from Supplier where SupplierId=@supplierId";
+                        comm.Parameters.Clear();
+                        comm.Parameters.AddWithValue("@supplierId", tempObj.Id);
+                        comm.ExecuteNonQuery();
+                    }
                 }
             }
         }
@@ -99,7 +102,7 @@ namespace DataAccessLogic.ADO
             int index = -1;
             for (int i = 0; i < suppliers.Count; i++)
             {
-                if (suppliers[i].Id == idT)
+                if (suppliers[i].ProductId == idT)
                 {
                     index = i;
                 }
@@ -138,5 +141,6 @@ namespace DataAccessLogic.ADO
 
             /////////////////////////////////////////////////////////////////////////////////
         }
+        
     }
 }

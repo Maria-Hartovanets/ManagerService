@@ -12,10 +12,12 @@ namespace DataAccessLogic.ADO
     public class ProductDAL : IModelDAL<ProductDTO>
     {
         List<ProductDTO> products;
+        IModelDAL<SupplierDTO> suppliers;
         private string connectionStr="Data Source=DESKTOP-LRMIV19;Initial Catalog=ManagerService;Integrated Security=True";
 
         public ProductDAL()
         {
+            
             products = new List<ProductDTO>();
             ReadFromDataBase();
 
@@ -83,24 +85,38 @@ namespace DataAccessLogic.ADO
         public void DeleteObject(int id)
         {
             var tempObj = products.Where(x => x.Id == id).SingleOrDefault();
-            products.Remove(tempObj);
            
-            using (SqlConnection connectionSql = new SqlConnection(connectionStr))
+            products.Remove(tempObj);
+            if (tempObj != null)
             {
-                using (SqlCommand comm = connectionSql.CreateCommand())
+                using (SqlConnection connectionSql = new SqlConnection(connectionStr))
                 {
-                   
-                        //delete from Product where ProductId=1
-                    connectionSql.Open();
-                    comm.CommandText = "delete from Product where ProductId=@productId";
-                    comm.Parameters.Clear();
-                    comm.Parameters.AddWithValue("@productId", tempObj.Id);
-                    comm.ExecuteNonQuery();
-                    bool t = true;
+                    using (SqlCommand comm = connectionSql.CreateCommand())
+                    {
+                        connectionSql.Open();
+                        comm.CommandText = "delete from Supplier where ProductId=@supplierId";
+                        comm.Parameters.Clear();
+                        comm.Parameters.AddWithValue("@supplierId", tempObj.Id);
+                        comm.ExecuteNonQuery();
+                    }
                 }
+
+                using (SqlConnection connectionSql = new SqlConnection(connectionStr))
+                {
+                    using (SqlCommand comm = connectionSql.CreateCommand())
+                    {
+
+                        //delete from Product where ProductId=1
+                        connectionSql.Open();
+                        comm.CommandText = "delete from Product where ProductId=@productId";
+                        comm.Parameters.Clear();
+                        comm.Parameters.AddWithValue("@productId", tempObj.Id);
+                        comm.ExecuteNonQuery();
+                        bool t = true;
+                    }
+                }
+
             }
-
-
         }
         public int GetMostExpensiveObj()
         {
