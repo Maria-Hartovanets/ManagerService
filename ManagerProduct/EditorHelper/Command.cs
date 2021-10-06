@@ -116,22 +116,14 @@ namespace ManagerProductConsole.EditorHelper
 
         public void RemoveProduct()
         {
-            try
-            {
-                Write("Product");
-               Console.Write("\nInput the id to remove element:");
-                int id = Convert.ToInt32(Console.ReadLine());
-                products.DeleteObject(id);
+            Write("Product");
+            Console.Write("\nInput the id to remove element:");
+            int id = Convert.ToInt32(Console.ReadLine());
+            products.DeleteObject(id);
 
-                Console.WriteLine("sucessfully remove the product!\n");
-                Console.ReadKey();
+            Console.WriteLine("sucessfully remove the product!\n");
+            Console.ReadKey();
 
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Error during remove from array: {ex.Message}");
-
-            }
         }
 
         public void RemoveCategory()
@@ -143,28 +135,23 @@ namespace ManagerProductConsole.EditorHelper
             {
                 if (id == elem.Category)
                 {
-                    elem.Category = 0;
+                    elem.Category = 8;
                 }
             }
+            Console.WriteLine("sucessfully remove the category!\n");
             Console.ReadKey();
         }
 
         public void RemoveSupplier()
         {
-            try
-            {
-                Console.Write("\nInput the id to remove supplier:");
-                int index = Convert.ToInt32(Console.ReadLine());
-                suppliers.DeleteObject(index);
 
-                Console.WriteLine("sucessfully remove the product!\n");
-                Console.ReadKey();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Error during remove from array: {ex.Message}");
+            Console.Write("\nInput the id to remove supplier:");
+            int index = Convert.ToInt32(Console.ReadLine());
+            suppliers.DeleteObject(index);
 
-            }
+            Console.WriteLine("sucessfully remove the product!\n");
+            Console.ReadKey();
+
         }
         public void ShowTheMostExpensiveProduct()
         {
@@ -184,7 +171,7 @@ namespace ManagerProductConsole.EditorHelper
             Console.Write("\nInput the id to edit category of some product:");
             int index = Convert.ToInt32(Console.ReadLine());
 
-            Console.Write("\nInput new name of category of some product:");
+            Console.Write("\nInput new name of category to choosen one:");
             string name = Console.ReadLine();
             categories.ChangeValueObj(index, name);
 
@@ -193,10 +180,10 @@ namespace ManagerProductConsole.EditorHelper
         }
         public void EditNameProduct()
         {
-            Console.Write("\nInput the id to edit category of some product:");
+            Console.Write("\nInput the id to edit name of one product:");
             int index = Convert.ToInt32(Console.ReadLine());
 
-            Console.Write("\nInput new name of category of some product:");
+            Console.Write("\nInput new name to one choosen product:");
             string name = Console.ReadLine();
             products.ChangeValueObj(index, name);
 
@@ -205,10 +192,10 @@ namespace ManagerProductConsole.EditorHelper
         }
         public void EditNameSupplier()
         {
-            Console.Write("\nInput the id to edit category of some product:");
+            Console.Write("\nInput the id to edit the name of supplier:");
             int index = Convert.ToInt32(Console.ReadLine());
 
-            Console.Write("\nInput new name of category of some product:");
+            Console.Write("\nInput new person's name:");
             string name = Console.ReadLine();
             suppliers.ChangeValueObj(index, name);
 
@@ -232,6 +219,7 @@ namespace ManagerProductConsole.EditorHelper
             Console.WriteLine("---------------------------------------------"
                       + "----------------------------------------------"
                       + "--------------------------");
+            Console.ReadKey();
         }
         public void Write(string temp)
         {
@@ -239,7 +227,7 @@ namespace ManagerProductConsole.EditorHelper
             Console.WriteLine("---------------------------------------------"
                        + "----------------------------------------------"
                        + "--------------------------");
-            if (temp == "blockTable")
+            if (temp == "blocked")
             {
                 foreach (ProductDTO elem in products.GetProducts())
                 {

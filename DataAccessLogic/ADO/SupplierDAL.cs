@@ -54,16 +54,18 @@ namespace DataAccessLogic.ADO
         public void AddObj(SupplierDTO tempObj)
         {
             suppliers.Add(tempObj);
+            
             using (SqlConnection connectionSql = new SqlConnection(connectionStr))
             {
                 using (SqlCommand comm = connectionSql.CreateCommand())
                 {
                     connectionSql.Open();
-                    comm.CommandText = "insert into Supplier(ProductId, SupplierName, ArrivingTime) " +
-                      "values(,@productId,@supplierName)";
+                    comm.CommandText = "insert into Supplier(ProductId,SupplierName,ArrivingTime) " +
+                      "values(@productId,@supplierName,@dataArriving)";
                     comm.Parameters.Clear();
-                    comm.Parameters.AddWithValue("@sname", tempObj.ProductId);
-                    comm.Parameters.AddWithValue("@priceInn", tempObj.NameSupplier);
+                    comm.Parameters.AddWithValue("@productId", tempObj.ProductId);
+                    comm.Parameters.AddWithValue("@supplierName", tempObj.NameSupplier);
+                    comm.Parameters.AddWithValue("@dataArriving", tempObj.ArrivingTime);
                     int rowAffected = comm.ExecuteNonQuery();
 
                 }
@@ -72,6 +74,7 @@ namespace DataAccessLogic.ADO
 
         public void DeleteObject(int id)
         {
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////
             var tempObj = suppliers.Where(x => x.Id == id).SingleOrDefault();
             suppliers.Remove(tempObj);
             using (SqlConnection connectionSql = new SqlConnection(connectionStr))
@@ -82,7 +85,7 @@ namespace DataAccessLogic.ADO
                     comm.CommandText = "delete from Supplier where SupplierId=@supplierId";
                     comm.Parameters.Clear();
                     comm.Parameters.AddWithValue("@supplierId",tempObj.Id );
-                    int rowAffected = comm.ExecuteNonQuery();
+                    comm.ExecuteNonQuery();
                 }
             }
         }
@@ -91,25 +94,6 @@ namespace DataAccessLogic.ADO
         {
             return suppliers;
         }
-
-        public int GetIdObj(SupplierDTO tempObj)
-        {
-            int IdObject = 0;
-            using (SqlConnection connectionSql = new SqlConnection(connectionStr))
-            {
-                using (SqlCommand comm = connectionSql.CreateCommand())
-                {
-                    connectionSql.Open();
-                     comm.CommandText = "SELECT SupplierId from Supplier where ProductId=@productId and SupplierName=@supplierName";
-                    comm.Parameters.Clear();
-                    comm.Parameters.AddWithValue("@productId", tempObj.ProductId);
-                    comm.Parameters.AddWithValue("@supplierName", tempObj.NameSupplier);
-                    IdObject=comm.ExecuteNonQuery();
-                }
-            }
-            return IdObject;
-        }
-
         public SupplierDTO GetObj(int idT)
         {
             int index = -1;
@@ -130,6 +114,7 @@ namespace DataAccessLogic.ADO
 
         public void ChangeValueObj(int id, string newName)
         {
+            var tempObj = suppliers.Where(x => x.Id == id).SingleOrDefault();
             foreach (var cat in suppliers)
             {
                 if (id == cat.Id)
@@ -137,7 +122,20 @@ namespace DataAccessLogic.ADO
                     cat.ChangeObjName(newName);
                 }
             }
-            var tempObj = suppliers.Where(x => x.Id == id).SingleOrDefault();
+            using (SqlConnection connectionSql = new SqlConnection(connectionStr))
+            {
+                using (SqlCommand comm = connectionSql.CreateCommand())
+                {
+                    connectionSql.Open();
+                    comm.CommandText = "update Supplier set SupplierName=@newNameTemp where SupplierId=@suplId";
+                    comm.Parameters.Clear();
+                    comm.Parameters.AddWithValue("@newNameTemp", newName);
+                    comm.Parameters.AddWithValue("@suplId", tempObj.Id);
+                    int row = comm.ExecuteNonQuery();
+                    // bool t = true;
+                }
+            }
+
             /////////////////////////////////////////////////////////////////////////////////
         }
     }

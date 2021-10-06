@@ -95,7 +95,8 @@ namespace DataAccessLogic.ADO
                     comm.CommandText = "delete from Product where ProductId=@productId";
                     comm.Parameters.Clear();
                     comm.Parameters.AddWithValue("@productId", tempObj.Id);
-                    int rowAffected = comm.ExecuteNonQuery();
+                    comm.ExecuteNonQuery();
+                    bool t = true;
                 }
             }
 
@@ -130,6 +131,7 @@ namespace DataAccessLogic.ADO
 
         public void ChangeValueObj(int id, string newName)
         {
+            var tempObj = products.Where(x => x.Id == id).SingleOrDefault();
             foreach (var cat in products)
             {
                 if (id == cat.Id)
@@ -137,8 +139,20 @@ namespace DataAccessLogic.ADO
                     cat.ChangeObjName(newName);
                 }
             }
-            var tempObj = products.Where(x => x.Id == id).SingleOrDefault();
-            /////////////////////////////////////////////////////////////////////////////////
+            using (SqlConnection connectionSql = new SqlConnection(connectionStr))
+            {
+                using (SqlCommand comm = connectionSql.CreateCommand())
+                {
+                    connectionSql.Open();
+                    comm.CommandText = "update Product set ProductName=@newNameTemp where ProductId=@productId";
+                    comm.Parameters.Clear();
+                    comm.Parameters.AddWithValue("@newNameTemp", newName);
+                    comm.Parameters.AddWithValue("@productId", tempObj.Id);
+                    int row =comm.ExecuteNonQuery();
+                   // bool t = true;
+                }
+            }
+           
         }
     }
 }

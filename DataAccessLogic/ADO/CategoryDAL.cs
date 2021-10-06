@@ -13,10 +13,11 @@ namespace DataAccessLogic.ADO
     {
         List<CategoryDTO> categories;
         private string connectionStr = "Data Source=DESKTOP-LRMIV19;Initial Catalog=ManagerService;Integrated Security=True";
-
+        List<ProductDTO> product;
         public CategoryDAL()
         {
             categories = new List<CategoryDTO>();
+            product = new List<ProductDTO>();
             ReadFromDataBase();
         }
         public void ReadFromDataBase()
@@ -54,10 +55,10 @@ namespace DataAccessLogic.ADO
                 using (SqlCommand comm = connectionSql.CreateCommand())
                 {
                     connectionSql.Open();
-                    comm.CommandText = "insert into Category (CategoryName) values(@categoryName)";
+                    comm.CommandText = "insert into Category (CategoryType) values(@categoryName)";
                     comm.Parameters.Clear();
                     comm.Parameters.AddWithValue("@categoryName", tempObj.TypeProduct);
-                    int rowAffected = comm.ExecuteNonQuery();
+                   comm.ExecuteNonQuery();
                 }
             }
         }
@@ -65,18 +66,38 @@ namespace DataAccessLogic.ADO
         public void DeleteObject(int id)
         {
             var tempObj = categories.Where(x => x.IDCat == id).SingleOrDefault();
-            categories.Remove(tempObj);
-           
-            using (SqlConnection connectionSql = new SqlConnection(connectionStr))
+            if (tempObj != null)
             {
-                using (SqlCommand comm = connectionSql.CreateCommand())
+                using (SqlConnection connectionSql = new SqlConnection(connectionStr))
                 {
-                    //delete from Product where ProductId=1
-                    connectionSql.Open();
-                    comm.CommandText = "delete from Category where CategoryId=@categId";
-                    comm.Parameters.Clear();
-                    comm.Parameters.AddWithValue("@categId", tempObj.IDCat);
-                    //int rowAffected = comm.ExecuteNonQuery();
+                    using (SqlCommand comm = connectionSql.CreateCommand())
+                    {
+                        connectionSql.Open();
+
+                       
+                        comm.CommandText = "update Product set CategoryId=@newTemp where CategoryId=@productId";
+                        comm.Parameters.Clear();
+                        comm.Parameters.AddWithValue("@newTemp", 8);
+                        comm.Parameters.AddWithValue("@productId", tempObj.IDCat);
+                        int row = comm.ExecuteNonQuery();
+
+                    }
+                }
+                categories.Remove(tempObj);
+
+                using (SqlConnection connectionSql = new SqlConnection(connectionStr))
+                {
+                    using (SqlCommand comm = connectionSql.CreateCommand())
+                    {
+                        connectionSql.Open();
+                       
+                        //delete from Product where ProductId=1
+                       
+                        comm.CommandText = "delete from Category where CategoryId=@categId";
+                        comm.Parameters.Clear();
+                        comm.Parameters.AddWithValue("@categId", tempObj.IDCat);
+                        comm.ExecuteNonQuery();
+                    }
                 }
             }
         }
@@ -108,15 +129,27 @@ namespace DataAccessLogic.ADO
 
         public void ChangeValueObj(int id, string newName)
         {
-            foreach(var cat in categories)
+            var tempObj = categories.Where(x => x.IDCat == id).SingleOrDefault();
+            foreach (var cat in categories)
             {
                 if (id == cat.IDCat)
                 {
                     cat.ChangeObjName(newName);
                 }
             }
-            var tempObj = categories.Where(x => x.IDCat == id).SingleOrDefault();
-            /////////////////////////////////////////////////////////////////////////////////
+            using (SqlConnection connectionSql = new SqlConnection(connectionStr))
+            {
+                using (SqlCommand comm = connectionSql.CreateCommand())
+                {
+                    connectionSql.Open();
+                    comm.CommandText = "update Category set CategoryType=@newNameTemp where CategoryId=@categorId";
+                    comm.Parameters.Clear();
+                    comm.Parameters.AddWithValue("@newNameTemp", newName);
+                    comm.Parameters.AddWithValue("@categorId", tempObj.IDCat);
+                    int row = comm.ExecuteNonQuery();
+                    // bool t = true;
+                }
+            }
         }
     }
 }
