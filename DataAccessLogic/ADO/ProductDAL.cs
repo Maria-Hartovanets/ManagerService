@@ -13,12 +13,19 @@ namespace DataAccessLogic.ADO
     {
         List<ProductDTO> products;
         IModelDAL<SupplierDTO> suppliers;
-        private string connectionStr="Data Source=DESKTOP-LRMIV19;Initial Catalog=ManagerService;Integrated Security=True";
-
-        public ProductDAL()
-        {
-            
+        private string connectionStr;
+       
+        public ProductDAL(string test1 = "")
+        { 
             products = new List<ProductDTO>();
+            if (test1 == "test")
+            {
+                connectionStr = "Data Source=DESKTOP-LRMIV19;Initial Catalog=UTestManagerService;Integrated Security=True";
+            }
+            else
+            {
+                connectionStr = "Data Source=DESKTOP-LRMIV19;Initial Catalog=ManagerService;Integrated Security=True";
+            }
             ReadFromDataBase();
 
         }
@@ -117,7 +124,7 @@ namespace DataAccessLogic.ADO
                 }
 
             }
-        }
+         }
         public int GetMostExpensiveObj()
         {
             int max = 0;

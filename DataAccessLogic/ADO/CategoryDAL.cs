@@ -12,12 +12,20 @@ namespace DataAccessLogic.ADO
     public class CategoryDAL : IModelDAL<CategoryDTO>
     {
         List<CategoryDTO> categories;
-        private string connectionStr = "Data Source=DESKTOP-LRMIV19;Initial Catalog=ManagerService;Integrated Security=True";
+        private string connectionStr;
         List<ProductDTO> product;
-        public CategoryDAL()
+        public CategoryDAL(string test1="")
         {
             categories = new List<CategoryDTO>();
             product = new List<ProductDTO>();
+            if (test1 == "test")
+            {
+                connectionStr = "Data Source=DESKTOP-LRMIV19;Initial Catalog=UTestManagerService;Integrated Security=True";
+            }
+            else
+            {
+                connectionStr = "Data Source=DESKTOP-LRMIV19;Initial Catalog=ManagerService;Integrated Security=True";
+            }
             ReadFromDataBase();
         }
         public void ReadFromDataBase()

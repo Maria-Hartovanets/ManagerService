@@ -13,11 +13,20 @@ namespace DataAccessLogic.ADO
     public class SupplierDAL : IModelDAL<SupplierDTO>
     {
         List<SupplierDTO> suppliers;
-        private string connectionStr = "Data Source=DESKTOP-LRMIV19;Initial Catalog=ManagerService;Integrated Security=True";
+        private string connectionStr;
 
-        public SupplierDAL()
+        public SupplierDAL(string test1="")
         {
             suppliers = new List<SupplierDTO>();
+            
+            if (test1 == "test")
+            {
+                connectionStr = "Data Source=DESKTOP-LRMIV19;Initial Catalog=UTestManagerService;Integrated Security=True";
+            }
+            else
+            {
+                connectionStr = "Data Source=DESKTOP-LRMIV19;Initial Catalog=ManagerService;Integrated Security=True";
+            }
             ReadFromDataBase();
         }
      
@@ -40,16 +49,19 @@ namespace DataAccessLogic.ADO
                             tempSupplier.Id = (int)reader["SupplierId"];
                             tempSupplier.ProductId = (int)reader["ProductId"];
                             tempSupplier.NameSupplier = (string)reader["SupplierName"];
-                            tempSupplier.ArrivingTime = Convert.ToDateTime( reader["ArrivingTime"]);
+                            tempSupplier.ArrivingTime = Convert.ToDateTime(reader["ArrivingTime"]);
                             suppliers.Add(tempSupplier);
+                            bool t = true;
+
                         }
                     }
                 }
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 throw new Exception($"Error during read from databased: {ex.Message}");
             }
+            
         }
         public void AddObj(SupplierDTO tempObj)
         {
@@ -66,7 +78,8 @@ namespace DataAccessLogic.ADO
                     comm.Parameters.AddWithValue("@productId", tempObj.ProductId);
                     comm.Parameters.AddWithValue("@supplierName", tempObj.NameSupplier);
                     comm.Parameters.AddWithValue("@dataArriving", tempObj.ArrivingTime);
-                    int rowAffected = comm.ExecuteNonQuery();
+                   // int rowAffected = comm.ExecuteNonQuery();
+                    bool t = true;
 
                 }
             }
@@ -87,7 +100,7 @@ namespace DataAccessLogic.ADO
                         comm.CommandText = "delete from Supplier where SupplierId=@supplierId";
                         comm.Parameters.Clear();
                         comm.Parameters.AddWithValue("@supplierId", tempObj.Id);
-                        comm.ExecuteNonQuery();
+                        bool t = true;
                     }
                 }
             }
