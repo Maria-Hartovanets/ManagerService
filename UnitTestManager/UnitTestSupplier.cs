@@ -13,14 +13,14 @@ namespace UnitTestManager
     [TestClass]
     public class UnitTestSupplier
     {
-        IModelDAL<SupplierDTO> products = new SupplierDAL("test");
+        ISupplierDAL products = new SupplierDAL("test");
 
         [TestMethod]
         public void TestMethod_AddNewValue()
         {
 
-            SupplierDTO tempSupplier = new SupplierDTO();
-            tempSupplier.ProductId = 1;
+            Supplier tempSupplier = new Supplier();
+            tempSupplier.Id = 1;
             string nameM = "MARIA";
             tempSupplier.NameSupplier = nameM;
             DateTime dateTime = new DateTime();
@@ -34,8 +34,8 @@ namespace UnitTestManager
         public void TestMethod_RemoveValue()
         {
 
-            SupplierDTO tempSupplier = new SupplierDTO();
-            tempSupplier.ProductId = 3;
+            Supplier tempSupplier = new Supplier();
+            tempSupplier.Id = 3;
             string nameM = "YURA";
             tempSupplier.NameSupplier = nameM;
             DateTime dateTime = new DateTime();

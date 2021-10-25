@@ -2,6 +2,7 @@
 using System;
 using DataAccessLogic.ADO;
 using DataAccessLogic.Interfaces;
+using DTO.ModelDTO;
 using DTO.Model;
 
 namespace UnitTestManager
@@ -9,7 +10,7 @@ namespace UnitTestManager
     [TestClass]
     public class UnitTestProduct
     {
-        IModelDAL<ProductDTO> products = new ProductDAL("test");
+        IProductDAL products = new ProductDAL("test");
         
         [TestMethod]
         public void TestMethod_MostExpensiveProduct()
@@ -25,7 +26,7 @@ namespace UnitTestManager
         public void TestMethod_AddNewValue()
         {
 
-            ProductDTO temp = new ProductDTO();
+            Product temp = new Product();
             string nameM = "Pork";
             temp.NameObj = nameM;
             temp.Category = 2;
@@ -39,7 +40,7 @@ namespace UnitTestManager
         [TestMethod]
         public void TestMethod_RemoveValue()
         {
-            ProductDTO temp = new ProductDTO();
+            Product temp = new Product();
             string nameM = "Korivka";
             temp.NameObj = nameM;
             temp.Category = 3;

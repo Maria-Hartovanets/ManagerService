@@ -34,15 +34,14 @@ namespace ManagerProductConsole
                                     {
                                         case 1:
                                             {
-                                                command.Write("Product");
+                                                command.WriteProduct();
                                             }
                                             break;
                                         case 2:
                                             {
-                                                command.Write("Category");
-                                                Console.Write("\nChoose the id of category to show all product of it:");
-                                                int idCat = Convert.ToInt32(Console.ReadLine());
-                                                command.WriteOneCategoryTypeProduct(idCat);
+                                                command.WriteCategory();
+                                               
+                                                command.WriteOneCategoryTypeProduct();
                                             }
                                             break;
                                         case 3:
@@ -53,10 +52,9 @@ namespace ManagerProductConsole
                                         case 4:
                                             {
                                                
-                                                command.Write("Category");
-                                                Console.Write("\nChoose the id of category to add new  product after pressing enter:");
-                                                int categoryId = Convert.ToInt32(Console.ReadLine());
-                                                command.AddProductToCategory(categoryId);
+                                                command.WriteCategory();
+                                              
+                                                command.AddProductWithCategory();
                                             }
                                             break;
                                         case 5:
@@ -90,7 +88,7 @@ namespace ManagerProductConsole
                                     {
                                         case 1:
                                             {
-                                                command.Write("Category");
+                                                command.WriteCategory();
                                             }
                                             break;
                                         case 2:
@@ -129,7 +127,7 @@ namespace ManagerProductConsole
                                     {
                                         case 1:
                                             {
-                                                command.Write("Supplier");
+                                                command.WriteSupplier();
                                             }
                                             break;
                                         case 2:

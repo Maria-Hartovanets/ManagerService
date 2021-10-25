@@ -9,15 +9,15 @@ using System.Threading.Tasks;
 
 namespace DataAccessLogic.ADO
 {
-    public class ProductDAL : IModelDAL<ProductDTO>
+    public class ProductDAL : IProductDAL
     {
-        List<ProductDTO> products;
-        IModelDAL<SupplierDTO> suppliers;
+        List<Product> products;
+        //IModelDAL<Supplier> suppliers;
         private string connectionStr;
        
         public ProductDAL(string test1 = "")
         { 
-            products = new List<ProductDTO>();
+            products = new List<Product>();
             if (test1 == "test")
             {
                 connectionStr = "Data Source=DESKTOP-LRMIV19;Initial Catalog=UTestManagerService;Integrated Security=True";
@@ -40,19 +40,23 @@ namespace DataAccessLogic.ADO
                     {
                         connectionSql.Open();
                         comm.CommandText = "select ProductId, ProductName, PriceIn, PriceOut," +
-                          " CategoryId from Product";
+                          " CategoryId, SupplierId,RowInsertTime,RowUpdateTime from Product";
 
 
                         SqlDataReader reader = comm.ExecuteReader();
                         while (reader.Read())
                         {
-                            ProductDTO tempProduct = new ProductDTO();
+                            Product tempProduct = new Product();
                             tempProduct.Id = (int)reader["ProductId"];
                             tempProduct.NameObj = (string)reader["ProductName"];
-                            var temp = reader["PriceIn"];
-                            tempProduct.PriceIn = Convert.ToInt32( temp);
+                            tempProduct.PriceIn = (int)reader["PriceIn"]; ;
                             tempProduct.PriceOut = (int)reader["PriceOut"];
                             tempProduct.Category = (int)reader["CategoryId"];
+                            tempProduct.Supplier = (int)reader["SupplierId"];
+                            var timeInsert = reader["RowInsertTime"];
+                            tempProduct.RowInsertTime = (DateTime)timeInsert;
+                            var timeUpdate = reader["RowInsertTime"];
+                            tempProduct.RowUpdateTime = (DateTime)timeUpdate;
                             products.Add(tempProduct);
                         }
                     }
@@ -64,12 +68,12 @@ namespace DataAccessLogic.ADO
             }
         }
 
-        public List<ProductDTO> GetProducts()
+        public List<Product> GetProducts()
         {
             return products;
 
         }
-        public void AddObj(ProductDTO tempObj)
+        public void AddObj(Product tempObj)
         {
             products.Add(tempObj);
             using (SqlConnection connectionSql = new SqlConnection(connectionStr))
@@ -78,12 +82,15 @@ namespace DataAccessLogic.ADO
                 {
                     connectionSql.Open();
                     comm.CommandText = "insert into Product(ProductName, PriceIn, PriceOut," +
-                      " CategoryId) values(@fname,@priceInn, @priceOutt, @categor)";
+                      " CategoryId, SupplierId, RowInsertTime,RowUpdateTime) values(@fname,@priceInn, @priceOutt, @categor,@supp,@timeInsert,@timeUpdate)";
                     comm.Parameters.Clear();
                     comm.Parameters.AddWithValue("@fname", tempObj.NameObj);
                     comm.Parameters.AddWithValue("@priceInn", tempObj.PriceIn);
                     comm.Parameters.AddWithValue("@priceOutt", tempObj.PriceOut);
                     comm.Parameters.AddWithValue("@categor", tempObj.Category);
+                    comm.Parameters.AddWithValue("@supp", tempObj.Supplier);
+                    comm.Parameters.AddWithValue("@timeInsert", tempObj.RowInsertTime);
+                    comm.Parameters.AddWithValue("@timeUpdate", tempObj.RowUpdateTime);
                     int rowAffected = comm.ExecuteNonQuery();
                 }
             }
@@ -96,17 +103,17 @@ namespace DataAccessLogic.ADO
             products.Remove(tempObj);
             if (tempObj != null)
             {
-                using (SqlConnection connectionSql = new SqlConnection(connectionStr))
-                {
-                    using (SqlCommand comm = connectionSql.CreateCommand())
-                    {
-                        connectionSql.Open();
-                        comm.CommandText = "delete from Supplier where ProductId=@supplierId";
-                        comm.Parameters.Clear();
-                        comm.Parameters.AddWithValue("@supplierId", tempObj.Id);
-                        comm.ExecuteNonQuery();
-                    }
-                }
+            //    using (SqlConnection connectionSql = new SqlConnection(connectionStr))
+            //    {
+            //        using (SqlCommand comm = connectionSql.CreateCommand())
+            //        {
+            //            connectionSql.Open();
+            //            comm.CommandText = "delete from Supplier where ProductId=@supplierId";
+            //            comm.Parameters.Clear();
+            //            comm.Parameters.AddWithValue("@supplierId", tempObj.Id);
+            //            comm.ExecuteNonQuery();
+            //        }
+            //    }
 
                 using (SqlConnection connectionSql = new SqlConnection(connectionStr))
                 {
@@ -119,7 +126,7 @@ namespace DataAccessLogic.ADO
                         comm.Parameters.Clear();
                         comm.Parameters.AddWithValue("@productId", tempObj.Id);
                         comm.ExecuteNonQuery();
-                        bool t = true;
+                       // bool t = true;
                     }
                 }
 
@@ -139,7 +146,7 @@ namespace DataAccessLogic.ADO
             }
             return idExpPod;
         }
-        public ProductDTO GetObj(int idT)
+        public Product GetObj(int idT)
         {
             int index = -1;
             for (int i=0; i<products.Count;i++)
@@ -167,9 +174,10 @@ namespace DataAccessLogic.ADO
                 using (SqlCommand comm = connectionSql.CreateCommand())
                 {
                     connectionSql.Open();
-                    comm.CommandText = "update Product set ProductName=@newNameTemp where ProductId=@productId";
+                    comm.CommandText = "update Product set ProductName=@newNameTemp, RowUpdateTime=@timeUpdate where ProductId=@productId";
                     comm.Parameters.Clear();
                     comm.Parameters.AddWithValue("@newNameTemp", newName);
+                    comm.Parameters.AddWithValue("@timeUpdate", DateTime.Now);
                     comm.Parameters.AddWithValue("@productId", tempObj.Id);
                     int row =comm.ExecuteNonQuery();
                    // bool t = true;

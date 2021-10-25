@@ -10,14 +10,14 @@ using System.Threading.Tasks;
 
 namespace DataAccessLogic.ADO
 {
-    public class SupplierDAL : IModelDAL<SupplierDTO>
+    public class SupplierDAL : ISupplierDAL
     {
-        List<SupplierDTO> suppliers;
+        List<Supplier> suppliers;
         private string connectionStr;
 
         public SupplierDAL(string test1="")
         {
-            suppliers = new List<SupplierDTO>();
+            suppliers = new List<Supplier>();
             
             if (test1 == "test")
             {
@@ -39,19 +39,19 @@ namespace DataAccessLogic.ADO
                     using (SqlCommand comm = connectionSql.CreateCommand())
                     {
                         connectionSql.Open();
-                        comm.CommandText = "select SupplierId, ProductId, SupplierName, ArrivingTime from Supplier";
+                        comm.CommandText = "select SupplierId, SupplierName, ArrivingTime, RowUpdateTime from Supplier";
 
 
                         SqlDataReader reader = comm.ExecuteReader();
                         while (reader.Read())
                         {
-                            SupplierDTO tempSupplier = new SupplierDTO();
+                            Supplier tempSupplier = new Supplier();
                             tempSupplier.Id = (int)reader["SupplierId"];
-                            tempSupplier.ProductId = (int)reader["ProductId"];
                             tempSupplier.NameSupplier = (string)reader["SupplierName"];
                             tempSupplier.ArrivingTime = Convert.ToDateTime(reader["ArrivingTime"]);
+                            tempSupplier.RowUpdateTime = (DateTime)reader["RowUpdateTime"];
                             suppliers.Add(tempSupplier);
-                            bool t = true;
+                            //bool t = true;
 
                         }
                     }
@@ -63,7 +63,7 @@ namespace DataAccessLogic.ADO
             }
             
         }
-        public void AddObj(SupplierDTO tempObj)
+        public void AddObj(Supplier tempObj)
         {
             suppliers.Add(tempObj);
             
@@ -72,14 +72,14 @@ namespace DataAccessLogic.ADO
                 using (SqlCommand comm = connectionSql.CreateCommand())
                 {
                     connectionSql.Open();
-                    comm.CommandText = "insert into Supplier(ProductId,SupplierName,ArrivingTime) " +
-                      "values(@productId,@supplierName,@dataArriving)";
+                    comm.CommandText = "insert into Supplier(SupplierName,ArrivingTime,RowUpdateTime) " +
+                      "values(@supplierName,@dataArriving,@timeUpdate)";
                     comm.Parameters.Clear();
-                    comm.Parameters.AddWithValue("@productId", tempObj.ProductId);
                     comm.Parameters.AddWithValue("@supplierName", tempObj.NameSupplier);
                     comm.Parameters.AddWithValue("@dataArriving", tempObj.ArrivingTime);
-                   // int rowAffected = comm.ExecuteNonQuery();
-                    bool t = true;
+                    comm.Parameters.AddWithValue("@timeUpdate", tempObj.RowUpdateTime);
+                    int rowAffected = comm.ExecuteNonQuery();
+                    //bool t = true;
 
                 }
             }
@@ -100,22 +100,22 @@ namespace DataAccessLogic.ADO
                         comm.CommandText = "delete from Supplier where SupplierId=@supplierId";
                         comm.Parameters.Clear();
                         comm.Parameters.AddWithValue("@supplierId", tempObj.Id);
-                        bool t = true;
+                        //bool t = true;
                     }
                 }
             }
         }
 
-        public List<SupplierDTO> GetProducts()
+        public List<Supplier> GetProducts()
         {
             return suppliers;
         }
-        public SupplierDTO GetObj(int idT)
+        public Supplier GetObj(int idT)
         {
             int index = -1;
             for (int i = 0; i < suppliers.Count; i++)
             {
-                if (suppliers[i].ProductId == idT)
+                if (suppliers[i].Id == idT)
                 {
                     index = i;
                 }
@@ -123,10 +123,6 @@ namespace DataAccessLogic.ADO
             return suppliers[index];
         }
 
-        public int GetMostExpensiveObj()
-        {
-            throw new NotImplementedException();
-        }
 
         public void ChangeValueObj(int id, string newName)
         {
@@ -143,9 +139,10 @@ namespace DataAccessLogic.ADO
                 using (SqlCommand comm = connectionSql.CreateCommand())
                 {
                     connectionSql.Open();
-                    comm.CommandText = "update Supplier set SupplierName=@newNameTemp where SupplierId=@suplId";
+                    comm.CommandText = "update Supplier set SupplierName=@newNameTemp, RowUpdateTime=@newTime where SupplierId=@suplId";
                     comm.Parameters.Clear();
                     comm.Parameters.AddWithValue("@newNameTemp", newName);
+                    comm.Parameters.AddWithValue("@newTime", DateTime.Now);
                     comm.Parameters.AddWithValue("@suplId", tempObj.Id);
                     int row = comm.ExecuteNonQuery();
                     // bool t = true;

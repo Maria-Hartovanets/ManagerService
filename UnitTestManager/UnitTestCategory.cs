@@ -14,14 +14,14 @@ namespace UnitTestManager
     public class UnitTestCategory
     {
 
-        IModelDAL<CategoryDTO> products = new CategoryDAL("test");
+        ICategoryDAL products = new CategoryDAL("test");
 
 
         [TestMethod]
         public void TestMethod_AddNewValue()
         {
 
-            CategoryDTO temp = new CategoryDTO();
+            Category temp = new Category();
             string nameM = "fruits";
             temp.TypeProduct = nameM;
 
@@ -32,7 +32,7 @@ namespace UnitTestManager
         [TestMethod]
         public void TestMethod_RemoveValue()
         {
-            CategoryDTO temp = new CategoryDTO();
+            Category temp = new Category();
             string nameM = "sweets";
             temp.TypeProduct = nameM;
 
@@ -44,12 +44,12 @@ namespace UnitTestManager
         [TestMethod]
         public void TestMethod_GetObject()
         {
-            CategoryDTO temp = new CategoryDTO();
+            Category temp = new Category();
             string nameM = "daily product";
             temp.TypeProduct = nameM;
             temp.IDCat = 1;//current
 
-            CategoryDTO exepObj = products.GetObj(temp.IDCat);
+            Category exepObj = products.GetObj(temp.IDCat);
             Assert.AreEqual(exepObj.IDCat, temp.IDCat);
         }
     }

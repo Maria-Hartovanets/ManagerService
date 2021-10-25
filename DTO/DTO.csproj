@@ -44,9 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\CategoryDTO.cs" />
-    <Compile Include="Model\ProductDTO.cs" />
-    <Compile Include="Model\SupplierDTO.cs" />
+    <Compile Include="ModelDTO\CategoryDTO.cs" />
+    <Compile Include="ModelDTO\ProductDTO.cs" />
+    <Compile Include="ModelDTO\SupplierDTO.cs" />
+    <Compile Include="Model\Category.cs" />
+    <Compile Include="Model\Product.cs" />
+    <Compile Include="Model\Supplier.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -9,15 +9,15 @@ using System.Threading.Tasks;
 
 namespace DataAccessLogic.ADO
 {
-    public class CategoryDAL : IModelDAL<CategoryDTO>
+    public class CategoryDAL : ICategoryDAL
     {
-        List<CategoryDTO> categories;
+        List<Category> categories;
         private string connectionStr;
-        List<ProductDTO> product;
+        List<Product> product;
         public CategoryDAL(string test1="")
         {
-            categories = new List<CategoryDTO>();
-            product = new List<ProductDTO>();
+            categories = new List<Category>();
+            product = new List<Product>();
             if (test1 == "test")
             {
                 connectionStr = "Data Source=DESKTOP-LRMIV19;Initial Catalog=UTestManagerService;Integrated Security=True";
@@ -37,14 +37,19 @@ namespace DataAccessLogic.ADO
                     using (SqlCommand comm = connectionSql.CreateCommand())
                     {
                         connectionSql.Open();
-                        comm.CommandText = "select CategoryId, CategoryType from Category";
+                        comm.CommandText = "select CategoryId,CategoryName,IsBlocked,RowInsertTime,RowUpdateTime from Category";
 
                         SqlDataReader reader = comm.ExecuteReader();
                         while (reader.Read())
                         {
-                            CategoryDTO tempCategory = new CategoryDTO();
+                            Category tempCategory = new Category();
                             tempCategory.IDCat = (int)reader["CategoryId"];
-                            tempCategory.TypeProduct = (string)reader["CategoryType"];
+                            tempCategory.TypeProduct = (string)reader["CategoryName"];
+                            tempCategory.IsBlocked = (bool)reader["IsBlocked"];
+                            var timeInsert = reader["RowInsertTime"];
+                            tempCategory.RowInsertTime = (DateTime)timeInsert;
+                            var timeUpdate = reader["RowInsertTime"];
+                            tempCategory.RowUpdateTime = (DateTime)timeUpdate;
                             categories.Add(tempCategory);
                         }
                     }
@@ -55,7 +60,7 @@ namespace DataAccessLogic.ADO
                 throw new Exception($"Error during read from databased: {ex.Message}");
             }
         }
-        public void AddObj(CategoryDTO tempObj)
+        public void AddObj(Category tempObj)
         {
             categories.Add(tempObj);
             using (SqlConnection connectionSql = new SqlConnection(connectionStr))
@@ -63,10 +68,14 @@ namespace DataAccessLogic.ADO
                 using (SqlCommand comm = connectionSql.CreateCommand())
                 {
                     connectionSql.Open();
-                    comm.CommandText = "insert into Category (CategoryType) values(@categoryName)";
+                    comm.CommandText = "insert into Category (CategoryName,IsBlocked,RowInsertTime,RowUpdateTime) " +
+                        "values(@categoryName,@block,@timeInsert,@timeUpdate)";
                     comm.Parameters.Clear();
                     comm.Parameters.AddWithValue("@categoryName", tempObj.TypeProduct);
-                   comm.ExecuteNonQuery();
+                    comm.Parameters.AddWithValue("@block", tempObj.IsBlocked);
+                    comm.Parameters.AddWithValue("@timeInsert", tempObj.RowInsertTime);
+                    comm.Parameters.AddWithValue("@timeUpdate", tempObj.RowUpdateTime);
+                    comm.ExecuteNonQuery();
                 }
             }
         }
@@ -74,6 +83,7 @@ namespace DataAccessLogic.ADO
         public void DeleteObject(int id)
         {
             var tempObj = categories.Where(x => x.IDCat == id).SingleOrDefault();
+            bool option = false;
             if (tempObj != null)
             {
                 using (SqlConnection connectionSql = new SqlConnection(connectionStr))
@@ -82,27 +92,11 @@ namespace DataAccessLogic.ADO
                     {
                         connectionSql.Open();
 
-                       
-                        comm.CommandText = "update Product set CategoryId=@newTemp where CategoryId=@productId";
-                        comm.Parameters.Clear();
-                        comm.Parameters.AddWithValue("@newTemp", 8);
-                        comm.Parameters.AddWithValue("@productId", tempObj.IDCat);
-                        int row = comm.ExecuteNonQuery();
-
-                    }
-                }
-                categories.Remove(tempObj);
-
-                using (SqlConnection connectionSql = new SqlConnection(connectionStr))
-                {
-                    using (SqlCommand comm = connectionSql.CreateCommand())
-                    {
-                        connectionSql.Open();
-                       
                         //delete from Product where ProductId=1
-                       
-                        comm.CommandText = "delete from Category where CategoryId=@categId";
+
+                        comm.CommandText = "update Category set IsBlocked=@option where CategoryId=@categId";
                         comm.Parameters.Clear();
+                        comm.Parameters.AddWithValue("@option", tempObj.IsBlocked);
                         comm.Parameters.AddWithValue("@categId", tempObj.IDCat);
                         comm.ExecuteNonQuery();
                     }
@@ -112,12 +106,12 @@ namespace DataAccessLogic.ADO
 
       
 
-        public List<CategoryDTO> GetProducts()
+        public List<Category> GetProducts()
         {
             return categories;
         }
 
-        public CategoryDTO GetObj(int idT)
+        public Category GetObj(int idT)
         {
             int index = -1;
             for (int i = 0; i < categories.Count; i++)
@@ -128,11 +122,6 @@ namespace DataAccessLogic.ADO
                 }
             }
             return categories[index];
-        }
-
-        public int GetMostExpensiveObj()
-        {
-            throw new NotImplementedException();
         }
 
         public void ChangeValueObj(int id, string newName)
@@ -150,9 +139,10 @@ namespace DataAccessLogic.ADO
                 using (SqlCommand comm = connectionSql.CreateCommand())
                 {
                     connectionSql.Open();
-                    comm.CommandText = "update Category set CategoryType=@newNameTemp where CategoryId=@categorId";
+                    comm.CommandText = "update Category set CategoryName=@newNameTemp, RowUpdateTime=@timeUpdate where CategoryId=@categorId";
                     comm.Parameters.Clear();
                     comm.Parameters.AddWithValue("@newNameTemp", newName);
+                    comm.Parameters.AddWithValue("@timeUpdate", DateTime.Now);
                     comm.Parameters.AddWithValue("@categorId", tempObj.IDCat);
                     int row = comm.ExecuteNonQuery();
                     // bool t = true;

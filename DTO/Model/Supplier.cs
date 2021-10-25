@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace DTO.Model
 {
-    public class SupplierDTO
+    public class Supplier
     {
         public int Id { get; set; }
-        public int ProductId { get; set; }
         public string NameSupplier { get; set; }
         public DateTime ArrivingTime { get; set; }
+        public DateTime RowUpdateTime { get; set; }
+
 
         public void ChangeObjName(string nameNew)
         {
@@ -19,7 +20,7 @@ namespace DTO.Model
         }
         public string InfoString()
         {
-            return $"Id: {Id}\tProductId: {ProductId}\tSupplier: {NameSupplier}\tTime arriving: {ArrivingTime}";
+            return $"Id: {Id}\tSupplier: {NameSupplier}\tTime arriving: {ArrivingTime}\tUpdate: {RowUpdateTime}";
         }
     }
 }

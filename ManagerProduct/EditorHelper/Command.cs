@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DTO.Model;
+using DTO.ModelDTO;
 using DataAccessLogic.ADO;
 using DataAccessLogic.Interfaces;
+using DTO.Model;
 
 namespace ManagerProductConsole.EditorHelper
 {
@@ -13,9 +14,9 @@ namespace ManagerProductConsole.EditorHelper
     {
 
 
-        IModelDAL<CategoryDTO> categories = null;
-        IModelDAL<SupplierDTO> suppliers = null;
-        IModelDAL<ProductDTO> products = null;
+        ICategoryDAL categories = null;
+        ISupplierDAL suppliers = null;
+        IProductDAL products = null;
         public Command()
         {
 
@@ -24,15 +25,16 @@ namespace ManagerProductConsole.EditorHelper
             products = new ProductDAL();
         }
 
-        public void AddProductToCategory(int category)
+        public void AddProductWithCategory()
         {
-
+            Console.Write("\nChoose the id of category to add new  product after pressing enter:");
+            int category = Convert.ToInt32(Console.ReadLine());
             bool optionCyc = true;
             do
             {
                 try
                 {
-                    ProductDTO temp = new ProductDTO();
+                    Product temp = new Product();
                     Console.Write("Input name of product: ");
                     string nameM = Console.ReadLine();
                     temp.NameObj = nameM;
@@ -44,20 +46,50 @@ namespace ManagerProductConsole.EditorHelper
                     Console.Write("Input priceout: ");
                     string priceStrOut = Console.ReadLine();
                     temp.PriceOut = (Convert.ToInt32(priceStrOut));
-                    foreach (CategoryDTO categoryTemp in  categories.GetProducts())
+                    temp.RowInsertTime = DateTime.Now;
+                    temp.RowUpdateTime = DateTime.Now;
+                    Console.Write("Input the supplier of the product:");
+                    int supplierTempId = Convert.ToInt32(Console.ReadLine());
+                    bool isExistC = false;
+                    bool isExistS = false;
+                    foreach (Category categoryTemp in  categories.GetProducts())
                     {
                         if (categoryTemp.IDCat == category)
                         {
+                            isExistC = true;
                             temp.Category = category;
-                            products.AddObj(temp);
-                            Console.WriteLine("sucessfully added a product!\n");
-                            Console.ReadKey();
                         }
-                        //else
-                        //{
-                        //    Console.WriteLine("Sorry there isnt this id of category!");
-                        //}
+                       
                         
+                    }
+                    foreach(var supplierTemp in suppliers.GetProducts())
+                    {
+                        if (supplierTemp.Id == supplierTempId)
+                        {
+                            isExistS = true;
+                            temp.Supplier = supplierTempId;
+                        }
+                    }
+                    if(isExistS==true && isExistC == true)
+                    {
+                        products.AddObj(temp);
+                        Console.WriteLine("sucessfully added a product!\n");
+                        Console.ReadKey();
+                    }
+                    else if(isExistS == false && isExistC == true)
+                    {
+                        Console.WriteLine("There isn't the category to add product!\n");
+                        Console.ReadKey();
+                    }
+                    else if (isExistS == true && isExistC == false)
+                    {
+                        Console.WriteLine("There isn't the supplier to add product!\n");
+                        Console.ReadKey();
+                    }
+                    else
+                    {
+                        Console.WriteLine("There aren't the supplier and category to add product!\n");
+                        Console.ReadKey();
                     }
 
                 }
@@ -85,8 +117,11 @@ namespace ManagerProductConsole.EditorHelper
         {
             Console.Write("\nInput new name for categories:");
             string categoryStr = Console.ReadLine();
-            CategoryDTO categoryTemp = new CategoryDTO();
+
+            Category categoryTemp = new Category();
             categoryTemp.TypeProduct = categoryStr;
+            categoryTemp.RowInsertTime = DateTime.Now;
+            categoryTemp.RowUpdateTime = DateTime.Now;
             categories.AddObj(categoryTemp);
 
             Console.WriteLine("sucessfully add the category!\n");
@@ -98,15 +133,10 @@ namespace ManagerProductConsole.EditorHelper
         {
             Console.Write("\nInput new name of supplier:");
             string supplierName = Console.ReadLine();
-            Console.Write("\nInput the id of product he/she give:");
-            int idProd = Convert.ToInt32(Console.ReadLine());
-
-            SupplierDTO supplier = new SupplierDTO();
+            Supplier supplier = new Supplier();
             supplier.NameSupplier = supplierName;
-            supplier.ProductId = idProd;
-            DateTime dateTime = DateTime.Now;
-            supplier.ArrivingTime = dateTime;
-
+            supplier.ArrivingTime = DateTime.Now;
+            supplier.RowUpdateTime = DateTime.Now;
             suppliers.AddObj(supplier);
 
             Console.WriteLine("sucessfully add the supplier!\n");
@@ -116,7 +146,7 @@ namespace ManagerProductConsole.EditorHelper
 
         public void RemoveProduct()
         {
-            Write("Product");
+           
             Console.Write("\nInput the id to remove element:");
             int id = Convert.ToInt32(Console.ReadLine());
             products.DeleteObject(id);
@@ -131,7 +161,7 @@ namespace ManagerProductConsole.EditorHelper
             Console.Write("\nInput the id to remove category of some product:");
             int id = Convert.ToInt32(Console.ReadLine());
             categories.DeleteObject(id);
-            foreach (ProductDTO elem in products.GetProducts())
+            foreach (Product elem in products.GetProducts())
             {
                 if (id == elem.Category)
                 {
@@ -203,12 +233,14 @@ namespace ManagerProductConsole.EditorHelper
             Console.ReadKey();
         }
 
-        public void WriteOneCategoryTypeProduct(int idCat)
+        public void WriteOneCategoryTypeProduct()
         {
+            Console.Write("\nChoose the id of category to show all product of it:");
+            int idCat = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("---------------------------------------------"
                       + "----------------------------------------------"
                       + "--------------------------");
-            foreach (ProductDTO elem in products.GetProducts())
+            foreach (Product elem in products.GetProducts())
             {
                 if (elem.Category == idCat)
                 {
@@ -221,52 +253,82 @@ namespace ManagerProductConsole.EditorHelper
                       + "--------------------------");
             Console.ReadKey();
         }
-        public void Write(string temp)
+        public void WriteBlockedProduct()
         {
            
             Console.WriteLine("---------------------------------------------"
+                     + "----------------------------------------------"
+                     + "--------------------------");
+            foreach(var category in categories.GetProducts())
+            {
+                if (category.IsBlocked == true)
+                {
+                    foreach(var product in products.GetProducts())
+                    {
+                        if (category.IDCat == product.Category)
+                        {
+                            product.InfoString();
+                        }
+                    }
+                   
+                }
+            }
+
+            Console.WriteLine("---------------------------------------------"
+                     + "----------------------------------------------"
+                     + "--------------------------");
+            Console.ReadKey();
+        }
+        public void WriteProduct()
+        {
+
+            Console.WriteLine("---------------------------------------------"
                        + "----------------------------------------------"
                        + "--------------------------");
-            if (temp == "blocked")
+            foreach (Product elem in products.GetProducts())
             {
-                foreach (ProductDTO elem in products.GetProducts())
-                {
-                    if (elem.Category ==0)
-                    {
-                        Console.WriteLine(elem.InfoString());
-                    }
-                }
+                Console.WriteLine(elem.InfoString());
+            }
+            Console.WriteLine("---------------------------------------------"
+                       + "----------------------------------------------"
+                       + "--------------------------");
 
-            }
-            else if (temp == "Product")
+            Console.ReadKey();
+
+        }
+        public void WriteCategory()
+        {
+
+            Console.WriteLine("---------------------------------------------"
+                       + "----------------------------------------------"
+                       + "--------------------------");
+            foreach (Category elem in categories.GetProducts())
             {
-                foreach (ProductDTO elem in products.GetProducts())
-                {
-                    Console.WriteLine(elem.InfoString());
-                }
-            }
-            else if (temp == "Category")
-            {
-                foreach (CategoryDTO elem in categories.GetProducts())
-                {
-                    Console.WriteLine(elem.InfoString());
-                }
-            }
-            else
-            {
-                foreach (SupplierDTO elem in suppliers.GetProducts())
-                {
-                    Console.WriteLine(elem.InfoString());
-                }
+                Console.WriteLine(elem.InfoString());
             }
 
             Console.WriteLine("---------------------------------------------"
                        + "----------------------------------------------"
                        + "--------------------------");
-
-                Console.ReadKey();
-            
+            Console.ReadKey();
         }
-      
+        public void WriteSupplier()
+        {
+
+            Console.WriteLine("---------------------------------------------"
+                       + "----------------------------------------------"
+                       + "--------------------------");
+            foreach (Supplier elem in suppliers.GetProducts())
+            {
+                Console.WriteLine(elem.InfoString());
+            }
+
+            Console.WriteLine("---------------------------------------------"
+                       + "----------------------------------------------"
+                       + "--------------------------");
+            Console.ReadKey();
+        }
+
+
     }
 }

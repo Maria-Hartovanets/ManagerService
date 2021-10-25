@@ -47,7 +47,9 @@
     <Compile Include="ADO\CategoryDAL.cs" />
     <Compile Include="ADO\ProductDAL.cs" />
     <Compile Include="ADO\SupplierDAL.cs" />
-    <Compile Include="Interfaces\IModelDAL.cs" />
+    <Compile Include="Interfaces\ICategoryDAL.cs" />
+    <Compile Include="Interfaces\IProductDAL.cs" />
+    <Compile Include="Interfaces\ISupplierDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
