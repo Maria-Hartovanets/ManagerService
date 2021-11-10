@@ -19,6 +19,10 @@ namespace DTO.Model
             TypeProduct = nameNew;
 
         }
+        public void ChangeBlockValue(bool option)
+        {
+            IsBlocked=option;
+        }
 
         public string InfoString()
         {

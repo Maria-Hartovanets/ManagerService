@@ -2,8 +2,8 @@
 using System;
 using DataAccessLogic.ADO;
 using DataAccessLogic.Interfaces;
-using DTO.ModelDTO;
 using DTO.Model;
+
 
 namespace UnitTestManager
 {

@@ -5,15 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccessLogic.Interfaces
+namespace BLLServiceManager.IService
 {
-    public interface ICategoryDAL
+    public interface IServiceSupplier
     {
-        List<Category> GetProducts();
-        void AddObj(Category tempObj);
-        void DeleteObject(int id,bool op);
+        List<Supplier> GetProducts();
+        void AddObj(Supplier tempObj);
+        void DeleteObject(int id);
         void ReadFromDataBase();
-        Category GetObj(int idT);
+        Supplier GetObj(int idT);
         void ChangeValueObj(int id, string newName);
     }
 }

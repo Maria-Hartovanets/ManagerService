@@ -37,7 +37,7 @@ namespace UnitTestManager
             temp.TypeProduct = nameM;
 
             var tempObj = products.GetProducts().Find(x => x.TypeProduct == nameM);
-            products.DeleteObject(tempObj.IDCat);
+            products.DeleteObject(tempObj.IDCat,true);
             var tempObjDel = products.GetProducts().Find(x => x.TypeProduct == nameM);
             Assert.IsNull(tempObjDel);
         }

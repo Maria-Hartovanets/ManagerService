@@ -32,6 +32,7 @@ namespace DataAccessLogic.ADO
      
         public void ReadFromDataBase()
         {
+            suppliers.Clear();
             try
             {
                 using (SqlConnection connectionSql = new SqlConnection(connectionStr))
@@ -51,8 +52,7 @@ namespace DataAccessLogic.ADO
                             tempSupplier.ArrivingTime = Convert.ToDateTime(reader["ArrivingTime"]);
                             tempSupplier.RowUpdateTime = (DateTime)reader["RowUpdateTime"];
                             suppliers.Add(tempSupplier);
-                            //bool t = true;
-
+                          
                         }
                     }
                 }
@@ -79,7 +79,7 @@ namespace DataAccessLogic.ADO
                     comm.Parameters.AddWithValue("@dataArriving", tempObj.ArrivingTime);
                     comm.Parameters.AddWithValue("@timeUpdate", tempObj.RowUpdateTime);
                     int rowAffected = comm.ExecuteNonQuery();
-                    //bool t = true;
+                    
 
                 }
             }
@@ -87,7 +87,7 @@ namespace DataAccessLogic.ADO
 
         public void DeleteObject(int id)
         {
-            /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+           
             var tempObj = suppliers.Where(x => x.Id == id).SingleOrDefault();
             if (tempObj != null)
             {
@@ -100,7 +100,8 @@ namespace DataAccessLogic.ADO
                         comm.CommandText = "delete from Supplier where SupplierId=@supplierId";
                         comm.Parameters.Clear();
                         comm.Parameters.AddWithValue("@supplierId", tempObj.Id);
-                        //bool t = true;
+                        int rowAffected = comm.ExecuteNonQuery();
+                       
                     }
                 }
             }
@@ -120,6 +121,7 @@ namespace DataAccessLogic.ADO
                     index = i;
                 }
             }
+            index -= 1;
             return suppliers[index];
         }
 
@@ -145,11 +147,9 @@ namespace DataAccessLogic.ADO
                     comm.Parameters.AddWithValue("@newTime", DateTime.Now);
                     comm.Parameters.AddWithValue("@suplId", tempObj.Id);
                     int row = comm.ExecuteNonQuery();
-                    // bool t = true;
+                   
                 }
             }
-
-            /////////////////////////////////////////////////////////////////////////////////
         }
         
     }

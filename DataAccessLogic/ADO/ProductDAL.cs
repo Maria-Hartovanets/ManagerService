@@ -12,7 +12,6 @@ namespace DataAccessLogic.ADO
     public class ProductDAL : IProductDAL
     {
         List<Product> products;
-        //IModelDAL<Supplier> suppliers;
         private string connectionStr;
        
         public ProductDAL(string test1 = "")
@@ -31,7 +30,7 @@ namespace DataAccessLogic.ADO
         }
         public void ReadFromDataBase()
         {
-
+            products.Clear();
             try
             {
                 using (SqlConnection connectionSql = new SqlConnection(connectionStr))
@@ -103,30 +102,18 @@ namespace DataAccessLogic.ADO
             products.Remove(tempObj);
             if (tempObj != null)
             {
-            //    using (SqlConnection connectionSql = new SqlConnection(connectionStr))
-            //    {
-            //        using (SqlCommand comm = connectionSql.CreateCommand())
-            //        {
-            //            connectionSql.Open();
-            //            comm.CommandText = "delete from Supplier where ProductId=@supplierId";
-            //            comm.Parameters.Clear();
-            //            comm.Parameters.AddWithValue("@supplierId", tempObj.Id);
-            //            comm.ExecuteNonQuery();
-            //        }
-            //    }
-
+           
                 using (SqlConnection connectionSql = new SqlConnection(connectionStr))
                 {
                     using (SqlCommand comm = connectionSql.CreateCommand())
                     {
 
-                        //delete from Product where ProductId=1
                         connectionSql.Open();
                         comm.CommandText = "delete from Product where ProductId=@productId";
                         comm.Parameters.Clear();
                         comm.Parameters.AddWithValue("@productId", tempObj.Id);
                         comm.ExecuteNonQuery();
-                       // bool t = true;
+                      
                     }
                 }
 
@@ -180,7 +167,6 @@ namespace DataAccessLogic.ADO
                     comm.Parameters.AddWithValue("@timeUpdate", DateTime.Now);
                     comm.Parameters.AddWithValue("@productId", tempObj.Id);
                     int row =comm.ExecuteNonQuery();
-                   // bool t = true;
                 }
             }
            

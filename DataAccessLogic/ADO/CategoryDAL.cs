@@ -30,6 +30,8 @@ namespace DataAccessLogic.ADO
         }
         public void ReadFromDataBase()
         {
+            categories.Clear();
+
             try
             {
                 using (SqlConnection connectionSql = new SqlConnection(connectionStr))
@@ -80,10 +82,10 @@ namespace DataAccessLogic.ADO
             }
         }
 
-        public void DeleteObject(int id)
+        public void DeleteObject(int id,bool op)
         {
             var tempObj = categories.Where(x => x.IDCat == id).SingleOrDefault();
-            bool option = false;
+            //bool optionBlocked = true;
             if (tempObj != null)
             {
                 using (SqlConnection connectionSql = new SqlConnection(connectionStr))
@@ -92,14 +94,19 @@ namespace DataAccessLogic.ADO
                     {
                         connectionSql.Open();
 
-                        //delete from Product where ProductId=1
-
                         comm.CommandText = "update Category set IsBlocked=@option where CategoryId=@categId";
                         comm.Parameters.Clear();
-                        comm.Parameters.AddWithValue("@option", tempObj.IsBlocked);
+                        comm.Parameters.AddWithValue("@option",op);
                         comm.Parameters.AddWithValue("@categId", tempObj.IDCat);
                         comm.ExecuteNonQuery();
                     }
+                }
+            }
+            foreach(var cat in categories)
+            {
+                if (id == cat.IDCat)
+                {
+                    cat.ChangeBlockValue(op);
                 }
             }
         }
@@ -145,7 +152,7 @@ namespace DataAccessLogic.ADO
                     comm.Parameters.AddWithValue("@timeUpdate", DateTime.Now);
                     comm.Parameters.AddWithValue("@categorId", tempObj.IDCat);
                     int row = comm.ExecuteNonQuery();
-                    // bool t = true;
+                   
                 }
             }
         }

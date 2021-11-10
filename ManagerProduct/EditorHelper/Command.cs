@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DTO.ModelDTO;
+using DTO.Model;
 using DataAccessLogic.ADO;
 using DataAccessLogic.Interfaces;
-using DTO.Model;
 
 namespace ManagerProductConsole.EditorHelper
 {
@@ -160,7 +159,7 @@ namespace ManagerProductConsole.EditorHelper
         {
             Console.Write("\nInput the id to remove category of some product:");
             int id = Convert.ToInt32(Console.ReadLine());
-            categories.DeleteObject(id);
+            categories.DeleteObject(id,false);
             foreach (Product elem in products.GetProducts())
             {
                 if (id == elem.Category)
