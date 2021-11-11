@@ -16,6 +16,6 @@ namespace BLLServiceManager.IService
         void ReadFromDataBase();
         List<Product> GetProducts();
         Product GetObj(int id);
-        void ChangeValueObj(int id, string name);
+        Product ChangeValueObj(int id, string name);
     }
 }

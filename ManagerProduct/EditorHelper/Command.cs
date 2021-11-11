@@ -56,7 +56,7 @@ namespace ManagerProductConsole.EditorHelper
                         if (categoryTemp.IDCat == category)
                         {
                             isExistC = true;
-                            temp.Category = category;
+                            temp.CategoryID = category;
                         }
                        
                         
@@ -66,7 +66,7 @@ namespace ManagerProductConsole.EditorHelper
                         if (supplierTemp.Id == supplierTempId)
                         {
                             isExistS = true;
-                            temp.Supplier = supplierTempId;
+                            temp.SupplierID = supplierTempId;
                         }
                     }
                     if(isExistS==true && isExistC == true)
@@ -162,9 +162,9 @@ namespace ManagerProductConsole.EditorHelper
             categories.DeleteObject(id,false);
             foreach (Product elem in products.GetProducts())
             {
-                if (id == elem.Category)
+                if (id == elem.CategoryID)
                 {
-                    elem.Category = 8;
+                    elem.CategoryID = 8;
                 }
             }
             Console.WriteLine("sucessfully remove the category!\n");
@@ -241,7 +241,7 @@ namespace ManagerProductConsole.EditorHelper
                       + "--------------------------");
             foreach (Product elem in products.GetProducts())
             {
-                if (elem.Category == idCat)
+                if (elem.CategoryID == idCat)
                 {
                     Console.WriteLine(elem.InfoString());
                 }
@@ -264,7 +264,7 @@ namespace ManagerProductConsole.EditorHelper
                 {
                     foreach(var product in products.GetProducts())
                     {
-                        if (category.IDCat == product.Category)
+                        if (category.IDCat == product.CategoryID)
                         {
                             product.InfoString();
                         }

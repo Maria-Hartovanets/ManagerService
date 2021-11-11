@@ -14,6 +14,17 @@ namespace DTO.Model
         public DateTime RowInsertTime { get; set; }
         public DateTime RowUpdateTime { get; set; }
 
+
+        public bool Equals(Category obj)
+        {
+            return obj != null
+                && obj.IDCat == this.IDCat
+                && obj.TypeProduct == this.TypeProduct
+                && obj.IsBlocked==this.IsBlocked
+                && obj.RowInsertTime == this.RowInsertTime
+                && obj.RowUpdateTime == this.RowUpdateTime;
+        }
+
         public void ChangeObjName(string nameNew)
         {
             TypeProduct = nameNew;

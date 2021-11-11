@@ -23,9 +23,9 @@ namespace BLLServiceManager.Service
             _categories.AddObj(temp);
         }
 
-        public void ChangeValueObj(int id, string name)
+        public Category ChangeValueObj(int id, string name)
         {
-            _categories.ChangeValueObj(id,name);
+            return _categories.ChangeValueObj(id,name);
         }
 
         public void DeleteObject(int id, bool op)

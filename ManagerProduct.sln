@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManagerWindowsForms", "Mana
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLLServiceManager", "BLLServiceManager\BLLServiceManager.csproj", "{61790F50-4E22-4D6E-983F-B54F2C0AF3F9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestManagerBLL", "UnitTestManagerBLL\UnitTestManagerBLL.csproj", "{AB975A8C-AAEE-4482-9C9D-D5238518BEBC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{61790F50-4E22-4D6E-983F-B54F2C0AF3F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{61790F50-4E22-4D6E-983F-B54F2C0AF3F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{61790F50-4E22-4D6E-983F-B54F2C0AF3F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB975A8C-AAEE-4482-9C9D-D5238518BEBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB975A8C-AAEE-4482-9C9D-D5238518BEBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB975A8C-AAEE-4482-9C9D-D5238518BEBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB975A8C-AAEE-4482-9C9D-D5238518BEBC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

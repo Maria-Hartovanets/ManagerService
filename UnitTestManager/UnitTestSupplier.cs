@@ -15,7 +15,7 @@ namespace UnitTestManager
     {
         ISupplierDAL products = new SupplierDAL("test");
 
-        [TestMethod]
+       // [TestMethod]
         public void TestMethod_AddNewValue()
         {
 
@@ -30,7 +30,7 @@ namespace UnitTestManager
             var tempObj = products.GetProducts().Find(x => x.NameSupplier == nameM);
             Assert.IsNotNull(tempObj);
         }
-        [TestMethod]
+       // [TestMethod]
         public void TestMethod_RemoveValue()
         {
 

@@ -126,7 +126,7 @@ namespace DataAccessLogic.ADO
         }
 
 
-        public void ChangeValueObj(int id, string newName)
+        public Supplier ChangeValueObj(int id, string newName)
         {
             var tempObj = suppliers.Where(x => x.Id == id).SingleOrDefault();
             foreach (var cat in suppliers)
@@ -150,6 +150,7 @@ namespace DataAccessLogic.ADO
                    
                 }
             }
+            return tempObj;
         }
         
     }

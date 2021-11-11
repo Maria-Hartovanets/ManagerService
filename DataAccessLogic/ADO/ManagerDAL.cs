@@ -126,5 +126,11 @@ namespace DataAccessLogic.ADO
             }
             return curMannagers;
         }
+
+        public Manager GetObjById(int id)
+        {
+            var tempObj = managers.Where(x => x.ID == id).SingleOrDefault();
+            return tempObj;
+        }
     }
 }

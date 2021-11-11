@@ -15,6 +15,6 @@ namespace DataAccessLogic.Interfaces
         void ReadFromDataBase();
         Product GetObj(int idT);
         int GetMostExpensiveObj();
-        void ChangeValueObj(int id, string newName);
+        Product ChangeValueObj(int id, string newName);
     }
 }

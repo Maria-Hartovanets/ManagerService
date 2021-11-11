@@ -14,6 +14,6 @@ namespace DataAccessLogic.Interfaces
         void DeleteObject(int id);
         void ReadFromDataBase();
         Supplier GetObj(int idT);
-        void ChangeValueObj(int id, string newName);
+        Supplier ChangeValueObj(int id, string newName);
     }
 }

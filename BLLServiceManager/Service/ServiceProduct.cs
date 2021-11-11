@@ -23,9 +23,9 @@ namespace BLLServiceManager.Service
             _products.AddObj(temp);
         }
 
-        public void ChangeValueObj(int id, string name)
+        public Product ChangeValueObj(int id, string name)
         {
-            _products.ChangeValueObj(id,name);
+           return _products.ChangeValueObj(id,name);
         }
 
         public void DeleteObject(int id)

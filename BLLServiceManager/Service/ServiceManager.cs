@@ -32,6 +32,11 @@ namespace BLLServiceManager.Service
             return _managers.GetObj(idT);
         }
 
+        public Manager GetObjById(int id)
+        {
+            return _managers.GetObjById(id);
+        }
+
         public List<Manager> GetProducts()
         {
             return _managers.GetProducts();

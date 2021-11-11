@@ -50,8 +50,8 @@ namespace DataAccessLogic.ADO
                             tempProduct.NameObj = (string)reader["ProductName"];
                             tempProduct.PriceIn = (int)reader["PriceIn"]; ;
                             tempProduct.PriceOut = (int)reader["PriceOut"];
-                            tempProduct.Category = (int)reader["CategoryId"];
-                            tempProduct.Supplier = (int)reader["SupplierId"];
+                            tempProduct.CategoryID = (int)reader["CategoryId"];
+                            tempProduct.SupplierID = (int)reader["SupplierId"];
                             var timeInsert = reader["RowInsertTime"];
                             tempProduct.RowInsertTime = (DateTime)timeInsert;
                             var timeUpdate = reader["RowInsertTime"];
@@ -86,8 +86,8 @@ namespace DataAccessLogic.ADO
                     comm.Parameters.AddWithValue("@fname", tempObj.NameObj);
                     comm.Parameters.AddWithValue("@priceInn", tempObj.PriceIn);
                     comm.Parameters.AddWithValue("@priceOutt", tempObj.PriceOut);
-                    comm.Parameters.AddWithValue("@categor", tempObj.Category);
-                    comm.Parameters.AddWithValue("@supp", tempObj.Supplier);
+                    comm.Parameters.AddWithValue("@categor", tempObj.CategoryID);
+                    comm.Parameters.AddWithValue("@supp", tempObj.SupplierID);
                     comm.Parameters.AddWithValue("@timeInsert", tempObj.RowInsertTime);
                     comm.Parameters.AddWithValue("@timeUpdate", tempObj.RowUpdateTime);
                     int rowAffected = comm.ExecuteNonQuery();
@@ -146,7 +146,7 @@ namespace DataAccessLogic.ADO
             return products[index];
         }
 
-        public void ChangeValueObj(int id, string newName)
+        public Product ChangeValueObj(int id, string newName)
         {
             var tempObj = products.Where(x => x.Id == id).SingleOrDefault();
             foreach (var cat in products)
@@ -169,6 +169,7 @@ namespace DataAccessLogic.ADO
                     int row =comm.ExecuteNonQuery();
                 }
             }
+            return tempObj;
            
         }
     }

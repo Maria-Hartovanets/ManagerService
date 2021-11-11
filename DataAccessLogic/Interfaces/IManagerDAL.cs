@@ -15,6 +15,7 @@ namespace DataAccessLogic.Interfaces
         void DeleteObject(int id);
         void ReadFromDataBase();
         Manager GetObj(string idT);
-       
+
+        Manager GetObjById(int id);
     }
 }

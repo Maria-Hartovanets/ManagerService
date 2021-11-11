@@ -13,7 +13,14 @@ namespace DTO.Model
         public DateTime ArrivingTime { get; set; }
         public DateTime RowUpdateTime { get; set; }
 
-
+        public bool Equals(Supplier obj)
+        {
+            return obj != null
+                && obj.Id == this.Id
+                && obj.NameSupplier == this.NameSupplier
+                && obj.ArrivingTime == this.ArrivingTime
+                && obj.RowUpdateTime == this.RowUpdateTime;
+        }
         public void ChangeObjName(string nameNew)
         {
             NameSupplier = nameNew;

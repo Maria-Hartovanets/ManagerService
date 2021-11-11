@@ -17,7 +17,7 @@ namespace UnitTestManager
         ICategoryDAL products = new CategoryDAL("test");
 
 
-        [TestMethod]
+        //[TestMethod]
         public void TestMethod_AddNewValue()
         {
 
@@ -29,7 +29,7 @@ namespace UnitTestManager
             var tempObj = products.GetProducts().Find(x => x.TypeProduct == nameM);
             Assert.IsNotNull(tempObj);
         }
-        [TestMethod]
+       // [TestMethod]
         public void TestMethod_RemoveValue()
         {
             Category temp = new Category();
@@ -41,7 +41,7 @@ namespace UnitTestManager
             var tempObjDel = products.GetProducts().Find(x => x.TypeProduct == nameM);
             Assert.IsNull(tempObjDel);
         }
-        [TestMethod]
+        //[TestMethod]
         public void TestMethod_GetObject()
         {
             Category temp = new Category();

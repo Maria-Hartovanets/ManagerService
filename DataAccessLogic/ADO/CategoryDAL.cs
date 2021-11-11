@@ -131,7 +131,7 @@ namespace DataAccessLogic.ADO
             return categories[index];
         }
 
-        public void ChangeValueObj(int id, string newName)
+        public Category ChangeValueObj(int id, string newName)
         {
             var tempObj = categories.Where(x => x.IDCat == id).SingleOrDefault();
             foreach (var cat in categories)
@@ -155,6 +155,7 @@ namespace DataAccessLogic.ADO
                    
                 }
             }
+            return tempObj;
         }
     }
 }

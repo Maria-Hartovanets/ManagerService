@@ -12,7 +12,7 @@ namespace BLLServiceManager.IService
         void ReadFromDataBase();
         List<Category> GetProducts();
         Category GetObj(int id);
-        void ChangeValueObj(int id, string name);
+        Category ChangeValueObj(int id, string name);
 
 
     }

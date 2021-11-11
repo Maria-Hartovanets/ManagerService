@@ -58,7 +58,6 @@ namespace ManagerWindowsForms
             pictureBoxShowTabControl.SendToBack();
         }
        
-
         private void pictureBoxShowTabControl_Click(object sender, EventArgs e)
         {
             pictureBoxShowTabControl.BringToFront();
@@ -84,7 +83,7 @@ namespace ManagerWindowsForms
             {
                 foreach (var prod in productsService.GetProducts())
                 {
-                    if (cat.IDCat == prod.Category)
+                    if (cat.IDCat == prod.CategoryID)
                     {
                         if (cat.IsBlocked == true)
                         {
@@ -159,8 +158,8 @@ namespace ManagerWindowsForms
                 newProduct.PriceOut = Convert.ToInt32(textBoxPriceoutProduct.Text);
                 newProduct.RowInsertTime = DateTime.Now;
                 newProduct.RowUpdateTime = DateTime.Now;
-                newProduct.Category =idCategory(index);
-                newProduct.Supplier = idSupplier(index1);
+                newProduct.CategoryID =idCategory(index);
+                newProduct.SupplierID = idSupplier(index1);
 
                 productsService.AddObj(newProduct);
                 MessageBox.Show("Already create", "Created!", MessageBoxButtons.OK, MessageBoxIcon.Information);

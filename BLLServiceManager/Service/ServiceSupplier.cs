@@ -21,9 +21,9 @@ namespace BLLServiceManager.Service
             _suppliers.AddObj(tempObj);
         }
 
-        public void ChangeValueObj(int id, string newName)
+        public Supplier ChangeValueObj(int id, string newName)
         {
-            _suppliers.ChangeValueObj(id,newName);
+            return _suppliers.ChangeValueObj(id,newName);
         }
 
         public void DeleteObject(int id)
