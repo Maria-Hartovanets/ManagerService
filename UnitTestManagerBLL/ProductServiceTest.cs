@@ -59,7 +59,7 @@ namespace UnitTestManagerBLL
             Product categoryResult = new Product { Id = 6, NameObj = "newProduct", CategoryID = 1, PriceIn = 100, PriceOut = 110, RowInsertTime = timeInsert, RowUpdateTime = timeUpdate };
             _product.Setup(pr => pr.GetObj(6)).Returns(categoryCurrent);
             //Act
-            Product resultItem = _serviceProduct.GetObj(6);
+            Product resultItem = _serviceProduct.GetObj(6); 
             bool isEqual = resultItem.Equals(categoryResult);
             //Assert
             NUnit.Framework.Assert.IsTrue(isEqual);

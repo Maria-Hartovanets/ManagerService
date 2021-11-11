@@ -11,7 +11,7 @@ namespace BLLServiceManager.IService
     {
         List<Manager> GetProducts();
         List<Manager> GetProductsWithoutPassword();
-        void AddObj(Manager tempObj);
+        void AddObj(Manager tempObj); 
         void DeleteObject(int id);
         void ReadFromDataBase();
         Manager GetObj(string idT);

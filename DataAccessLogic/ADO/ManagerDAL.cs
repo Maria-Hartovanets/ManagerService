@@ -36,7 +36,7 @@ namespace DataAccessLogic.ADO
                             "RowInsertTime,RowUpdateTime from Manager";
 
                         SqlDataReader reader = comm.ExecuteReader();
-                        while (reader.Read())
+                        while (reader.Read()) 
                         {
                             Manager tempManager = new Manager();
                             tempManager.ID = (int)reader["PersonId"];

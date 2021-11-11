@@ -10,7 +10,7 @@ using DTO.Model;
 namespace BLLServiceManager.IService
 {
     public interface IServiceProduct
-    {
+    { 
         void AddObj(Product temp);
         void DeleteObject(int id);
         void ReadFromDataBase();

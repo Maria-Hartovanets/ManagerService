@@ -17,7 +17,7 @@ namespace DTO.Model
         public DateTime RowInsertTime { get; set; }
         public DateTime RowUpdateTime { get; set; }
 
-        public bool Equals(Product obj)
+        public bool Equals(Product obj) 
         {
             return obj != null
                 && obj.Id == this.Id

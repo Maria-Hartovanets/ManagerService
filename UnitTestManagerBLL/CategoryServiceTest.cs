@@ -23,7 +23,7 @@ namespace UnitTestManagerBLL
             _category = new Mock<ICategoryDAL>(MockBehavior.Strict);
             _serviceCategory = new ServiceCategory(_category.Object);
         }
-
+         
         [Test]
         public void GetCategories_List_AreEqual()
         {

@@ -147,7 +147,7 @@ namespace DataAccessLogic.ADO
                 {
                     connectionSql.Open();
                     comm.CommandText = "update Category set CategoryName=@newNameTemp, RowUpdateTime=@timeUpdate where CategoryId=@categorId";
-                    comm.Parameters.Clear();
+                    comm.Parameters.Clear(); 
                     comm.Parameters.AddWithValue("@newNameTemp", newName);
                     comm.Parameters.AddWithValue("@timeUpdate", DateTime.Now);
                     comm.Parameters.AddWithValue("@categorId", tempObj.IDCat);

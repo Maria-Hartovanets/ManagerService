@@ -22,7 +22,7 @@ namespace DTO.Model
                 && obj.TypeProduct == this.TypeProduct
                 && obj.IsBlocked==this.IsBlocked
                 && obj.RowInsertTime == this.RowInsertTime
-                && obj.RowUpdateTime == this.RowUpdateTime;
+                && obj.RowUpdateTime == this.RowUpdateTime; 
         }
 
         public void ChangeObjName(string nameNew)

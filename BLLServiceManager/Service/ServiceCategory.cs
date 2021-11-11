@@ -17,7 +17,7 @@ namespace BLLServiceManager.Service
         public ServiceCategory(ICategoryDAL categories)
         {
             _categories = categories;
-        }
+        } 
         public void AddObj(Category temp)
         {
             _categories.AddObj(temp);

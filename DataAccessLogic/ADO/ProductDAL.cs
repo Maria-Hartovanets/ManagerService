@@ -164,7 +164,7 @@ namespace DataAccessLogic.ADO
                     comm.CommandText = "update Product set ProductName=@newNameTemp, RowUpdateTime=@timeUpdate where ProductId=@productId";
                     comm.Parameters.Clear();
                     comm.Parameters.AddWithValue("@newNameTemp", newName);
-                    comm.Parameters.AddWithValue("@timeUpdate", DateTime.Now);
+                    comm.Parameters.AddWithValue("@timeUpdate", DateTime.Now); 
                     comm.Parameters.AddWithValue("@productId", tempObj.Id);
                     int row =comm.ExecuteNonQuery();
                 }

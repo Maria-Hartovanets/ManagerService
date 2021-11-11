@@ -19,7 +19,7 @@ namespace DTO.Model
                 && obj.Id == this.Id
                 && obj.NameSupplier == this.NameSupplier
                 && obj.ArrivingTime == this.ArrivingTime
-                && obj.RowUpdateTime == this.RowUpdateTime;
+                && obj.RowUpdateTime == this.RowUpdateTime; 
         }
         public void ChangeObjName(string nameNew)
         {

@@ -32,7 +32,7 @@ namespace BLLServiceManager.Service
         }
 
         public Supplier GetObj(int idT)
-        {
+        { 
             return _suppliers.GetObj(idT);
         }
 

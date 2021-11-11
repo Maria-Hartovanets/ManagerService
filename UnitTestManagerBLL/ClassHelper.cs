@@ -21,7 +21,7 @@ namespace UnitTestManagerBLL
             }
             return res;
 
-        }
+        } 
         public static bool AreEqualListCategory(List<Category> manager1, List<Category> manager2)
         {
             bool res = true;

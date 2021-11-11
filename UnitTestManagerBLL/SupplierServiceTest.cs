@@ -46,7 +46,7 @@ namespace UnitTestManagerBLL
             bool isEqual = ClassHelper.AreEqualListSupplier(categoryResultArr, resultArr);
             //Assert
             NUnit.Framework.Assert.IsTrue(isEqual);
-        }
+        } 
 
         [Test]
         public void GetSupplier_IntIn_Category_AreEqual()

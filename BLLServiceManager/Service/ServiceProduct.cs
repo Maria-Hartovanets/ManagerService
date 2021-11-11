@@ -33,7 +33,7 @@ namespace BLLServiceManager.Service
            _products.DeleteObject(id);
             
         }
-
+         
         public Product GetObj(int id)
         {
             return _products.GetObj(id);

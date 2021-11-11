@@ -40,7 +40,7 @@ namespace UnitTestManagerBLL
             {
                 new Manager{ID=5,Name="Maria",Email="log@gmail.com",Password=curpass1,Salt=salt1,TimeInsert=timeInsert,TimeUpdate=timeUpdate},
                 new Manager{ID=6,Name="Yura",Email="log1@gmail.com",Password=curpass2,Salt=salt1,TimeInsert=timeInsert,TimeUpdate=timeUpdate}
-            };
+            }; 
             List<Manager> managerResultArr = new List<Manager>()
             {
                 new Manager{ID=5,Name="Maria",Email="log@gmail.com",Password=curpass1,Salt=salt1,TimeInsert=timeInsert,TimeUpdate=timeUpdate},

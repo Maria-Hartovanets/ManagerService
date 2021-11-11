@@ -7,7 +7,7 @@ namespace BLLServiceManager.IService
 {
     public interface IServiceCategory
     {
-        void AddObj(Category temp);
+        void AddObj(Category temp); 
         void DeleteObject(int id, bool op);
         void ReadFromDataBase();
         List<Category> GetProducts();

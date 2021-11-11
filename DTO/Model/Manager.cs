@@ -20,7 +20,7 @@ namespace DTO.Model
         public bool Equals(Manager obj)
         {
             return obj != null
-                && obj.ID == this.ID
+                && obj.ID == this.ID 
                 && obj.Name == this.Name
                 && obj.TimeUpdate == this.TimeUpdate
                 && obj.TimeInsert == this.TimeInsert;

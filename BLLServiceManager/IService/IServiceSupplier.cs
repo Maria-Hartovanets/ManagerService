@@ -12,7 +12,7 @@ namespace BLLServiceManager.IService
         List<Supplier> GetProducts();
         void AddObj(Supplier tempObj);
         void DeleteObject(int id);
-        void ReadFromDataBase();
+        void ReadFromDataBase(); 
         Supplier GetObj(int idT);
         Supplier ChangeValueObj(int id, string newName);
     }

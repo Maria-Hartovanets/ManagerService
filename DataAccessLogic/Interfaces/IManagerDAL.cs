@@ -16,6 +16,6 @@ namespace DataAccessLogic.Interfaces
         void ReadFromDataBase();
         Manager GetObj(string idT);
 
-        Manager GetObjById(int id);
+        Manager GetObjById(int id); 
     }
 }

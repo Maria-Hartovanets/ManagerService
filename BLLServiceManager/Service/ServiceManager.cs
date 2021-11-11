@@ -23,7 +23,7 @@ namespace BLLServiceManager.Service
         }
 
         public void DeleteObject(int id)
-        {
+        { 
             _managers.DeleteObject(id);
         }
 
