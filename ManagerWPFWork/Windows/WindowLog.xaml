@@ -28,23 +28,33 @@
 
             </RowDefinition>
         </Grid.RowDefinitions>
-        <Border  Grid.Row="0"  Style="{StaticResource BorderAll}" HorizontalAlignment="Left" Height="60" VerticalAlignment="Top" Width="302">
-            <TextBlock Style="{StaticResource TextBlockAll}" FontSize ="28" Height="33" Margin="53,8,0,0" TextWrapping="Wrap" Text="Wellcome back!" VerticalAlignment="Top" Width="194"/>
+        <Border  Grid.Row="0" 
+                 Style="{StaticResource BorderAll}"
+                 HorizontalAlignment="Left"
+                 Height="60" 
+                 VerticalAlignment="Top"
+                 Width="302">
+            <TextBlock Style="{StaticResource TextBlockAll}"
+                       FontSize ="28" 
+                       Height="33" 
+                       Margin="53,8,0,0" 
+                       TextWrapping="Wrap" 
+                       Text="Wellcome back!"
+                       VerticalAlignment="Top" 
+                       Width="194"/>
         </Border>
         <TextBox  Grid.Row="1" 
                   x:Name="textBox_Login"
                   Style="{StaticResource TextBoxAll}"
                   Height="24" 
-                  Width="92"
+                  Width="121"
                   Margin="169,33,0,0"/>
-        <PasswordBox  Grid.Row="1"
-                      x:Name="passwordBox" 
-                      HorizontalAlignment="Left"
-                      Height="23"
-                      VerticalAlignment="Top" 
-                      Width="91" 
-                      Margin="169,73,0,0" 
-                      RenderTransformOrigin="0.479,-0.223"/>
+        <TextBox  Grid.Row="1" 
+                  x:Name="textBox_Pass"
+                  Style="{StaticResource TextBoxAll}"
+                  Height="24" 
+                  Width="121"
+                  Margin="169,73,0,0"/>
         <TextBlock  Grid.Row="1"
                     x:Name="textBlock"
                     Style="{StaticResource TextBlockAll}" 
@@ -71,7 +81,8 @@
                  Content="Sing in" 
                  Height="30" 
                  Margin="62,122,0,0" 
-                 Width="137"/>
+                 Width="137" Click="button_SingIn_Click"
+                 />
         <TextBlock  Grid.Row="2"  
                     x:Name="textBlock2"
                     Style="{StaticResource TextBlockAll}"
@@ -80,15 +91,18 @@
                     Margin="21,0,0,0"
                     Text="Do not have an account?" 
                     Width="139"/>
-        <TextBlock  Grid.Row="2" 
-                    x:Name="textBlock_Register"
-                    Style="{StaticResource TextBlockAll}" 
+
+        <Button Grid.Row="2" 
+                    x:Name="Button_Register"
+                    Style="{StaticResource ButtonAll}" 
                     FontSize="14"
                     FontStyle="Italic" 
                     Height="17" 
                     Margin="165,0,0,0" 
-                    Text="Click here" 
-                    Width="59"/>
+                    Content="Click" 
+                    Width="59"
+                    Command="" 
+                    Click="Button_Register_Click"/>
 
 
     </Grid>

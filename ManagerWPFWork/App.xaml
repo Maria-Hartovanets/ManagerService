@@ -4,14 +4,26 @@
              xmlns:local="clr-namespace:ManagerWPFWork"
              xmlns:views="clr-namespace:ManagerWPFWork.View"
              xmlns:viewmodels="clr-namespace:ManagerWPFWork.ViewModels"
-             xmlns:windows="clr-namespace:ManagerWpf.Windows"
-             StartupUri="Windows/WindowMain.xaml">
+            xmlns:windows1="clr-namespace:ManagerWPFWork.Windows"
+             StartupUri="Windows/WindowLog.xaml">
     <Application.Resources>
-        <!--<DataTemplate DataType="{x:Type viewmodels:ProductViewModel}">
+        <DataTemplate DataType="{x:Type viewmodels:ProductViewModel}">
             <views:ViewProduct/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewmodels:MainViewModel}">
-            <windows:WindowMain/>
-        </DataTemplate>-->
+            <windows1:WindowMain/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:CategoryViewModel}">
+            <views:ViewCategory/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:CategoryBlockedViewModel}">
+            <views:ViewCategoryBlocked/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:ManagerViewModel}">
+            <views:ViewManager/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:SupplierViewModel}">
+            <views:ViewSupplier/>
+        </DataTemplate>
     </Application.Resources>
 </Application>

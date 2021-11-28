@@ -16,5 +16,6 @@ namespace BLLServiceManager.IService
         void ReadFromDataBase();
         Manager GetObj(string idT);
         Manager GetObjById(int id);
+        bool IsLogin(string Email, string Password);
     }
 }

@@ -1,4 +1,5 @@
-﻿using ManagerWPFWork.ViewModels;
+﻿using ManagerWpf.Windows;
+using ManagerWPFWork.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,18 @@ namespace ManagerWPFWork.Windows
         {
             InitializeComponent();
             DataContext = new MainViewModel();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            WindowLog mainW = new WindowLog();
+            mainW.Show();
+            this.Close();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using DataAccessLogic.Interfaces;
 using DTO.Model;
 
@@ -129,6 +131,42 @@ namespace DataAccessLogic.ADO
         {
             var tempObj = managers.Where(x => x.ID == id).SingleOrDefault();
             return tempObj;
+        }
+
+        public bool IsLogin(string email, string password)
+        {
+            bool hasAcc = true;
+            var tempObj = managers.Where(x => x.Email==email).SingleOrDefault();
+
+            if (tempObj == null)
+            {
+
+                hasAcc = false;
+            }
+            else
+            {
+
+                Byte[] passUser = hash(password, tempObj.Salt.ToString());
+                hasAcc = true;
+
+                if (email == tempObj.Email)
+                {
+                    for (int i = 0; i < passUser.Length; i++)
+                    {
+                        if (passUser[i] != tempObj.Password[i])
+                        {
+                            hasAcc = false;
+                        }
+                    }
+                }
+            }
+            return hasAcc;
+
+        }
+        private byte[] hash(string pass, string salt)
+        {
+            var algorithm = SHA512.Create();
+            return algorithm.ComputeHash(Encoding.UTF8.GetBytes(pass + salt));
         }
     }
 }

@@ -10,25 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ManagerWpf.Windows
+namespace ManagerWPFWork.View
 {
     /// <summary>
-    /// Interaction logic for WindowRegister.xaml
+    /// Interaction logic for ViewSupplier.xaml
     /// </summary>
-    public partial class WindowRegister : Window
+    public partial class ViewSupplier : UserControl
     {
-        public WindowRegister()
+        public ViewSupplier()
         {
             InitializeComponent();
-        }
-
-        private void ButtonOpen_Log_Click(object sender, RoutedEventArgs e)
-        {
-            WindowLog mainW = new WindowLog();
-            mainW.Show();
-            this.Close();
         }
     }
 }

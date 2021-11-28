@@ -73,14 +73,7 @@
                    Margin="24,288,0,0" 
                    Text="Have the account?"
                    Width="106"/>
-        <TextBlock x:Name="textBlock6"
-                   Style="{StaticResource TextBlockAll}"
-                   FontSize="14"
-                   FontStyle="Italic" 
-                   Height="20" 
-                   Margin="135,288,0,0" 
-                   Text="Click here!" 
-                   Width="64"/>
+        
         <TextBox x:Name="textBoxName" 
                  Style="{StaticResource TextBoxAll}"
                  Margin="276,129,0,0" 
@@ -89,11 +82,21 @@
                  Style="{StaticResource TextBoxAll}" 
                  Margin="276,163,0,0" 
                  Text="...@gmail.com" />
-        <PasswordBox x:Name="passwordBox" 
-                     HorizontalAlignment="Left" 
+        <TextBox x:Name="passwordBox" 
+                 Text="123"
+                  Style="{StaticResource TextBoxAll}" 
                      Height="23" 
                      Margin="276,197,0,0" 
-                     VerticalAlignment="Top" 
+                    
                      Width="125"/>
+        <Button  x:Name="ButtonOpen_Log"
+                   Style="{StaticResource ButtonAll}"
+                   FontSize="14"
+                   FontStyle="Italic" 
+                   Height="20" 
+                   Margin="135,288,0,0" 
+                   Content="Click!" 
+                   Width="64"
+                 Command="{Binding }" Click="ButtonOpen_Log_Click"/>
     </Grid>
 </Window>

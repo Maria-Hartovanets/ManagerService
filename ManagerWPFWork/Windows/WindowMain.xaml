@@ -33,7 +33,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="800"></ColumnDefinition>
                     <ColumnDefinition Width="40"></ColumnDefinition>
-                    <ColumnDefinition Width="120"></ColumnDefinition>
+                    <ColumnDefinition Width="110"></ColumnDefinition>
                     <ColumnDefinition Width="40"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0"
@@ -50,15 +50,16 @@
                        Margin="1,4,1,1"
                        RenderTransformOrigin="-0.499,0.528"/>
                 <Button Grid.Column="2" 
-                        Style="{StaticResource ButtonAll}"
-                        Width="110" 
+                        Style="{StaticResource ButtonAll}" 
                         Height="27" 
-                        Margin="1,10,1,1"
-                        Content="Log out"/>
-                <TextBlock Grid.Column="3"
-                           Style="{StaticResource TextBlockAll}"
-                           Text="X"
-                           Margin="0,10,0,0"/>
+                        Margin="1,10,9,0"
+                        Content="Log out" Click="Button_Click" HorizontalAlignment="Stretch"/>
+                <Button  Grid.Column="3"
+                           Style="{StaticResource ButtonAll}"
+                           Content="X"
+                           Margin="0,11,0,5" 
+                           HorizontalAlignment="Left" 
+                           Width="30" VerticalAlignment="Stretch" Click="Button_Click_1"/>
             </Grid>
         </Border>
 
@@ -72,17 +73,20 @@
             </TabItem>
             <TabItem Header="Category">
                 <Grid Background="White"/>
+                <ContentControl Content="{Binding SelectedViewModel}" />
             </TabItem>
             <TabItem Header="Supplier">
                 <Grid Background="White"/>
-
+                <ContentControl Content="{Binding SelectedViewModel}" />
 
             </TabItem>
             <TabItem Header="Our Staff">
                 <Grid Background="White"/>
+                <ContentControl Content="{Binding SelectedViewModel}" />
             </TabItem>
             <TabItem Header="Blocked Category">
                 <Grid Background="White"/>
+                <ContentControl Content="{Binding SelectedViewModel}" />
 
 
             </TabItem>

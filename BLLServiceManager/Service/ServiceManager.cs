@@ -47,9 +47,14 @@ namespace BLLServiceManager.Service
             return _managers.GetProductsWithoutPassword();
         }
 
+        public bool IsLogin(string Email, string Password)
+        {
+            return _managers.IsLogin(Email,Password);
+        }
+
         public void ReadFromDataBase()
         {
-             _managers.ReadFromDataBase();
+            _managers.ReadFromDataBase();
         }
     }
 }

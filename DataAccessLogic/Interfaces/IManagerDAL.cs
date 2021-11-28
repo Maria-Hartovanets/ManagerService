@@ -12,6 +12,7 @@ namespace DataAccessLogic.Interfaces
         void ReadFromDataBase();
         Manager GetObj(string idT);
 
+        bool IsLogin(string email, string password);
         Manager GetObjById(int id); 
     }
 }

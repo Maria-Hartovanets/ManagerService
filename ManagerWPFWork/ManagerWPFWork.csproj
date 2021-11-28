@@ -55,13 +55,30 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Command\CommandLoginANDout.cs" />
     <Compile Include="Command\GetObjectModelDTO.cs" />
     <Compile Include="Command\UpdateDGViewModelDTO.cs" />
+    <Compile Include="ViewModels\CategoryBlockedViewModel.cs" />
+    <Compile Include="ViewModels\CategoryViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\ManagerViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModel.cs" />
+    <Compile Include="ViewModels\SupplierViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="View\ViewCategory.xaml.cs">
+      <DependentUpon>ViewCategory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewCategoryBlocked.xaml.cs">
+      <DependentUpon>ViewCategoryBlocked.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewManager.xaml.cs">
+      <DependentUpon>ViewManager.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ViewProduct.xaml.cs">
       <DependentUpon>ViewProduct.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewSupplier.xaml.cs">
+      <DependentUpon>ViewSupplier.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\WindowLog.xaml.cs">
       <DependentUpon>WindowLog.xaml</DependentUpon>
@@ -76,7 +93,23 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\ViewCategory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ViewCategoryBlocked.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ViewManager.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ViewProduct.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ViewSupplier.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
