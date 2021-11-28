@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DTO.Model;
 using DataAccessLogic.ADO;
 using DataAccessLogic.Interfaces;
@@ -11,14 +7,11 @@ namespace ManagerProductConsole.EditorHelper
 {
     class Command
     {
-
-
         ICategoryDAL categories = null;
         ISupplierDAL suppliers = null;
         IProductDAL products = null;
         public Command()
         {
-
             categories = new CategoryDAL();
             suppliers = new SupplierDAL();
             products = new ProductDAL();
@@ -280,7 +273,6 @@ namespace ManagerProductConsole.EditorHelper
         }
         public void WriteProduct()
         {
-
             Console.WriteLine("---------------------------------------------"
                        + "----------------------------------------------"
                        + "--------------------------");
@@ -293,7 +285,6 @@ namespace ManagerProductConsole.EditorHelper
                        + "--------------------------");
 
             Console.ReadKey();
-
         }
         public void WriteCategory()
         {

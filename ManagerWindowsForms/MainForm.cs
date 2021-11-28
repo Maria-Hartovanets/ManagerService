@@ -20,8 +20,6 @@ namespace ManagerWindowsForms
         readonly private IServiceCategory categoriesService;
         readonly private IServiceSupplier suppliersService;
         readonly private IServiceManager managersService ;
-
-        
         public MainForm(IServiceProduct productsServ, IServiceCategory categoriesServ, IServiceSupplier suppliersServ, IServiceManager managersServ)
         {
             InitializeComponent();
@@ -46,18 +44,15 @@ namespace ManagerWindowsForms
             dataGridViewStaff.DataSource = managersService.GetProductsWithoutPassword();
             
         }
-
         private void labelExite_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
-
         private void pictureBoxHomeShowImagine_Click(object sender, EventArgs e)
         {
             pictureBoxHomeFirsrslide.BringToFront();
             pictureBoxShowTabControl.SendToBack();
         }
-       
         private void pictureBoxShowTabControl_Click(object sender, EventArgs e)
         {
             pictureBoxShowTabControl.BringToFront();
@@ -98,7 +93,6 @@ namespace ManagerWindowsForms
             dataGridViewBlockedPr.DataSource = bs;
             dataGridViewBlockedPr.Refresh();
         }
-
         private void pictureBoxRefreshCategory_Click(object sender, EventArgs e)
         {
             categoriesService.ReadFromDataBase();
@@ -108,7 +102,6 @@ namespace ManagerWindowsForms
             dataGridViewCategory.DataSource = bs;
             dataGridViewCategory.Refresh();
         }
-
         private void pictureBoxRefreshSupplier_Click(object sender, EventArgs e)
         {
             suppliersService.ReadFromDataBase();
@@ -118,7 +111,6 @@ namespace ManagerWindowsForms
             dataGridViewSupplier.DataSource = bs;
             dataGridViewSupplier.Refresh();
         }
-
         private void pictureBoxRefreshStaff_Click(object sender, EventArgs e)
         {
             managersService.ReadFromDataBase();
@@ -129,7 +121,6 @@ namespace ManagerWindowsForms
             dataGridViewStaff.Refresh();
 
         }
-
         private void buttonAddProduct_Click(object sender, EventArgs e)
         {
             try
@@ -333,7 +324,6 @@ namespace ManagerWindowsForms
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void buttonProductDelete_Click(object sender, EventArgs e)
         {
             try
@@ -349,7 +339,6 @@ namespace ManagerWindowsForms
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void dataGridViewProducts_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -365,6 +354,5 @@ namespace ManagerWindowsForms
             }
         }
 
-        
     }
 }

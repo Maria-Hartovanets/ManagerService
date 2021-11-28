@@ -22,7 +22,7 @@ namespace UnitTestManager
             Assert.AreEqual(currentIdProduct, exeptedIdProduct);
 
         }
-        //[TestMethod]
+       // [TestMethod]
         public void TestMethod_AddNewValue()
         {
 
@@ -37,7 +37,7 @@ namespace UnitTestManager
             var tempObj = products.GetProducts().Find(x => x.NameObj == nameM);
             Assert.IsNotNull(tempObj);
         }
-      //  [TestMethod]
+     // [TestMethod]
         public void TestMethod_RemoveValue()
         {
             Product temp = new Product();

@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using DataAccessLogic.Interfaces;
-using DataAccessLogic.ADO;
 using DTO.Model;
 using System.Security.Cryptography;
 using BLLServiceManager.IService;
@@ -67,7 +60,6 @@ namespace ManagerWindowsForms
                 MessageBox.Show("input first name");
                 return;
             }
-            
             if (textBoxEmail.Text == "...@gmail.com")
             {
                 MessageBox.Show("input e-mail");
@@ -99,7 +91,6 @@ namespace ManagerWindowsForms
             {
                 MessageBox.Show("Already existed", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-
         }
 
         private byte[] hash(string pass, string salt)

@@ -1,9 +1,5 @@
-﻿using System;
+﻿using DTO.Model;
 using System.Collections.Generic;
-using System.Linq;
-using DTO.Model;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccessLogic.Interfaces
 {

@@ -1,6 +1,4 @@
-﻿using System;
-
-using DTO.Model;
+﻿using DTO.Model;
 using System.Collections.Generic;
 
 namespace BLLServiceManager.IService
@@ -13,7 +11,5 @@ namespace BLLServiceManager.IService
         List<Category> GetProducts();
         Category GetObj(int id);
         Category ChangeValueObj(int id, string name);
-
-
     }
 }

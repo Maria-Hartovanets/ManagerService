@@ -1,6 +1,5 @@
 ﻿using ManagerProductConsole.EditorHelper;
 using System;
-using System.Data.SqlClient;
 
 namespace ManagerProductConsole
 {

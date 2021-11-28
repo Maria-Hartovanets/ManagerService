@@ -54,9 +54,7 @@
     <Compile Include="Interfaces\ISupplierDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Entity Framework\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\DTO\DTO.csproj">
       <Project>{9DBF9B31-EF0D-4351-B6AD-6206FA5CECDA}</Project>

@@ -4,8 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccessLogic.ADO
 {
@@ -66,7 +64,6 @@ namespace DataAccessLogic.ADO
                 throw new Exception($"Error during read from databased: {ex.Message}");
             }
         }
-
         public List<Product> GetProducts()
         {
             return products;

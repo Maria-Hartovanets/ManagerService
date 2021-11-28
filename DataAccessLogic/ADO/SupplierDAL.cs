@@ -4,9 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-
-using System.Threading.Tasks;
 
 namespace DataAccessLogic.ADO
 {
@@ -84,7 +81,6 @@ namespace DataAccessLogic.ADO
                 }
             }
         }
-
         public void DeleteObject(int id)
         {
            

@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLLServiceManager", "BLLSer
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestManagerBLL", "UnitTestManagerBLL\UnitTestManagerBLL.csproj", "{AB975A8C-AAEE-4482-9C9D-D5238518BEBC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManagerWPFWork", "ManagerWPFWork\ManagerWPFWork.csproj", "{EB75DA61-6455-46CB-99E3-63530D8995B0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{AB975A8C-AAEE-4482-9C9D-D5238518BEBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB975A8C-AAEE-4482-9C9D-D5238518BEBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AB975A8C-AAEE-4482-9C9D-D5238518BEBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB75DA61-6455-46CB-99E3-63530D8995B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB75DA61-6455-46CB-99E3-63530D8995B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB75DA61-6455-46CB-99E3-63530D8995B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB75DA61-6455-46CB-99E3-63530D8995B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

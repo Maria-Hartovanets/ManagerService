@@ -4,8 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccessLogic.ADO
 {
@@ -81,7 +79,6 @@ namespace DataAccessLogic.ADO
                 }
             }
         }
-
         public void DeleteObject(int id,bool op)
         {
             var tempObj = categories.Where(x => x.IDCat == id).SingleOrDefault();
@@ -110,9 +107,6 @@ namespace DataAccessLogic.ADO
                 }
             }
         }
-
-      
-
         public List<Category> GetProducts()
         {
             return categories;
@@ -130,7 +124,6 @@ namespace DataAccessLogic.ADO
             }
             return categories[index];
         }
-
         public Category ChangeValueObj(int id, string newName)
         {
             var tempObj = categories.Where(x => x.IDCat == id).SingleOrDefault();
@@ -151,8 +144,7 @@ namespace DataAccessLogic.ADO
                     comm.Parameters.AddWithValue("@newNameTemp", newName);
                     comm.Parameters.AddWithValue("@timeUpdate", DateTime.Now);
                     comm.Parameters.AddWithValue("@categorId", tempObj.IDCat);
-                    int row = comm.ExecuteNonQuery();
-                   
+                    int row = comm.ExecuteNonQuery(); 
                 }
             }
             return tempObj;
