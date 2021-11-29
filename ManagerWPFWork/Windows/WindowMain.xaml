@@ -25,6 +25,7 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Border Grid.Row="0" 
+                Height="50"
                 Style="{StaticResource BorderAll}" 
                 Width="auto"
                 Margin="0,0,0,0" 
@@ -62,35 +63,48 @@
                            Width="30" VerticalAlignment="Stretch" Click="Button_Click_1"/>
             </Grid>
         </Border>
-
-        <TabControl Grid.Row="1"
-                    x:Name="tabControl"
-                    Style="{StaticResource TabControlAll}">
-            <TabItem Header="Product" 
-                     Height="22"
-                     VerticalAlignment="Top">
-                <ContentControl Content="{Binding SelectedViewModel}" />
-            </TabItem>
-            <TabItem Header="Category">
-                <Grid Background="White"/>
-                <ContentControl Content="{Binding SelectedViewModel}" />
-            </TabItem>
-            <TabItem Header="Supplier">
-                <Grid Background="White"/>
-                <ContentControl Content="{Binding SelectedViewModel}" />
-
-            </TabItem>
-            <TabItem Header="Our Staff">
-                <Grid Background="White"/>
-                <ContentControl Content="{Binding SelectedViewModel}" />
-            </TabItem>
-            <TabItem Header="Blocked Category">
-                <Grid Background="White"/>
-                <ContentControl Content="{Binding SelectedViewModel}" />
-
-
-            </TabItem>
-        </TabControl>
+       
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="23*"/>
+                <ColumnDefinition Width="39*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="28"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0"
+                        Orientation="Horizontal" Grid.ColumnSpan="2">
+                <Button Width="80"
+                          Style="{StaticResource ButtonMainMenu}" 
+                        Content="Products"
+                        Command="{Binding UpdateVM}"
+                        CommandParameter="Products"/>
+                <Button  Width="80"
+                          Style="{StaticResource ButtonMainMenu}" 
+                         Content="Categories"
+                         Command="{Binding UpdateVM}"
+                         CommandParameter="Categories"/>
+                <Button  Width="80"
+                           Style="{StaticResource ButtonMainMenu}" 
+                         Content="Suppliers"
+                        Command="{Binding UpdateVM}"
+                        CommandParameter="Suppliers"/>
+                <Button  Width="80"
+                           Style="{StaticResource ButtonMainMenu}" 
+                         Content="Managers"
+                        Command="{Binding UpdateVM}"
+                        CommandParameter="Managers"/>
+                <Button  Width="130"
+                           Style="{StaticResource ButtonMainMenu}" 
+                         Content="Blocked Categories"
+                          Command="{Binding UpdateVM}"
+                          CommandParameter="BlockedCat"/>
+            </StackPanel>
+            <Grid Grid.Row="1" Grid.ColumnSpan="2">
+                <ContentControl Content="{Binding SelectedViewModel}"/>
+            </Grid>
+        </Grid>
 
     </Grid>
 </Window>

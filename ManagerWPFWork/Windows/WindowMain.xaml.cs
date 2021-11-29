@@ -1,7 +1,12 @@
-﻿using ManagerWpf.Windows;
+﻿using BLLServiceManager.IService;
+using BLLServiceManager.Service;
+using DataAccessLogic.ADO;
+using DataAccessLogic.Interfaces;
+using ManagerWpf.Windows;
 using ManagerWPFWork.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +18,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Unity;
 
 namespace ManagerWPFWork.Windows
 {
@@ -21,10 +27,13 @@ namespace ManagerWPFWork.Windows
     /// </summary>
     public partial class WindowMain : Window
     {
+        public static UnityContainer Container;
         public WindowMain()
         {
+            ConfigureUnity();
             InitializeComponent();
-            DataContext = new MainViewModel();
+            DataContext = Container.Resolve<MainViewModel>();
+            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -37,6 +46,18 @@ namespace ManagerWPFWork.Windows
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+        static private void ConfigureUnity()
+        {
+            Container = new UnityContainer();
+            Container.RegisterType<IServiceCategory, ServiceCategory>()
+                     .RegisterType<IServiceSupplier, ServiceSupplier>()
+                     .RegisterType<IServiceProduct, ServiceProduct>()
+                     .RegisterType<IServiceManager, ServiceManager>()
+                     .RegisterType<ICategoryDAL, CategoryDAL>()
+                     .RegisterType<ISupplierDAL, SupplierDAL>()
+                     .RegisterType<IProductDAL, ProductDAL>()
+                     .RegisterType<IManagerDAL, ManagerDAL>();
         }
     }
 }

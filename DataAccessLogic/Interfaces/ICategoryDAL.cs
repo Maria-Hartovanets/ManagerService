@@ -6,6 +6,7 @@ namespace DataAccessLogic.Interfaces
     public interface ICategoryDAL
     {
         List<Category> GetProducts();
+        List<Category> GetCategoriesBlocked();
         void AddObj(Category tempObj);
         void DeleteObject(int id,bool op);
         void ReadFromDataBase();

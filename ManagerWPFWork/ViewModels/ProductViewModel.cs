@@ -16,11 +16,15 @@ namespace ManagerWPFWork.ViewModels
     {
         private Product _selectedProduct;
         private IServiceProduct _serviceProduct;
+        private IServiceSupplier _serviceSupplier;
         private IServiceCategory _serviceCategory;
-        private ObservableCollection<Tuple<Product, string>> _Products_Category = new ObservableCollection<Tuple<Product, string>>();
-        public ICommand GetBooks { get; set; }
+        private ObservableCollection<Tuple<Product,string,string>>  _productsAllInfo = new ObservableCollection<Tuple<Product, string, string>>();
+       
         public IEnumerable<Product> Products { get; set; }
+        public IEnumerable<Category> Categories { get; set; }
+        public IEnumerable<Supplier> Suppliers { get; set; }
         public IServiceProduct serviceProduct { get => _serviceProduct; }
+        public IServiceSupplier serviceSupplier { get => _serviceSupplier; }
         public IServiceCategory serviceCategory { get => _serviceCategory; }
         public Product SelectedProduct
         {
@@ -32,29 +36,42 @@ namespace ManagerWPFWork.ViewModels
             }
         }
 
-        public ObservableCollection<Tuple<Product, string>> Products_Category
+        public ObservableCollection<Tuple<Product, string, string>> ProductsAllInfo
         {
-            get => _Products_Category;
+            get => _productsAllInfo;
             set
             {
-                _Products_Category = value;
-                OnPropertyChanged("Products_Category");
+                _productsAllInfo = value;
+                OnPropertyChanged("ProductsAllInfo");
             }
         }
-        public ProductViewModel(/*IServiceProduct serviceProduct, IServiceCategory serviceCategory*/)
+        public ProductViewModel(IServiceProduct serviceProduct, IServiceCategory serviceCategory, IServiceSupplier serviceSupplier)
         {
             _serviceProduct = serviceProduct;
             _serviceCategory = serviceCategory;
-           
+            _serviceSupplier = serviceSupplier;
+            FillInfo();
         }
-
-       
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
+        }
+        private void FillInfo()
+        {
+            Products = _serviceProduct.GetProducts();
+            Categories = _serviceCategory.GetProducts();
+            Suppliers = _serviceSupplier.GetProducts();
+            foreach(var product in Products)
+            {
+                ProductsAllInfo.Add(new Tuple<Product, string,string >
+                    (product, this._serviceCategory.GetObj(product.CategoryID).TypeProduct,
+                    this._serviceSupplier.GetObj(product.SupplierID).NameSupplier));
+
+            }
+
         }
     }
 }

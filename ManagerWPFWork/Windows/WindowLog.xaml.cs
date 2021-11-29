@@ -40,13 +40,13 @@ namespace ManagerWpf.Windows
                 MessageBox.Show("input e-mail", "Error");
                 return;
             }
-            if (textBox_Pass.Text == "")
+            if (passBox.Password.ToString() == "")
             {
                 MessageBox.Show("input password", "Error");
                 return;
             }
            
-            if (IsLog(textBox_Login.Text, textBox_Pass.Text) == false)
+            if (IsLog(textBox_Login.Text, passBox.Password.ToString()) == false)
             {
                 MessageBox.Show("Coudnt find u", "Error");
                 return;

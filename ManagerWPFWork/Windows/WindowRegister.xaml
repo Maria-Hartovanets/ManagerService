@@ -65,7 +65,7 @@
                 Content="Sing up"  
                 Height="40" 
                 Margin="209,232,0,0"  
-                Width="176"/>
+                Width="176" Click="button_Click"/>
         <TextBlock x:Name="textBlock5"
                    Style="{StaticResource TextBlockAll}"
                    FontSize="13" 

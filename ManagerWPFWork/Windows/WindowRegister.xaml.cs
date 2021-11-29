@@ -30,5 +30,25 @@ namespace ManagerWpf.Windows
             mainW.Show();
             this.Close();
         }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            if (textBoxName.Text == "Name")
+            {
+                MessageBox.Show("input first name");
+                return;
+            }
+            if (textBoxEmail.Text == "...@gmail.com")
+            {
+                MessageBox.Show("input e-mail");
+                return;
+            }
+            if (passwordBox.Text == "password")
+            {
+                MessageBox.Show("input password");
+                return;
+            }
+           
+        }
     }
 }

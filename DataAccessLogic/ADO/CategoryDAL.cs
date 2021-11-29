@@ -149,5 +149,18 @@ namespace DataAccessLogic.ADO
             }
             return tempObj;
         }
+
+        public List<Category> GetCategoriesBlocked()
+        {
+            List<Category> categoriesBocked = new List<Category>();
+            foreach(Category cat in categories)
+            {
+                if (cat.IsBlocked == true)
+                {
+                    categoriesBocked.Add(cat);
+                }
+            }
+            return categoriesBocked;
+        }
     }
 }

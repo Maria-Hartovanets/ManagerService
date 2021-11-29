@@ -11,5 +11,6 @@ namespace BLLServiceManager.IService
         List<Category> GetProducts();
         Category GetObj(int id);
         Category ChangeValueObj(int id, string name);
+        List<Category> GetCategoriesBlocked();
     }
 }

@@ -24,6 +24,12 @@ namespace BLLServiceManager.Service
         {
             _categories.DeleteObject(id, op);
         }
+
+        public List<Category> GetCategoriesBlocked()
+        {
+           return  _categories.GetCategoriesBlocked();
+        }
+
         public Category GetObj(int id)
         {
             return _categories.GetObj(id);

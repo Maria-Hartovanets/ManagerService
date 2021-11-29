@@ -49,12 +49,16 @@
                   Height="24" 
                   Width="121"
                   Margin="169,33,0,0"/>
-        <TextBox  Grid.Row="1" 
-                  x:Name="textBox_Pass"
-                  Style="{StaticResource TextBoxAll}"
-                  Height="24" 
-                  Width="121"
-                  Margin="169,73,0,0"/>
+       
+        <PasswordBox Grid.Row="1"
+                     HorizontalAlignment="Left"
+                    FontFamily="Times New Roman"
+                    FontSize="15"
+                    VerticalAlignment="Top"
+                     x:Name="passBox"
+                     Height="24" 
+                     Width="121"
+                     Margin="169,73,0,0"/>
         <TextBlock  Grid.Row="1"
                     x:Name="textBlock"
                     Style="{StaticResource TextBlockAll}" 
