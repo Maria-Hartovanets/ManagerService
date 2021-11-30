@@ -28,16 +28,94 @@
                 Grid.Column="0"
                  x:Name="Imported"  
                  ItemsSource="{Binding Suppliers}"
-                 SelectedItem="{Binding SelectedSuppliers}" >
+                 SelectedItem="{Binding SelectedSupplier}" >
                 <DataGrid.Columns>
                     <DataGridTextColumn FontFamily="Times new roman" Header="ID" Width ="35" Binding="{Binding Path=Id}"/>
-                    <DataGridTextColumn FontFamily="Times new roman" Header="Name" Width ="135" Binding="{Binding Path=NameSupplier}"/>
-                    <DataGridTextColumn FontFamily="Times new roman" Header="Arriving time" Width ="130" Binding="{Binding Path=ArrivingTime}"/>
-                    <DataGridTextColumn FontFamily="Times new roman" Header="Update Time" Width ="130" Binding="{Binding Path=RowUpdateTime}"/>
+                    <DataGridTextColumn FontFamily="Times new roman" Header="Name" Width ="155" Binding="{Binding Path=NameSupplier}"/>
+                    <DataGridTextColumn FontFamily="Times new roman" Header="Arriving time" Width ="200" Binding="{Binding Path=ArrivingTime}"/>
+                    <DataGridTextColumn FontFamily="Times new roman" Header="Update Time" Width ="200" Binding="{Binding Path=RowUpdateTime}"/>
                 </DataGrid.Columns>
             </DataGrid>
             <Grid Grid.Column="1">
+                <Border 
+                Width="560"
+                    Margin="0,0,0,0"
+                Height="460"
+                 Style="{StaticResource BorderAll}" >
+                    <StackPanel Grid.Row="0" DataContext="{Binding SelectedSupplier}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock 
+                                    Foreground="Black"
+                                    FontSize="25" 
+                                    Text="ID: "
+                                 Width="160"
+                                    Style="{StaticResource TextBlockAll}"/>
+                            <TextBlock Foreground="Black" 
+                                       FontSize="20" 
+                                        Width="160"
+                                       Text="{Binding Path=Id}"
+                                        Style="{StaticResource TextBlockAll}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Foreground="Black" 
+                                       FontSize="25" 
+                                       Width="160"
+                                       Text="Supplier name: "
+                                       Style="{StaticResource TextBlockAll}"/>
+                            <TextBlock Foreground="Black"
+                                       FontSize="20" 
+                                        Width="160"
+                                       Text="{Binding Path=NameSupplier}"
+                                        Style="{StaticResource TextBlockAll}"/>
+                        </StackPanel>
+                        <Button   Width="150"
+                                Height="40" 
+                                Margin="100,15,0,0"
+                                Content="Delete supplier"
+                                Command="{Binding }"
+                                Style="{StaticResource ButtonAll}"/>
+                        <TextBlock 
+                             Margin="0,45,0,0"
+                                    Foreground="Black"
+                                    FontSize="25" 
+                                    Text="Name: "
+                                Width="170"
+                                    Style="{StaticResource TextBlockAll}"/>
+                        <TextBox Foreground="Black" 
+                                     FontSize="20" 
+                                      Width="130"
+                                  DataContext="{Binding SelectedSupplier}"
+                                     Text="{Binding Path=NameSupplier}"
+                                     Style="{StaticResource TextBoxAll}"/>
+                        <Button   Width="150"
+                                Height="40" 
+                                Margin="100,15,0,0"
+                                Content="Save changes"
+                                Command="{Binding }"
+                                Style="{StaticResource ButtonAll}"/>
+                        <TextBlock 
+                             Margin="0,70,0,0"
+                                    Foreground="Black"
+                                    FontSize="25" 
+                                    Text="New name: "
+                                Width="170"
+                                    Style="{StaticResource TextBlockAll}"/>
+                        <TextBox Foreground="Black" 
+                                     FontSize="20" 
+                                      Width="130"
+                                     Text=""
+                                     Style="{StaticResource TextBoxAll}"/>
+                        <Button   Width="150"
+                                Height="40" 
+                                Margin="100,15,0,0"
+                                Content="Add supplier"
+                                Command="{Binding }"
+                                Style="{StaticResource ButtonAll}"/>
 
+
+                    </StackPanel>
+
+                </Border>
             </Grid>
         </Grid>
         <Button 

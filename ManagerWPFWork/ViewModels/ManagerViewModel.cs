@@ -17,7 +17,7 @@ namespace ManagerWPFWork.ViewModels
         private IServiceManager _serviceManager;
         public IEnumerable<Manager> Managers { get; set; }
        // public IServiceManager serviceManager { get => _serviceManager; }
-        public Manager SelectedManager
+        public Manager SelectedManagers
         {
             get { return _selectedManager; }
             set

@@ -23,7 +23,7 @@ namespace ManagerWPFWork.ViewModels
             set
             {
                 _selectedSupplier = value;
-                OnPropertyChanged("SelectedSuppliers");
+                OnPropertyChanged("SelectedSupplier");
             }
         }
         public IEnumerable<Supplier> SuppliersAllInfo

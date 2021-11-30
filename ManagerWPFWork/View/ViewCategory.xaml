@@ -22,7 +22,7 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="600"></ColumnDefinition>
+                <ColumnDefinition Width="530"></ColumnDefinition>
                 <ColumnDefinition  Width="auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
@@ -41,6 +41,85 @@
             </DataGrid>
             <Grid Grid.Column="1">
 
+                <Border 
+                Width="470"
+                Height="460"
+                 Style="{StaticResource BorderAll}" >
+                    <StackPanel Grid.Row="0" DataContext="{Binding SelectedCategory}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock 
+                                    Foreground="Black"
+                                    FontSize="25" 
+                                    Text="ID: "
+                                Width="170"
+                                    Style="{StaticResource TextBlockAll}"/>
+                            <TextBlock Foreground="Black" 
+                                       FontSize="20" 
+                                      
+                                       Text="{Binding Path=IDCat}"
+                                        Style="{StaticResource TextBlockAll}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Foreground="Black" 
+                                       FontSize="25" 
+                                       Width="170"
+                                       Text="Category name: "
+                                       Style="{StaticResource TextBlockAll}"/>
+                            <TextBlock Foreground="Black"
+                                       FontSize="20" 
+                                       Width="250"
+                                       Text="{Binding Path=TypeProduct}"
+                                      Style="{StaticResource TextBlockAll}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Foreground="Black"
+                                       FontSize="25" 
+                                       Width="170"
+                                       Text="Is blocked: "
+                                       Style="{StaticResource TextBlockAll}"/>
+                            <TextBlock Foreground="Black" 
+                                       FontSize="20" 
+                                       Width="130"
+                                       Text="{Binding Path=IsBlocked}"
+                                        Style="{StaticResource TextBlockAll}"/>
+                        </StackPanel>
+                        <Button x:Name="buttonDeleteCat" 
+                                Width="170"
+                                Height="40" 
+                                Content="Blok/unblock category"
+                                Command="{Binding DeleteCategory}"
+                                Margin="100,15,0,0"
+                                Style="{StaticResource ButtonAll}"/>
+                        <TextBlock 
+                             Margin="0,105,0,0"
+                                    Foreground="Black"
+                                    FontSize="25" 
+                                    Text="Name: "
+                                Width="170"
+                                    Style="{StaticResource TextBlockAll}"/>
+                        <TextBox Foreground="Black" 
+                                     FontSize="20" 
+                                      Width="130"
+                                     Text=""
+                                     Style="{StaticResource TextBoxAll}"/>
+                       
+                        <CheckBox x:Name="checkBox" 
+                                   FontSize="15" 
+                              
+                                  Content="Is Blocked"/>
+                        <Button x:Name="buttonAddCat" 
+                                Width="150"
+                                Height="40" 
+                                Margin="100,15,0,0"
+                                Content="Add category"
+                                Command="{Binding AddItemCategoryCommand}"
+                                Style="{StaticResource ButtonAll}"/>
+                       
+
+                    </StackPanel>
+
+
+                </Border>
             </Grid>
         </Grid>
 
@@ -51,9 +130,5 @@
              FontSize="15"
             FontFamily="Times new roman"
             />
-
-        <Border Grid.Column="1">
-
-        </Border>
     </Grid>
 </UserControl>

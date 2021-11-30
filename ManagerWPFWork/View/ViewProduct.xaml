@@ -41,7 +41,131 @@
                 </DataGrid.Columns>
             </DataGrid>
             <Grid Grid.Column="1">
-
+                <Border 
+                Width="260"
+                    Margin="5,0,0,0"
+                Height="460"
+                 Style="{StaticResource BorderAll}" >
+                    <StackPanel Grid.Row="0" DataContext="{Binding SelectedProduct}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock 
+                                    Foreground="Black"
+                                    FontSize="20" 
+                                    Text="ID: "
+                                Width="90"
+                                    Style="{StaticResource TextBlockAll}"/>
+                            <TextBlock Foreground="Black" 
+                                       FontSize="20" 
+                                       Text="{Binding Path=Item1.Id, Mode=TwoWay}"
+                                        Style="{StaticResource TextBlockAll}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Foreground="Black" 
+                                       FontSize="20" 
+                                       Width="90"
+                                       Text="Product: "
+                                       Style="{StaticResource TextBlockAll}"/>
+                            <TextBlock Foreground="Black"
+                                       FontSize="20" 
+                                       Text="{Binding Path=Item1.NameObj, Mode=TwoWay}"
+                                        Style="{StaticResource TextBlockAll}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Foreground="Black"
+                                       FontSize="20" 
+                                       Width="90"
+                                       Text="Price in: "
+                                       Style="{StaticResource TextBlockAll}"/>
+                            <TextBlock Foreground="Black" 
+                                       FontSize="20" 
+                                       Text="{Binding Path=Item1.PriceIn, Mode=TwoWay}"
+                                        Style="{StaticResource TextBlockAll}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Foreground="Black"
+                                       FontSize="20" 
+                                       Width="90"
+                                       Text="Price out: "
+                                       Style="{StaticResource TextBlockAll}"/>
+                            <TextBlock Foreground="Black" 
+                                       FontSize="20" 
+                                       Text="{Binding Path=Item1.PriceOut, Mode=TwoWay}"
+                                        Style="{StaticResource TextBlockAll}"/>
+                            
+                        </StackPanel>
+                        <Button
+                         Height="40"
+                         Width="140"
+                        Content="Delete product"
+                        FontSize="15"
+                        FontFamily="Times new roman" 
+                            Margin="60,10,0,0"
+                            Style="{StaticResource ButtonAll}"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Foreground="Black" 
+                                       Margin="0,70,0,0"
+                                       FontSize="20" 
+                                       Width="90"
+                                       Text="Product: "
+                                       Style="{StaticResource TextBlockAll}"/>
+                            <TextBox Foreground="Black"
+                                       FontSize="20" 
+                                     Margin="0,70,0,0"
+                                       Text=""
+                                        Style="{StaticResource TextBoxAll}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Foreground="Black" 
+                                       FontSize="20" 
+                                       Width="90"
+                                       Text="Price in: "
+                                       Style="{StaticResource TextBlockAll}"/>
+                            <TextBox Foreground="Black"
+                                       FontSize="20" 
+                                       Text=""
+                                        Style="{StaticResource TextBoxAll}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Foreground="Black" 
+                                       FontSize="20" 
+                                       Width="90"
+                                       Text="Price out: "
+                                       Style="{StaticResource TextBlockAll}"/>
+                            <TextBox Foreground="Black"
+                                       FontSize="20" 
+                                       Text=""
+                                        Style="{StaticResource TextBoxAll}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Foreground="Black" 
+                                       FontSize="20" 
+                                       Width="90"
+                                       Text="Category: "
+                                       Style="{StaticResource TextBlockAll}"/>
+                            <TextBox Foreground="Black"
+                                       FontSize="20" 
+                                       Text=""
+                                        Style="{StaticResource TextBoxAll}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Foreground="Black" 
+                                       FontSize="20" 
+                                       Width="90"
+                                       Text="Supplier: "
+                                       Style="{StaticResource TextBlockAll}"/>
+                            <TextBox Foreground="Black"
+                                       FontSize="20" 
+                                       Text=""
+                                        Style="{StaticResource TextBoxAll}"/>
+                        </StackPanel>
+                        <Button   Width="150"
+                                Height="40" 
+                                Margin="60,15,0,0"
+                                Content="Add product"
+                                Command="{Binding }"
+                                Style="{StaticResource ButtonAll}"/>
+                    </StackPanel>
+                </Border>
             </Grid>
         </Grid>
 
@@ -53,7 +177,7 @@
             FontFamily="Times new roman"/>
 
         <Border Grid.Column="1">
-            
+
         </Border>
     </Grid>
 </UserControl>

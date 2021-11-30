@@ -5,7 +5,7 @@
              xmlns:views="clr-namespace:ManagerWPFWork.View"
              xmlns:viewmodels="clr-namespace:ManagerWPFWork.ViewModels"
             xmlns:windows1="clr-namespace:ManagerWPFWork.Windows"
-             StartupUri="Windows/WindowLog.xaml">
+             StartupUri="Windows/WindowMain.xaml">
     <Application.Resources>
         <DataTemplate DataType="{x:Type viewmodels:ProductViewModel}">
             <views:ViewProduct/>

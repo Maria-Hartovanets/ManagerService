@@ -27,7 +27,7 @@ namespace ManagerWPFWork.ViewModels
                 OnPropertyChanged("SelectedCategory");
             }
         }
-        public IEnumerable<Category> CategoriesAllInfo
+         public IEnumerable<Category> CategoriesAllInfo
         {
             get => Categories;
             set

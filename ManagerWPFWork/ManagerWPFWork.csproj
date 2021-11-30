@@ -64,6 +64,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Command\AddItemCategoryCommand.cs" />
+    <Compile Include="Command\AddItemProductCommand.cs" />
     <Compile Include="Command\CommandLoginANDout.cs" />
     <Compile Include="Command\UpdateDGViewModelDTO.cs" />
     <Compile Include="ViewModels\CategoryBlockedViewModel.cs" />

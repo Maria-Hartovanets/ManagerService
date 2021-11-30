@@ -20,7 +20,7 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="600"></ColumnDefinition>
+                <ColumnDefinition Width="830"></ColumnDefinition>
                 <ColumnDefinition  Width="auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
@@ -33,12 +33,12 @@
                     <DataGridTextColumn FontFamily="Times new roman" Header="ID" Width ="35" Binding="{Binding Path=IDCat}"/>
                     <DataGridTextColumn FontFamily="Times new roman" Header="Name" Width ="125" Binding="{Binding Path=TypeProduct}"/>
                     <DataGridTextColumn FontFamily="Times new roman" Header="Is Blocked" Width ="100" Binding="{Binding Path=IsBlocked}"/>
-                    <DataGridTextColumn FontFamily="Times new roman" Header="InsertTime" Width ="130" Binding="{Binding Path=RowInsertTime}"/>
-                    <DataGridTextColumn FontFamily="Times new roman" Header="UpdateTime" Width ="130" Binding="{Binding Path=RowUpdateTime}"/>
+                    <DataGridTextColumn FontFamily="Times new roman" Header="InsertTime" Width ="200" Binding="{Binding Path=RowInsertTime}"/>
+                    <DataGridTextColumn FontFamily="Times new roman" Header="UpdateTime" Width ="200" Binding="{Binding Path=RowUpdateTime}"/>
                 </DataGrid.Columns>
             </DataGrid>
             <Grid Grid.Column="1">
-
+               
             </Grid>
         </Grid>
         <Button 
@@ -49,5 +49,6 @@
             FontFamily="Times new roman"
             />
 
+       
     </Grid>
 </UserControl>

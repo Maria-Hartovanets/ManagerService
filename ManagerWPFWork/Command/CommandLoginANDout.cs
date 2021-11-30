@@ -4,6 +4,7 @@ using DataAccessLogic.ADO;
 using DataAccessLogic.Interfaces;
 using DTO.Model;
 using ManagerWpf.Windows;
+using ManagerWPFWork.ViewModels;
 using ManagerWPFWork.Windows;
 using System;
 using System.Collections.Generic;
@@ -17,10 +18,17 @@ namespace ManagerWPFWork.Command
     public class CommandLoginANDout:ICommand
     {
        IServiceManager _serviceManager;
-        
+        WindowMain _mainWindow;
+        WindowRegister _registerWindow;
+        WindowLog _logWindow;
+
+
+
         public CommandLoginANDout(IManagerDAL serviceManager)
         {
-            _serviceManager = new ServiceManager(serviceManager);
+            
+          
+            _serviceManager =new ServiceManager(serviceManager);
         }
 
         public event EventHandler CanExecuteChanged;
@@ -32,14 +40,29 @@ namespace ManagerWPFWork.Command
 
         public void Execute(object parameter)
         {
-            if (IsLogIn(parameter.ToString(), parameter.ToString()) == true)
+            if (parameter.ToString() == "Log")
             {
-                WindowMain mainW = new WindowMain();
-                mainW.Show();
-                
+                _logWindow.Show();
+
+                _registerWindow.Close();
+                _mainWindow.Close();
+            }
+            else if (parameter.ToString() == "Register")
+            {
+                _registerWindow.Show();
+
+                _logWindow.Close();
+                _mainWindow.Close();
+            }
+            else if (parameter.ToString() == "Main")
+            {
+                _mainWindow.Show();
+
+                _logWindow.Close();
+                _registerWindow.Close();
             }
         }
-
+        
         public bool IsLogIn(string email, string pass)
         {
             
