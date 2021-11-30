@@ -103,6 +103,7 @@
                         <TextBox Foreground="Black" 
                                      FontSize="20" 
                                       Width="130"
+                                 
                                      Text=""
                                      Style="{StaticResource TextBoxAll}"/>
                         <Button   Width="150"

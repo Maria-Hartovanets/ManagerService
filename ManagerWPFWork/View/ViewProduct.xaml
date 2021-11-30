@@ -109,6 +109,8 @@
                                        Text="Product: "
                                        Style="{StaticResource TextBlockAll}"/>
                             <TextBox Foreground="Black"
+                                     x:Name="name_texbox" 
+                                      PreviewTextInput="name_texbox_PreviewTextInput"
                                        FontSize="20" 
                                      Margin="0,70,0,0"
                                        Text=""
@@ -121,21 +123,27 @@
                                        Text="Price in: "
                                        Style="{StaticResource TextBlockAll}"/>
                             <TextBox Foreground="Black"
+                                     x:Name="price_texbox" 
+                                      PreviewTextInput="price_texbox_PreviewTextInput"
                                        FontSize="20" 
                                        Text=""
                                         Style="{StaticResource TextBoxAll}"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Foreground="Black" 
+                                       
                                        FontSize="20" 
                                        Width="90"
                                        Text="Price out: "
                                        Style="{StaticResource TextBlockAll}"/>
                             <TextBox Foreground="Black"
                                        FontSize="20" 
+                                     x:Name="priceout_texbox" 
+                                      PreviewTextInput="price_texbox_PreviewTextInput"
                                        Text=""
                                         Style="{StaticResource TextBoxAll}"/>
                         </StackPanel>
+                       
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Foreground="Black" 
                                        FontSize="20" 
@@ -161,7 +169,7 @@
                         <Button   Width="150"
                                 Height="40" 
                                 Margin="60,15,0,0"
-                                Content="Add product"
+                                Content="Add supplier"
                                 Command="{Binding }"
                                 Style="{StaticResource ButtonAll}"/>
                     </StackPanel>

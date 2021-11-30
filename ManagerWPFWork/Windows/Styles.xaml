@@ -8,6 +8,43 @@
         <Setter Property="Height" Value="27"/>
         <Setter Property="Width" Value="84"/>
     </Style>
+
+    <Style x:Key="CustomTextBoxTextStyle" TargetType="{x:Type TextBox}">
+        <Setter Property="Foreground" Value="Green" />
+        <Setter Property="MaxLength" Value="15" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="FontFamily" Value="Times New Roman"/>
+        <Setter Property="FontSize" Value="19"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="Height" Value="27"/>
+        <Setter Property="Width" Value="84"/>
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError" Value="True">
+                <Trigger.Setters>
+                    <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self},Path=(Validation.Errors)[0].ErrorContent}"/>
+                    <Setter Property="Background" Value="Red"/>
+                </Trigger.Setters>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="GeneralErrorStyle">
+        <Setter Property="Validation.ErrorTemplate">
+            <Setter.Value>
+                <ControlTemplate>
+                    <DockPanel>
+                        <TextBlock DockPanel.Dock="Right"
+                                       Foreground="Red"
+                                       FontSize="12pt"
+                                       Text="Error"
+                                       ToolTip="{Binding ElementName=placeholder, 
+                                       Path= AdornedElement.(Validation.Errors)[0].ErrorContent}"/>
+                        <AdornedElementPlaceholder x:Name="placeholder" />
+                    </DockPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style x:Key="TextBoxAll" TargetType="{x:Type TextBox}">
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="FontFamily" Value="Times New Roman"/>

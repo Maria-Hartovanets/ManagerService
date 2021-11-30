@@ -28,12 +28,15 @@ namespace ManagerWPFWork.Windows
     public partial class WindowMain : Window
     {
         public static UnityContainer Container;
+        private ViewModelBase m_ViewModel;
+       
         public WindowMain()
         {
             ConfigureUnity();
             InitializeComponent();
             DataContext = Container.Resolve<MainViewModel>();
-            
+            m_ViewModel = new ViewModelBase();
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

@@ -7,10 +7,12 @@
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="1000">
 
+    
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="D:\Programming\WorkDataBase\ManagerProduct\ManagerWPFWork\Windows\Styles.xaml"/>
+              
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -100,8 +102,11 @@
                         <TextBox Foreground="Black" 
                                      FontSize="20" 
                                       Width="130"
-                                     Text=""
-                                     Style="{StaticResource TextBoxAll}"/>
+                                   x:Name="first_name_texbox" 
+                               
+                                  PreviewTextInput="first_name_texbox_PreviewTextInput" 
+                                 Style="{StaticResource CustomTextBoxTextStyle}"/>   
+                                
                        
                         <CheckBox x:Name="checkBox" 
                                    FontSize="15" 
