@@ -68,11 +68,13 @@
     </ApplicationDefinition>
     <Compile Include="Command\AddItemCategoryCommand.cs" />
     <Compile Include="Command\AddItemProductCommand.cs" />
-    <Compile Include="Command\CommandLoginANDout.cs" />
+    <Compile Include="Command\AddItemSupplierCommand.cs" />
+    <Compile Include="Command\DeleteItemCategoryCommand.cs" />
+    <Compile Include="Command\LoginCommand.cs" />
     <Compile Include="Command\UpdateDGViewModelDTO.cs" />
-    <Compile Include="Command\ValidatorCommand.cs" />
     <Compile Include="ViewModels\CategoryBlockedViewModel.cs" />
     <Compile Include="ViewModels\CategoryViewModel.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ManagerViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModel.cs" />
@@ -93,8 +95,8 @@
     <Compile Include="View\ViewSupplier.xaml.cs">
       <DependentUpon>ViewSupplier.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\WindowLog.xaml.cs">
-      <DependentUpon>WindowLog.xaml</DependentUpon>
+    <Compile Include="Windows\WindowLoggin.xaml.cs">
+      <DependentUpon>WindowLoggin.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\WindowMain.xaml.cs">
       <DependentUpon>WindowMain.xaml</DependentUpon>
@@ -130,9 +132,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\WindowLog.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="Windows\WindowLoggin.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\WindowMain.xaml">
       <SubType>Designer</SubType>

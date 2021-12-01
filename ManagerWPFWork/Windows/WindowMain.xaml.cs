@@ -41,7 +41,7 @@ namespace ManagerWPFWork.Windows
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            WindowLog mainW = new WindowLog();
+            WindowLoggin mainW = new WindowLoggin();
             mainW.Show();
             this.Close();
         }

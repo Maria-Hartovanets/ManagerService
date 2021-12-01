@@ -30,11 +30,13 @@ namespace ManagerWPFWork.Command
         public void Execute(object parameter)
         {
             Category temp = new Category();
-            temp.TypeProduct = this._catViewModel.SelectedCategory.TypeProduct;
-            temp.IsBlocked = this._catViewModel.SelectedCategory.IsBlocked;
+            temp.TypeProduct = _catViewModel.EnteredCategoryName;
+            temp.IsBlocked = _catViewModel.EnteredIsBlocked;
             temp.RowInsertTime = DateTime.Now;
             temp.RowUpdateTime = DateTime.Now;
-            this._mainViewModel.ServiceCategory.AddObj(temp);
+            this._catViewModel.ServiceCategory.AddObj(temp);
+            _catViewModel.EnteredCategoryName = "...";
+            _catViewModel.EnteredIsBlocked = true;
         }
     }
 }

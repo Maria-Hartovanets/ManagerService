@@ -1,5 +1,6 @@
 ﻿using BLLServiceManager.IService;
 using DTO.Model;
+using ManagerWPFWork.Command;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -7,19 +8,27 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace ManagerWPFWork.ViewModels
 {
-    public class ProductViewModel:ViewModelBase, INotifyPropertyChanged
+    public class ProductViewModel:ViewModelBase, INotifyPropertyChanged,IDataErrorInfo
     {
         private Product _selectedProduct;
         private IServiceProduct _serviceProduct;
         private IServiceSupplier _serviceSupplier;
         private IServiceCategory _serviceCategory;
         private ObservableCollection<Tuple<Product,string,string>>  _productsAllInfo = new ObservableCollection<Tuple<Product, string, string>>();
-       
+        private string _productName;
+        private int _productPriceIn;
+        private int _productPriceOut;
+        private int _category;
+        private int _supplier;
+
+        public ICommand AddProduct { get; set; }
         public IEnumerable<Product> Products { get; set; }
         public IEnumerable<Category> Categories { get; set; }
         public IEnumerable<Supplier> Suppliers { get; set; }
@@ -51,7 +60,69 @@ namespace ManagerWPFWork.ViewModels
             _serviceCategory = serviceCategory;
             _serviceSupplier = serviceSupplier;
             FillInfo();
+            AddProduct = new AddItemProductCommand(this);
         }
+
+        public string EnteredProductName
+        {
+            get 
+            {
+                return _productName;
+            }
+            set {
+                _productName = value;
+                OnPropertyChanged("EnteredProductName");
+            }
+        }
+        public int EnteredProductPriceIn
+        {
+            get 
+            {
+                return _productPriceIn;
+            }
+            set {
+                _productPriceIn = value;
+                OnPropertyChanged("EnteredProductPriceIn");
+            }
+        }
+         public int EnteredProductPriceOut
+        {
+            get 
+            {
+                return _productPriceOut;
+            }
+            set {
+                _productPriceOut = value;
+                OnPropertyChanged("EnteredProductPriceOut");
+            }
+        } 
+        public int EnteredProductCategory
+        {
+            get 
+            {
+                return _category;
+            }
+            set {
+                _category = value;
+                OnPropertyChanged("EnteredProductCategory");
+            }
+        } 
+        public int EnteredProductSupplier
+        {
+            get 
+            {
+                return _supplier;
+            }
+            set {
+                _supplier = value;
+                OnPropertyChanged("EnteredProductSupplier");
+            }
+        }
+
+
+        
+
+
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
@@ -61,6 +132,7 @@ namespace ManagerWPFWork.ViewModels
         }
         private void FillInfo()
         {
+            EnteredProductName = "...";
             Products = _serviceProduct.GetProducts();
             Categories = _serviceCategory.GetProducts();
             Suppliers = _serviceSupplier.GetProducts();
@@ -73,5 +145,145 @@ namespace ManagerWPFWork.ViewModels
             }
 
         }
+        private bool resultActionUndo = true;
+        public string Error { get { return null; } }
+
+        public string this[string name]
+        {
+            get
+            {
+                string _result = null;
+               
+                switch (name)
+                {
+                    case "EnteredProductName":
+                        if (!IsLetterEnter(EnteredProductName))
+                        {
+                            MessageBox.Show("Invalid Input. Start only with letter!", "Error");
+
+                        }
+                        else if (string.IsNullOrEmpty(EnteredProductName))
+                        {
+                            MessageBox.Show("Input something!", "Error");
+                        }
+                        else 
+                        {
+                            resultActionUndo = false; 
+                        }
+                        break;
+                    case "EnteredProductPriceIn":
+                        if (!IsNumberEnter(EnteredProductPriceIn))
+                        {
+                            MessageBox.Show("Invalid Input. Start only with number!", "Error");
+
+                        }
+                        else if (EnteredProductPriceIn < 0)
+                        {
+                            MessageBox.Show("Price must be positive", "Error");
+                        }
+                        else if (string.IsNullOrEmpty(EnteredProductPriceIn.ToString()))
+                        {
+                            MessageBox.Show("Input something!", "Error");
+                        }
+                        else
+                        {
+                            resultActionUndo = false;
+                        }
+                        break;
+                    case "EnteredProductPriceOut":
+                        if (!IsNumberEnter(EnteredProductPriceOut))
+                        {
+                            MessageBox.Show("Invalid Input. Start only with number!", "Error");
+
+                        }
+                        else if (EnteredProductPriceOut < 0)
+                        {
+                            MessageBox.Show("Price must be positive", "Error");
+                        }
+                        else if (string.IsNullOrEmpty(EnteredProductPriceOut.ToString()))
+                        {
+                            MessageBox.Show("Input something!", "Error");
+                        }
+                        else
+                        {
+                            resultActionUndo = false;
+                        }
+                        break; 
+                    case "EnteredProductCategory":
+                        if (!IsNumberEnter(EnteredProductCategory))
+                        {
+                            MessageBox.Show("Invalid Input. Start only with number!", "Error");
+
+                        }
+                        else if (EnteredProductCategory < 0)
+                        {
+                            MessageBox.Show("Price must be positive", "Error");
+                        }
+                        else if (string.IsNullOrEmpty(EnteredProductCategory.ToString()))
+                        {
+                            MessageBox.Show("Input something!", "Error");
+                        }
+                        else
+                        {
+                            resultActionUndo = false;
+                        }
+                        break;
+                    case "EnteredProductSupplier":
+                        if (!IsNumberEnter(EnteredProductPriceOut))
+                        {
+                            MessageBox.Show("Invalid Input. Start only with number!", "Error");
+
+                        }
+                        else if (EnteredProductPriceOut < 0)
+                        {
+                            MessageBox.Show("Price must be positive","Error");
+                            
+                        }
+                        else if (string.IsNullOrEmpty(EnteredProductSupplier.ToString()))
+                        {
+                            MessageBox.Show("Input something!", "Error");
+                        }
+                        else
+                        {
+                            resultActionUndo = false;
+                        }
+                        break;
+                }
+
+                return _result;
+            }
+        }
+
+
+        private bool IsNumberEnter(int str)
+        {
+
+            Regex regex = new Regex("[^a-zA-Z]+");
+            if (regex.IsMatch(Convert.ToString(str)))
+            {
+                return true;
+
+            }
+            else
+            {
+                return false;
+            }
+        }
+        private bool IsLetterEnter(string str)
+        {
+           
+
+
+            Regex regex = new Regex("[^0-9]+");
+            if (regex.IsMatch(str))
+            {
+                return true;
+
+            }
+            else
+            {
+                return false;
+            }
+            }
     }
 }

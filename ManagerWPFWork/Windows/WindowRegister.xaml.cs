@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ManagerWPFWork.Windows;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,7 +27,7 @@ namespace ManagerWpf.Windows
 
         private void ButtonOpen_Log_Click(object sender, RoutedEventArgs e)
         {
-            WindowLog mainW = new WindowLog();
+            WindowLoggin mainW = new WindowLoggin();
             mainW.Show();
             this.Close();
         }

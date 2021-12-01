@@ -41,12 +41,17 @@
                     <DataGridTextColumn FontFamily="Times new roman" Header="UpdateTime" Width ="130" Binding="{Binding Path=RowUpdateTime}"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <Grid Grid.Column="1">
-
-                <Border 
-                Width="470"
-                Height="460"
-                 Style="{StaticResource BorderAll}" >
+            <Border  Grid.Column="1"
+                    Width="auto"
+                    Margin="5,0,0,0"
+                    Height="460"
+                    Style="{StaticResource BorderAll}" >
+                <Grid Width="470">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="120"></RowDefinition>
+                        <RowDefinition Height="130"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0" DataContext="{Binding SelectedCategory}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock 
@@ -85,15 +90,24 @@
                                        Text="{Binding Path=IsBlocked}"
                                         Style="{StaticResource TextBlockAll}"/>
                         </StackPanel>
-                        <Button x:Name="buttonDeleteCat" 
+                    </StackPanel>
+                    <Button x:Name="buttonDeleteCat" 
                                 Width="170"
+                                Grid.Row="1"
                                 Height="40" 
                                 Content="Blok/unblock category"
                                 Command="{Binding DeleteCategory}"
                                 Margin="100,15,0,0"
                                 Style="{StaticResource ButtonAll}"/>
+                    <Grid Grid.Row="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="130"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                    
+                    <StackPanel Grid.Row="0">
                         <TextBlock 
-                             Margin="0,105,0,0"
+                             Margin="0,55,0,0"
                                     Foreground="Black"
                                     FontSize="25" 
                                     Text="Name: "
@@ -103,31 +117,26 @@
                                      FontSize="20" 
                                       Width="130"
                                    x:Name="first_name_texbox" 
-                               
+                               Text="{Binding EnteredCategoryName,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"
                                   PreviewTextInput="first_name_texbox_PreviewTextInput" 
-                                 Style="{StaticResource CustomTextBoxTextStyle}"/>   
-                                
-                       
+                                 Style="{StaticResource TextBoxAll}"/>
                         <CheckBox x:Name="checkBox" 
                                    FontSize="15" 
                               
                                   Content="Is Blocked"/>
+                    </StackPanel>
                         <Button x:Name="buttonAddCat" 
+                                Grid.Row="1"
                                 Width="150"
                                 Height="40" 
                                 Margin="100,15,0,0"
                                 Content="Add category"
                                 Command="{Binding AddItemCategoryCommand}"
                                 Style="{StaticResource ButtonAll}"/>
-                       
-
-                    </StackPanel>
-
-
-                </Border>
-            </Grid>
+                    </Grid>
+              </Grid>
+            </Border>
         </Grid>
-
         <Button 
             Grid.Row="0"
             Height="40"
