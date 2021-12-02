@@ -29,7 +29,7 @@ namespace ManagerWPFWork.Command
 
         public void Execute(object parameter)
         {
-            _productViewModel.serviceProduct.DeleteObject(_productViewModel.SelectedProduct.Id);
+            _productViewModel.serviceProduct.DeleteObject(_productViewModel.SelectedProduct.Item1.Id);
           
                 MessageBox.Show("Successfully delete product!", "Information");
             

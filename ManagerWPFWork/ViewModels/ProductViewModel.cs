@@ -17,7 +17,7 @@ namespace ManagerWPFWork.ViewModels
 {
     public class ProductViewModel:ViewModelBase, INotifyPropertyChanged,IDataErrorInfo
     {
-        private Product _selectedProduct;
+        private Tuple<Product, string, string> _selectedProduct;
         private IServiceProduct _serviceProduct;
         private IServiceSupplier _serviceSupplier;
         private IServiceCategory _serviceCategory;
@@ -35,7 +35,7 @@ namespace ManagerWPFWork.ViewModels
         public IServiceProduct serviceProduct { get => _serviceProduct; }
         public IServiceSupplier serviceSupplier { get => _serviceSupplier; }
         public IServiceCategory serviceCategory { get => _serviceCategory; }
-        public Product SelectedProduct
+        public Tuple<Product, string, string> SelectedProduct
         {
             get { return _selectedProduct; }
             set

@@ -27,6 +27,7 @@
             <DataGrid  Grid.Column="0"
                   x:Name="Imported" 
                   Style="{StaticResource DataGridAll}"
+                     SelectedItem="{Binding SelectedProduct}"   
                  ItemsSource="{Binding ProductsAllInfo}">
 
                 <DataGrid.Columns>
@@ -85,7 +86,7 @@
                                        Style="{StaticResource TextBlockAll}"/>
                             <TextBlock Foreground="Black" 
                                        FontSize="20" 
-                                       Text="{Binding Path=PriceIn}"
+                                       Text="{Binding Path=Item1.PriceIn}"
                                         Style="{StaticResource TextBlockAll}"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
