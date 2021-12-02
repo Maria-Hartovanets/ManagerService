@@ -24,6 +24,7 @@ namespace ManagerWPFWork.ViewModels
         private string _categoryName;
         private bool _isBlocked;
         public ICommand DeleteCategory { get; set; }
+        public ICommand AddCategory { get; set; }
         public IServiceCategory ServiceCategory {
             get => _serviceCategory;                }
         public string EnteredCategoryName
@@ -87,7 +88,9 @@ namespace ManagerWPFWork.ViewModels
         {
             EnteredCategoryName = "...";
             DeleteCategory = new DeleteItemCategoryCommand(this);
+            AddCategory = new AddItemCategoryCommand(this);
             Categories = _serviceCategory.GetProducts();
+
 
         }
 
@@ -118,22 +121,22 @@ namespace ManagerWPFWork.ViewModels
                 return _result;
             }
         }
-
         private bool IsLetterEnter(string str)
         {
-            
-            Regex regex = new Regex("[^a-zA-Z]+");
+            Regex regex = new Regex("[^0-9]+");
             if (regex.IsMatch(str))
             {
                 return true;
-                
+
             }
             else
             {
                 return false;
             }
+            // MessageBox.Show("Invalid input. Only letter allowed!", "Error");
+
         }
-        
+
 
     }
 }

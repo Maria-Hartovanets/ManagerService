@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace ManagerWPFWork.Command
@@ -34,6 +35,7 @@ namespace ManagerWPFWork.Command
             temp.ArrivingTime = DateTime.Now;
             temp.RowUpdateTime = DateTime.Now;
             _supplierViewModel.serviceSupplier.AddObj(temp);
+            MessageBox.Show("Successfully added supplier!", "Information");
             _supplierViewModel.EnteredNameSupplier= "...";
         }
     }

@@ -20,7 +20,10 @@ namespace ManagerWPFWork.ViewModels
       
         private IServiceSupplier _serviceSupplier;
         private string _nameSupplier;
+        private string _nameSupplierChange;
         public ICommand AddSupplier { get; set; }
+        public ICommand DeleteSupplier { get; set; }
+        public ICommand ChangeSupplier { get; set; }
         public IEnumerable<Supplier> Suppliers { get; set; }
         public IServiceSupplier serviceSupplier { get => _serviceSupplier; }
         public Supplier SelectedSupplier
@@ -39,6 +42,15 @@ namespace ManagerWPFWork.ViewModels
             {
                 _nameSupplier = value;
                 OnPropertyChanged("EnteredNameSupplier");
+            }
+        } 
+        public string EnteredChangeNameSupplier
+        {
+            get { return _nameSupplierChange; }
+            set
+            {
+                _nameSupplierChange = value;
+                OnPropertyChanged("EnteredChangeNameSupplier");
             }
         }
         public IEnumerable<Supplier> SuppliersAllInfo
@@ -69,6 +81,8 @@ namespace ManagerWPFWork.ViewModels
             EnteredNameSupplier = "...";
             Suppliers = _serviceSupplier.GetProducts();
             AddSupplier = new AddItemSupplierCommand(this);
+            DeleteSupplier = new DeleteItemSupplierCommand(this);
+            ChangeSupplier = new ChangeItemSupplierCommand(this);
 
         }
 

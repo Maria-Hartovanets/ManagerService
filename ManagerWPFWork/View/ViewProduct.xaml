@@ -85,7 +85,7 @@
                                        Style="{StaticResource TextBlockAll}"/>
                             <TextBlock Foreground="Black" 
                                        FontSize="20" 
-                                       Text="{Binding Path=Item1.PriceIn, Mode=TwoWay}"
+                                       Text="{Binding Path=PriceIn}"
                                         Style="{StaticResource TextBlockAll}"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
@@ -96,7 +96,7 @@
                                        Style="{StaticResource TextBlockAll}"/>
                             <TextBlock Foreground="Black" 
                                        FontSize="20" 
-                                       Text="{Binding Path=Item1.PriceOut, Mode=TwoWay}"
+                                       Text="{Binding Path=Item1.PriceOut}"
                                         Style="{StaticResource TextBlockAll}"/>
 
                         </StackPanel>

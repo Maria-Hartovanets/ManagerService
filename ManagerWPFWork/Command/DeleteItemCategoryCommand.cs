@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace ManagerWPFWork.Command
@@ -29,7 +30,16 @@ namespace ManagerWPFWork.Command
 
         public void Execute(object parameter)
         {
-            Console.WriteLine();
+            _catViewModel.ServiceCategory.DeleteObject(_catViewModel.SelectedCategory.IDCat, _catViewModel.SelectedCategory.IsBlocked);
+            if (_catViewModel.SelectedCategory.IsBlocked == true)
+            {
+                MessageBox.Show("Successfully unblocked category!", "Information");
+            }
+            else
+            {
+                MessageBox.Show("Successfully blocked category!", "Information");
+            }
+            
         }
     
     }

@@ -27,8 +27,8 @@
             <DataGrid  Grid.Column="0"
                  Style="{StaticResource DataGridAll}"
                  x:Name="Imported"  
-                 ItemsSource="{Binding CategoriesBlocked}"
-                 SelectedItem="{Binding SelectedCategoryBlocked}" >
+                 ItemsSource="{Binding CategoriesBlockedAllInfo}"
+               >
                 <DataGrid.Columns>
                     <DataGridTextColumn FontFamily="Times new roman" Header="ID" Width ="35" Binding="{Binding Path=IDCat}"/>
                     <DataGridTextColumn FontFamily="Times new roman" Header="Name" Width ="125" Binding="{Binding Path=TypeProduct}"/>

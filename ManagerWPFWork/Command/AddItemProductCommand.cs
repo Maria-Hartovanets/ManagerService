@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace ManagerWPFWork.Command
@@ -38,6 +39,7 @@ namespace ManagerWPFWork.Command
             product.RowInsertTime = DateTime.Now;
             product.RowUpdateTime = DateTime.Now;
             _productViewModel.serviceProduct.AddObj(product);
+            MessageBox.Show("Successfully added product!","Information");
             _productViewModel.EnteredProductName = "...";
             _productViewModel.EnteredProductPriceIn = 0;
             _productViewModel.EnteredProductPriceOut = 0;

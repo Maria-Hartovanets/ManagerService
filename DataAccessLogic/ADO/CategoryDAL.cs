@@ -82,7 +82,7 @@ namespace DataAccessLogic.ADO
         public void DeleteObject(int id,bool op)
         {
             var tempObj = categories.Where(x => x.IDCat == id).SingleOrDefault();
-            //bool optionBlocked = true;
+            bool option = !(op);
             if (tempObj != null)
             {
                 using (SqlConnection connectionSql = new SqlConnection(connectionStr))
@@ -93,7 +93,7 @@ namespace DataAccessLogic.ADO
 
                         comm.CommandText = "update Category set IsBlocked=@option where CategoryId=@categId";
                         comm.Parameters.Clear();
-                        comm.Parameters.AddWithValue("@option",op);
+                        comm.Parameters.AddWithValue("@option", option);
                         comm.Parameters.AddWithValue("@categId", tempObj.IDCat);
                         comm.ExecuteNonQuery();
                     }
@@ -103,7 +103,7 @@ namespace DataAccessLogic.ADO
             {
                 if (id == cat.IDCat)
                 {
-                    cat.ChangeBlockValue(op);
+                    cat.ChangeBlockValue(option);
                 }
             }
         }

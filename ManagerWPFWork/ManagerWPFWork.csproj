@@ -69,7 +69,10 @@
     <Compile Include="Command\AddItemCategoryCommand.cs" />
     <Compile Include="Command\AddItemProductCommand.cs" />
     <Compile Include="Command\AddItemSupplierCommand.cs" />
+    <Compile Include="Command\ChangeItemSupplierCommand.cs" />
     <Compile Include="Command\DeleteItemCategoryCommand.cs" />
+    <Compile Include="Command\DeleteItemProductCommand.cs" />
+    <Compile Include="Command\DeleteItemSupplierCommand.cs" />
     <Compile Include="Command\LoginCommand.cs" />
     <Compile Include="Command\UpdateDGViewModelDTO.cs" />
     <Compile Include="ViewModels\CategoryBlockedViewModel.cs" />

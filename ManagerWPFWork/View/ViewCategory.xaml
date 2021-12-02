@@ -61,7 +61,7 @@
                                 Width="170"
                                     Style="{StaticResource TextBlockAll}"/>
                             <TextBlock Foreground="Black" 
-                                       FontSize="20" 
+                                       FontSize="25" 
                                       
                                        Text="{Binding Path=IDCat}"
                                         Style="{StaticResource TextBlockAll}"/>
@@ -73,7 +73,7 @@
                                        Text="Category name: "
                                        Style="{StaticResource TextBlockAll}"/>
                             <TextBlock Foreground="Black"
-                                       FontSize="20" 
+                                       FontSize="25" 
                                        Width="250"
                                        Text="{Binding Path=TypeProduct}"
                                       Style="{StaticResource TextBlockAll}"/>
@@ -85,7 +85,7 @@
                                        Text="Is blocked: "
                                        Style="{StaticResource TextBlockAll}"/>
                             <TextBlock Foreground="Black" 
-                                       FontSize="20" 
+                                       FontSize="25" 
                                        Width="130"
                                        Text="{Binding Path=IsBlocked}"
                                         Style="{StaticResource TextBlockAll}"/>
@@ -131,7 +131,7 @@
                                 Height="40" 
                                 Margin="100,15,0,0"
                                 Content="Add category"
-                                Command="{Binding AddItemCategoryCommand}"
+                                Command="{Binding AddCategory}"
                                 Style="{StaticResource ButtonAll}"/>
                     </Grid>
               </Grid>

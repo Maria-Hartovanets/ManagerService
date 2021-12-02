@@ -72,7 +72,7 @@
                                  Width="160"
                                     Style="{StaticResource TextBlockAll}"/>
                                 <TextBlock Foreground="Black" 
-                                       FontSize="20" 
+                                       FontSize="25" 
                                         Width="160"
                                        Text="{Binding Path=Id}"
                                         Style="{StaticResource TextBlockAll}"/>
@@ -84,7 +84,7 @@
                                        Text="Supplier name: "
                                        Style="{StaticResource TextBlockAll}"/>
                                 <TextBlock Foreground="Black"
-                                       FontSize="20" 
+                                       FontSize="25" 
                                         Width="160"
                                        Text="{Binding Path=NameSupplier}"
                                         Style="{StaticResource TextBlockAll}"/>
@@ -95,7 +95,7 @@
                                 Height="40" 
                                 Margin="100,15,0,0"
                                 Content="Delete supplier"
-                                Command="{Binding }"
+                                Command="{Binding DeleteSupplier}"
                                 Style="{StaticResource ButtonAll}"/>
                         </StackPanel>
                     </Grid>
@@ -116,8 +116,7 @@
                                      FontSize="20" 
                                       Width="130"
                                      Margin="0,5,0,0"
-                                     DataContext="{Binding SelectedSupplier}"
-                                     Text="{Binding Path=NameSupplier,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"
+                                     Text="{Binding Path=EnteredChangeNameSupplier,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"
                                      Style="{StaticResource TextBoxAll}"/>
                         </StackPanel>
                         <Button  Grid.Row="1"
@@ -125,7 +124,7 @@
                                  Height="40" 
                                  Margin="100,15,0,0"
                                  Content="Save changes"
-                                 Command="{Binding }"
+                                 Command="{Binding ChangeSupplier}"
                                  Style="{StaticResource ButtonAll}"/>
                     </Grid>
                     <Grid Grid.Row="2">

@@ -5,18 +5,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace ManagerWPFWork.Command
 {
     public class AddItemCategoryCommand: ICommand
     {
-        private MainViewModel _mainViewModel;
+       
         private CategoryViewModel _catViewModel;
 
-        public AddItemCategoryCommand(CategoryViewModel catViewModel, MainViewModel mainViewModel)
+        public AddItemCategoryCommand(CategoryViewModel catViewModel)
         {
-            this._mainViewModel = mainViewModel;
+           
             this._catViewModel = catViewModel;
         }
 
@@ -35,6 +36,7 @@ namespace ManagerWPFWork.Command
             temp.RowInsertTime = DateTime.Now;
             temp.RowUpdateTime = DateTime.Now;
             this._catViewModel.ServiceCategory.AddObj(temp);
+            MessageBox.Show("Successfully added category!", "Information");
             _catViewModel.EnteredCategoryName = "...";
             _catViewModel.EnteredIsBlocked = true;
         }
