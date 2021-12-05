@@ -45,8 +45,8 @@
     </Style>
     <Style x:Key="ImageAll" TargetType="{x:Type Image}">
         <Setter Property="HorizontalAlignment" Value="Left"/>
-        <Setter Property="Height" Value="40"/>
-        <Setter Property="Width" Value="54"/>
+        <Setter Property="Height" Value="70"/>
+        <Setter Property="Width" Value="70"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
     </Style>
 

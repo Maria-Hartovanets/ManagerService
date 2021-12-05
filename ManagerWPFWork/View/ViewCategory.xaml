@@ -118,7 +118,7 @@
                                       Width="130"
                                    x:Name="first_name_texbox" 
                                Text="{Binding EnteredCategoryName,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"
-                                  PreviewTextInput="first_name_texbox_PreviewTextInput" 
+                                 
                                  Style="{StaticResource TextBoxAll}"/>
                         <CheckBox x:Name="checkBox" 
                                    FontSize="15" 
@@ -132,6 +132,7 @@
                                 Margin="100,15,0,0"
                                 Content="Add category"
                                 Command="{Binding AddCategory}"
+                                IsEnabled="{Binding ActionAllowed}"
                                 Style="{StaticResource ButtonAll}"/>
                     </Grid>
               </Grid>

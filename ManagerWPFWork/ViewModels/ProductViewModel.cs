@@ -157,14 +157,14 @@ namespace ManagerWPFWork.ViewModels
                 switch (name)
                 {
                     case "EnteredProductName":
-                        if (!IsLetterEnter(EnteredProductName))
+                        if (string.IsNullOrEmpty(EnteredProductName))
+                        {
+                            MessageBox.Show("Input something!", "Error");
+                        }
+                        else if (!IsLetterEnter(EnteredProductName))
                         {
                             MessageBox.Show("Invalid Input. Start only with letter!", "Error");
 
-                        }
-                        else if (string.IsNullOrEmpty(EnteredProductName))
-                        {
-                            MessageBox.Show("Input something!", "Error");
                         }
                         else 
                         {
@@ -172,18 +172,18 @@ namespace ManagerWPFWork.ViewModels
                         }
                         break;
                     case "EnteredProductPriceIn":
-                        if (!IsNumberEnter(EnteredProductPriceIn))
+                        if (double.IsNaN(EnteredProductPriceIn))
+                        {
+                            MessageBox.Show("Input something!", "Error");
+                        }
+                        else if (IsNumberEnter(EnteredProductPriceIn)==false)
                         {
                             MessageBox.Show("Invalid Input. Start only with number!", "Error");
 
                         }
-                        else if (EnteredProductPriceIn < 0)
+                        else if (EnteredProductPriceIn<0)
                         {
                             MessageBox.Show("Price must be positive", "Error");
-                        }
-                        else if (string.IsNullOrEmpty(EnteredProductPriceIn.ToString()))
-                        {
-                            MessageBox.Show("Input something!", "Error");
                         }
                         else
                         {
@@ -191,7 +191,11 @@ namespace ManagerWPFWork.ViewModels
                         }
                         break;
                     case "EnteredProductPriceOut":
-                        if (!IsNumberEnter(EnteredProductPriceOut))
+                        if (string.IsNullOrEmpty(EnteredProductPriceOut.ToString()))
+                        {
+                            MessageBox.Show("Input something!", "Error");
+                        }
+                        else if (IsNumberEnter(EnteredProductPriceOut)==false)
                         {
                             MessageBox.Show("Invalid Input. Start only with number!", "Error");
 
@@ -200,17 +204,13 @@ namespace ManagerWPFWork.ViewModels
                         {
                             MessageBox.Show("Price must be positive", "Error");
                         }
-                        else if (string.IsNullOrEmpty(EnteredProductPriceOut.ToString()))
-                        {
-                            MessageBox.Show("Input something!", "Error");
-                        }
                         else
                         {
                             resultActionUndo = false;
                         }
                         break; 
                     case "EnteredProductCategory":
-                        if (!IsNumberEnter(EnteredProductCategory))
+                        if (IsNumberEnter(EnteredProductCategory) == false)
                         {
                             MessageBox.Show("Invalid Input. Start only with number!", "Error");
 
@@ -229,12 +229,12 @@ namespace ManagerWPFWork.ViewModels
                         }
                         break;
                     case "EnteredProductSupplier":
-                        if (!IsNumberEnter(EnteredProductPriceOut))
+                        if (IsNumberEnter(EnteredProductSupplier) == false)
                         {
                             MessageBox.Show("Invalid Input. Start only with number!", "Error");
 
                         }
-                        else if (EnteredProductPriceOut < 0)
+                        else if (EnteredProductSupplier < 0)
                         {
                             MessageBox.Show("Price must be positive","Error");
                             
@@ -271,9 +271,6 @@ namespace ManagerWPFWork.ViewModels
         }
         private bool IsLetterEnter(string str)
         {
-           
-
-
             Regex regex = new Regex("[^0-9]+");
             if (regex.IsMatch(str))
             {

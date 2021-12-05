@@ -17,7 +17,6 @@ namespace ManagerWPFWork.Command
 
         public AddItemCategoryCommand(CategoryViewModel catViewModel)
         {
-           
             this._catViewModel = catViewModel;
         }
 
@@ -25,6 +24,7 @@ namespace ManagerWPFWork.Command
 
         public bool CanExecute(object parameter)
         {
+           
             return true;
         }
 

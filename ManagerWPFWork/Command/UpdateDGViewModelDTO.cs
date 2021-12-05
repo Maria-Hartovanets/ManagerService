@@ -21,6 +21,7 @@ namespace ManagerWPFWork.Command
 
         public bool CanExecute(object parameter)
         {
+           // bool doAction=_mainViewModel.
             return true;
         }
 
@@ -42,6 +43,12 @@ namespace ManagerWPFWork.Command
             {
                 _mainViewModel.SelectedViewModel = new CategoryBlockedViewModel(_mainViewModel.ServiceCategoryBlocked);
             }
+            else if (parameter.ToString() == "LogOut")
+            {
+                _mainViewModel.SelectedViewModel = new LoginViewModel(_mainViewModel.ServiceManager,_mainViewModel);
+                _mainViewModel.Loggined = false;
+            }
+
             else
             {
                 _mainViewModel.SelectedViewModel = new ManagerViewModel(_mainViewModel.ServiceManager);

@@ -97,16 +97,16 @@ namespace ManagerWPFWork.ViewModels
                 switch (name)
                 {
                     case "EnteredNameSupplier":
-                        if (!IsLetterEnter(EnteredNameSupplier))
+                        if (string.IsNullOrEmpty(EnteredNameSupplier))
+                        {
+                            MessageBox.Show("Input something!", "Error");
+                        }
+                        else if (!IsLetterEnter(EnteredNameSupplier))
                         {
                             MessageBox.Show("Invalid Input. Start only with letter!", "Error");
 
                         }
-                        else if (string.IsNullOrEmpty(EnteredNameSupplier))
-                        {
-                            MessageBox.Show("Input something!", "Error");
-                        }
-
+                       
                         break;
                 }
 

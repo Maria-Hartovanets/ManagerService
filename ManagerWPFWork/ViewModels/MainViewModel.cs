@@ -13,6 +13,7 @@ namespace ManagerWPFWork.ViewModels
 {
     public class MainViewModel:ViewModelBase, INotifyPropertyChanged
     {
+        private bool _loggined = false;
         private IServiceCategory _serviceCategory;
         private IServiceCategory _serviceCategoryBlocked;
         private IServiceProduct _serviceProduct;
@@ -20,6 +21,7 @@ namespace ManagerWPFWork.ViewModels
         private IServiceSupplier _serviceSupplier;
         private ViewModelBase _selectedViewModel;
         private TabItem _tabControlSelectedItem;
+        
 
         public MainViewModel(IServiceCategory serviceCategory, IServiceProduct serviceProduct, IServiceManager serviceManager, IServiceSupplier serviceSupplier, IServiceCategory serviceCategoryBlocked)
         {
@@ -29,7 +31,7 @@ namespace ManagerWPFWork.ViewModels
             _serviceManager = serviceManager;
             _serviceSupplier = serviceSupplier;
             _serviceCategoryBlocked = serviceCategoryBlocked;
-            _selectedViewModel = new ProductViewModel(_serviceProduct, _serviceCategory, _serviceSupplier);
+            _selectedViewModel = new LoginViewModel(_serviceManager,this);
         }
         public ICommand UpdateVM { get; set; }
         public ViewModelBase SelectedViewModel
@@ -39,6 +41,16 @@ namespace ManagerWPFWork.ViewModels
             {
                 this._selectedViewModel = value;
                 OnPropertyChanged(nameof(SelectedViewModel));
+            }
+        }
+        public bool Loggined
+        {
+
+            get => _loggined;
+            set
+            {
+                _loggined = value;
+                OnPropertyChanged("Loggined");
             }
         }
         public IServiceCategory ServiceCategory

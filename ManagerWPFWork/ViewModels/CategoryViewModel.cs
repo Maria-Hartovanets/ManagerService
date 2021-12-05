@@ -15,10 +15,10 @@ using System.Windows.Input;
 
 namespace ManagerWPFWork.ViewModels
 {
-    public class CategoryViewModel: ViewModelBase, INotifyPropertyChanged,IDataErrorInfo
+    public class CategoryViewModel : ViewModelBase, INotifyPropertyChanged, IDataErrorInfo
     {
         private Category _selectedCategory;
-      
+
         private IServiceCategory _serviceCategory;
         public IEnumerable<Category> Categories { get; set; }
         private string _categoryName;
@@ -26,7 +26,7 @@ namespace ManagerWPFWork.ViewModels
         public ICommand DeleteCategory { get; set; }
         public ICommand AddCategory { get; set; }
         public IServiceCategory ServiceCategory {
-            get => _serviceCategory;                }
+            get => _serviceCategory; }
         public string EnteredCategoryName
         {
             get
@@ -71,9 +71,9 @@ namespace ManagerWPFWork.ViewModels
                 OnPropertyChanged("CategoriesAllInfo");
             }
         }
-        public CategoryViewModel( IServiceCategory serviceCategory)
+        public CategoryViewModel(IServiceCategory serviceCategory)
         {
-           
+
             _serviceCategory = serviceCategory;
             FillInfo();
         }
@@ -86,33 +86,60 @@ namespace ManagerWPFWork.ViewModels
         }
         private void FillInfo()
         {
-            EnteredCategoryName = "...";
+
+            EnteredCategoryName = "..";
             DeleteCategory = new DeleteItemCategoryCommand(this);
             AddCategory = new AddItemCategoryCommand(this);
             Categories = _serviceCategory.GetProducts();
 
-
         }
 
+      
+        public bool ActionAllowed
+        {
+            get
+            {
+                return actionAllowed ;
+            }
+            set
+            {
+                actionAllowed = value;
+                OnPropertyChanged("ActionAllowed");
+
+            }
+        }
+
+      
+        private bool actionAllowed;
        
         public string Error { get { return null; } }
        
         public string this[string name]
         {
             get
-            {
+          {
                 string _result = null;
                 switch (name)
                 {
                     case "EnteredCategoryName":
-                        if (!IsLetterEnter(EnteredCategoryName))
+                        if (string.IsNullOrEmpty(EnteredCategoryName))
                         {
-                            MessageBox.Show("Invalid Input. Start only with letter!", "Error");
+                            ActionAllowed = false;
+
+                            MessageBox.Show("Input something!");
+                        }
+                        else if (!IsLetterEnter(EnteredCategoryName))
+                        {
+                            MessageBox.Show("Invalid Input. Start only with letter!");
+                            ActionAllowed = false;
+                          
 
                         }
-                       else if (string.IsNullOrEmpty(EnteredCategoryName))
+                      
+                        else
                         {
-                            MessageBox.Show("Input something!", "Error");
+                            ActionAllowed = true;
+                           
                         }
                        
                         break;
@@ -133,7 +160,7 @@ namespace ManagerWPFWork.ViewModels
             {
                 return false;
             }
-            // MessageBox.Show("Invalid input. Only letter allowed!", "Error");
+           
 
         }
 

@@ -1,79 +1,168 @@
 ﻿using BLLServiceManager.IService;
-using DTO.Model;
-using ManagerWpf.Windows;
 using ManagerWPFWork.Command;
-using ManagerWPFWork.Windows;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace ManagerWPFWork.ViewModels
 {
-    public class LoginViewModel : ViewModelBase, INotifyPropertyChanged
+    public class LoginViewModel : ViewModelBase, INotifyPropertyChanged,IDataErrorInfo
     {
-
-        //private MainViewModel _mainViewModel;
-        WindowLoggin _windowLog;
-        IServiceManager _serviceManager;
-        public IServiceManager ServiceManager { get => _serviceManager; }
-
+        private IServiceManager _serviceManagerLog;
+        public MainViewModel mainViewModel { get; set; }
         private string _email;
         private string _password;
-
-        public ICommand LogCommand { get; set; }
-        public void CloseWindow()
+        
+        public LoginViewModel(IServiceManager serviceManagers,MainViewModel mainViewModel)
         {
-            _windowLog.Close();
+            FillInfo();
+            _serviceManagerLog = serviceManagers;
+            LogginManager = new LoginCommand(this);
+            this.mainViewModel = mainViewModel;
+           
         }
-       
-        public string EnteredEmail
+        public ICommand LogginManager { get; set; }
+        private void  FillInfo()
         {
-            get
-            {
-                return _email;
-            }
+
+            _email = "@gmail.com";
+            _password = "1";
+           // this._loggined = _serviceManagerLog.IsLogin(_email, _password);
+        }
+        public string EmailEntered
+        {
+            get { return _email; }
             set
             {
                 _email = value;
-                OnPropertyChanged("EnteredEmail");
+                OnPropertyChanged("EmailEntered");
             }
         }
-        public string EnteredPassword
+        public string PasswordEntered
         {
-            get
-            {
-                return _password;
-            }
+            get { return _password; }
             set
             {
                 _password = value;
-                OnPropertyChanged("EnteredPassword");
+                OnPropertyChanged("PasswordEntered");
             }
         }
-        public LoginViewModel(IServiceManager serviceManager, WindowLoggin windowLog)
-        {
-            //FillInfo();
-            _serviceManager = serviceManager;
-            LogCommand = new LoginCommand(this);
-            _windowLog = windowLog;
-        }
-        //void FillInfo()
-        //{
-        //    _email = _windowLog.textBox_Login.Text;
-        //    _password = _windowLog.textBox_Pass.Text;
-        //}
        
-
+       
+    
+        public IServiceManager ServiceManager
+        {
+            get => _serviceManagerLog;
+        }
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
+        }
+
+        public bool ActionAllowed
+        {
+            get
+            {
+                return actionAllowed;
+            }
+            set
+            {
+                actionAllowed = value;
+                OnPropertyChanged("ActionAllowed");
+
+            }
+        }
+         public bool ActionAllowedPass
+        {
+            get
+            {
+                return actionAllowedPass;
+            }
+            set
+            {
+                actionAllowedPass = value;
+                OnPropertyChanged("ActionAllowedPass");
+
+            }
+        }
+         public bool ActionAllowedEmail
+        {
+            get
+            {
+                return actionAllowedEmail;
+            }
+            set
+            {
+                actionAllowedEmail = value;
+                OnPropertyChanged("ActionAllowedEmail");
+
+            }
+        }
+
+
+        private bool actionAllowed;
+        private bool actionAllowedPass; 
+        private bool actionAllowedEmail;
+
+        public string Error { get { return null; } }
+
+        public string this[string name]
+        {
+            get
+            {
+                string _result = null;
+                switch (name)
+                {
+                    case "EmailEntered":
+                        if (string.IsNullOrEmpty(EmailEntered))
+                        {
+                            ActionAllowedEmail = false;
+
+                            MessageBox.Show("Input something!");
+                        }
+                       
+                        else
+                        {
+                            ActionAllowedEmail = true;
+
+                        }
+
+                        break; 
+                    case "PasswordEntered":
+                        if (string.IsNullOrEmpty(PasswordEntered))
+                        {
+                            ActionAllowedPass = false;
+
+                            MessageBox.Show("Input something!");
+                        }
+                        else
+                        {
+                            ActionAllowedPass = true;
+
+                        }
+
+                        break;
+                }
+                if (ActionAllowedPass && ActionAllowedEmail)
+                {
+                    ActionAllowed = true;
+                }
+                else
+                {
+                    ActionAllowed = false;
+                }
+
+                return _result;
+            }
         }
        
     }

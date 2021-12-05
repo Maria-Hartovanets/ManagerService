@@ -2,7 +2,6 @@
 using BLLServiceManager.Service;
 using DataAccessLogic.ADO;
 using DataAccessLogic.Interfaces;
-using ManagerWpf.Windows;
 using ManagerWPFWork.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -37,18 +36,6 @@ namespace ManagerWPFWork.Windows
             DataContext = Container.Resolve<MainViewModel>();
             m_ViewModel = new ViewModelBase();
 
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            WindowLoggin mainW = new WindowLoggin();
-            mainW.Show();
-            this.Close();
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            this.Close();
         }
         static private void ConfigureUnity()
         {

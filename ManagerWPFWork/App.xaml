@@ -13,9 +13,6 @@
         <DataTemplate DataType="{x:Type viewmodels:MainViewModel}">
             <windows1:WindowMain/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type viewmodels:LoginViewModel}">
-            <windows1:WindowLoggin/>
-        </DataTemplate>
         <DataTemplate DataType="{x:Type viewmodels:CategoryViewModel}">
             <views:ViewCategory/>
         </DataTemplate>
@@ -27,6 +24,9 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewmodels:SupplierViewModel}">
             <views:ViewSupplier/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:LoginViewModel}">
+            <views:ViewLogin/>
         </DataTemplate>
     </Application.Resources>
 </Application>

@@ -89,6 +89,9 @@
     <Compile Include="View\ViewCategoryBlocked.xaml.cs">
       <DependentUpon>ViewCategoryBlocked.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ViewLogin.xaml.cs">
+      <DependentUpon>ViewLogin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ViewManager.xaml.cs">
       <DependentUpon>ViewManager.xaml</DependentUpon>
     </Compile>
@@ -98,14 +101,8 @@
     <Compile Include="View\ViewSupplier.xaml.cs">
       <DependentUpon>ViewSupplier.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\WindowLoggin.xaml.cs">
-      <DependentUpon>WindowLoggin.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Windows\WindowMain.xaml.cs">
       <DependentUpon>WindowMain.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\WindowRegister.xaml.cs">
-      <DependentUpon>WindowRegister.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -116,6 +113,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ViewCategoryBlocked.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ViewLogin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -135,17 +136,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\WindowLoggin.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Windows\WindowMain.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\WindowRegister.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>

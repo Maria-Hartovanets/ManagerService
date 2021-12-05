@@ -35,8 +35,8 @@
                     <DataGridTextColumn FontFamily="Times new roman" Header="Name" Width ="125" Binding="{Binding Path=Item1.NameObj}"/>
                     <DataGridTextColumn FontFamily="Times new roman" Header="Price In" Width ="90" Binding="{Binding Path=Item1.PriceIn}"/>
                     <DataGridTextColumn FontFamily="Times new roman" Header="Price out" Width ="90" Binding="{Binding Path=Item1.PriceOut}"/>
-                    <DataGridTextColumn FontFamily="Times new roman" Header="Supplier" Width ="100" Binding="{Binding Path=Item2}"/>
-                    <DataGridTextColumn FontFamily="Times new roman" Header="Category" Width ="100" Binding="{Binding Path=Item3}"/>
+                    <DataGridTextColumn FontFamily="Times new roman" Header="Category" Width ="100" Binding="{Binding Path=Item2}"/>
+                    <DataGridTextColumn FontFamily="Times new roman" Header="Supplier" Width ="100" Binding="{Binding Path=Item3}"/>
                     <DataGridTextColumn FontFamily="Times new roman" Header="InsertTime" Width ="100" Binding="{Binding Path=Item1.RowInsertTime}"/>
                     <DataGridTextColumn FontFamily="Times new roman" Header="UpdateTime" Width ="100" Binding="{Binding Path=Item1.RowUpdateTime}"/>
                 </DataGrid.Columns>
@@ -128,7 +128,7 @@
                                      x:Name="name_texbox" 
                                   
                                          Text="{Binding EnteredProductName,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"
-                                      PreviewTextInput="name_texbox_PreviewTextInput"
+                                     
                                        FontSize="20" 
                                      Margin="0,0,0,0"
                                        
@@ -142,7 +142,7 @@
                                        Style="{StaticResource TextBlockAll}"/>
                                 <TextBox Foreground="Black"
                                      x:Name="price_texbox" 
-                                      PreviewTextInput="price_texbox_PreviewTextInput"
+                                     
                                        FontSize="20" 
                                           Text="{Binding EnteredProductPriceIn,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"
                                        
@@ -158,7 +158,7 @@
                                 <TextBox Foreground="Black"
                                        FontSize="20" 
                                      x:Name="priceout_texbox" 
-                                      PreviewTextInput="price_texbox_PreviewTextInput"
+                                     
                                           Text="{Binding EnteredProductPriceOut,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"
                                       
                                         Style="{StaticResource TextBoxAll}"/>
